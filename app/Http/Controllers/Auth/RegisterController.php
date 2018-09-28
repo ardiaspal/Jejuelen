@@ -132,7 +132,7 @@ class RegisterController extends Controller
             'image'     => "https://www.gravatar.com/avatar/". md5( strtolower( trim(  $data['email'] ) ) ) ."?d=monsterid",
             // 'image'     => "https://img00.deviantart.net/abf8/i/2017/028/d/3/souma_yukihira__shokugeki_no_souma__vector_by_greenmapple17-d9titiu.png",
             'fotoKtp'     => $data['fotoKtp'],
-            'user_id'     => $user->id,
+            'user_id'     => $user->id
         ]);
     }else if ($data['type'] == 'mitra') {
         $user = User::create([
@@ -151,7 +151,7 @@ class RegisterController extends Controller
             'alamat'     => $data['alamat'],
             'image'     => "https://www.gravatar.com/avatar/". md5( strtolower( trim(  $data['email'] ) ) ) ."?d=monsterid",
             // 'image'     => "https://img00.deviantart.net/abf8/i/2017/028/d/3/souma_yukihira__shokugeki_no_souma__vector_by_greenmapple17-d9titiu.png",
-            'user_id'     => $user->id,
+            'user_id'     => $user->id
         ]);
     }else{
         abort(404);

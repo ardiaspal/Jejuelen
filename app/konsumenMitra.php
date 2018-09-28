@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class konsumenMitra extends Model
@@ -11,4 +12,14 @@ class konsumenMitra extends Model
 	protected $fillable = [
 		'namaCv','nohp','email','alamat','image','user_id'
 	];
+	public function user(){
+		return $this->belongsTo('App\User');
+	}
+
+	public function isOuner(){
+		if (Auth::guest()) {
+			return false;
+		}
+		return Auth::user()->id == $this->user_id;
+	}
 }

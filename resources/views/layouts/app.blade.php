@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jejuelen</title>
+    <title>Jejuelen - @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
 
 </head>
 <body>
-    <div class="heading-nav">
+    <div class="heading-nav" style="z-index: 1;">
         <div class="grup-all-nav">
             <div class="penyelamat">
                 <div class="logo-jejuelen-v2">
@@ -22,29 +22,71 @@
                 <div class="navigasi-nav-v2">
                     <nav>
                         <ul>
+                            @if (Auth::check())
+                            <li>
+                                <a href="/home" class="hover-new">Hai, @if (Auth::user()->level == 0)
+                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+                                    @elseif (Auth::user()->status_id == 3)
+                                    {{App\petani::where('email',Auth::user()->email)->first()->name}}
+                                    @elseif(Auth::user()->status_id == 2)
+                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+                                    @elseif(Auth::user()->status_id == 1)
+                                    {{App\konsumenMitra::where('email',Auth::user()->email)->first()->namaCv}}
+                                    @endif
+                                </a>
+                            </li>
+                            @endif
                             <li><a class="hover-new" href="/">Beranda</a></li>
-                            <li><a class="hover-new" href="#!">Mimin</a>
+                            @if (Auth::check())
+                            @if (Auth::user()->level == 0)
+                            <li><a href="#!" class="hover-new">Mimin</a>
                                 <ul>
-                                    <li><a class="hover-guy" href="#!">Menegemen Pasar</a></li>
-                                    <li><a class="hover-guy" href="#!">Pesanan</a></li>
-                                    <li><a class="hover-guy" href="#!">Daftar Petani</a></li>
-                                    <li><a class="hover-guy" href="#!">Daftar Pembeli</a></li>
+                                    <li><a href="/managemen-pasar" class="hover-guy">Menegemen Pasar</a></li>
+                                    <li><a href="#!" class="hover-guy">Pesanan</a></li>
+                                    <li><a href="#!" class="hover-guy">Daftar Petani</a></li>
+                                    <li><a href="#!" class="hover-guy">Daftar Pembeli</a></li>
                                 </ul>
                             </li>
-                            <li><a class="hover-all" href="#!">Produk</a>
+                            <li><a href="#!" class="hover-all">Produk</a>
                                 <ul>
-                                    <li><a  class="hover-guy" href="#!">Tambah Produk</a></li>
-                                    <li><a  class="hover-guy" href="#!">Daftar Produk</a></li>
+                                    <li><a href="#!" class="hover-guy">Tambah Produk</a></li>
+                                    <li><a href="#!" class="hover-guy">Daftar Produk</a></li>
                                 </ul>
                             </li>
-                            <li><a class="hover-all" href="#!">Belanja</a>
+                            @endif
+                            @endif
+                            @if (Auth::check())
+                            <li><a href="#!" class="hover-all">Belanja</a>
                                 <ul>
-                                    <li><a class="hover-guy" href="#!">Produk</a></li>
-                                    <li><a class="hover-guy" href="#!">Transaksi</a></li>
-                                    <li><a class="hover-guy" href="#!">History</a></li>
+                                    <li><a href="#!" class="hover-all">Produk</a></li>
+                                    <li><a href="#!" class="hover-all">Transaksi</a></li>
+                                    <li><a href="#!" class="hover-all">History</a></li>
+                                    
                                 </ul>
                             </li>
+                            @else
+                            <li>
+                                <a href="#!">Belanja</a>
+                            </li>
+                            @endif
+                            @if (Auth::check())
+                            @if (Auth::user()->status_id != 0 && Auth::user()->status_id != 3)
+                            <li>
+                                <a href="#!"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> (0)</a>
+                            </li>
+
+                            @endif
+                            @endif
+                            @if (!Auth::check())
                             <li id="regis-log-v2"><a href="{{ route('login') }}">Login</a> & <a href="{{ route('register') }}">Register</a></li>
+                            @endif
+                            @if (Auth::check())
+                            <li id="regis-log-v2">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
+                            </li>
+                            @endif
                         </ul>
                     </nav>
                 </div>

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->tinyInteger('level')->default(0);
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->nullable()->unsigned();
             $table->enum('status', ['setuju', 'tidak'])->default('setuju');
             $table->rememberToken();
             $table->timestamps();

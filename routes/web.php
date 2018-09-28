@@ -2,7 +2,11 @@
 
 Route::group(['middleware' => 'auth'], function(){
 	Route::resource('user', 'UserController', ['except' => ['index','show']]);
-	Route::resource('produk', 'ProdukController', ['except' => ['index','show']]);
+	
+	Route::resource('mitra', 'MitraController');
+	Route::resource('petani', 'PetaniController');
+	Route::resource('umum', 'UmumController');
+
 	Route::resource('transaksi', 'TransaksiController', ['except' => ['index','show']]);
 	Route::resource('place', 'PlaceController', ['except' => ['index','show']]);
 	Route::resource('history', 'HistoryController', ['except' => ['index','show']]);
@@ -22,6 +26,11 @@ Route::get('/', function () {
 	return view('welcome2');
 });
 
+Route::group(['middleware' => 'mimin'], function(){
+	Route::get('/mimin', 'MiminController@dasboard');
+	Route::get('/managemen-pasar', 'MiminController@managemenPasar');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -29,10 +38,5 @@ Route::get('/mitra-validasi', 'HomeController@mitraValidasi');
 
 
 Route::resource('/user', 'UserController', ['only' => ['index','show']]);
-Route::resource('/produk', 'ProdukController', ['only' => ['index','show']]);
-Route::resource('/transaksi', 'TransaksiController', ['only' => ['index','show']]);
 
-
-Route::get('/StoryFromTraveler/sftpart/{slug}', 'SftController@show_part');
-
-Route::get('/{username}', 'HomeController@profile');
+// Route::get('/{username}', 'HomeController@profile');

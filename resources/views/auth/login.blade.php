@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'login')
 @section('content')
 <div class="login-control">
 	<div class="form-isian-login">

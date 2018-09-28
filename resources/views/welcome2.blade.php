@@ -28,12 +28,26 @@
 				<div class="navigasi-nav">
 					<nav>
 						<ul>
+							@if (Auth::check())
+							<li>
+								<a href="/home">Hai, @if (Auth::user()->level == 0)
+                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+                                    @elseif (Auth::user()->status_id == 3)
+                                    {{App\petani::where('email',Auth::user()->email)->first()->name}}
+                                    @elseif(Auth::user()->status_id == 2)
+                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+                                    @elseif(Auth::user()->status_id == 1)
+                                    {{App\konsumenMitra::where('email',Auth::user()->email)->first()->namaCv}}
+                                    @endif
+								</a>
+							</li>
+							@endif
 							<li><a href="/">Beranda</a></li>
 							@if (Auth::check())
 							@if (Auth::user()->level == 0)
 							<li><a href="#!">Mimin</a>
 								<ul>
-									<li><a href="#!">Menegemen Pasar</a></li>
+									<li><a href="/managemen-pasar">Menegemen Pasar</a></li>
 									<li><a href="#!">Pesanan</a></li>
 									<li><a href="#!">Daftar Petani</a></li>
 									<li><a href="#!">Daftar Pembeli</a></li>
@@ -53,7 +67,7 @@
 									<li><a href="#!">Produk</a></li>
 									<li><a href="#!">Transaksi</a></li>
 									<li><a href="#!">History</a></li>
-									
+
 								</ul>
 							</li>
 							@else
@@ -71,14 +85,14 @@
 							@endif
 							@if (!Auth::check())
 							<li id="regis-log"><a href="{{ route('login') }}">Login</a> & <a href="{{ route('register') }}">Register</a></li>
-							@endif
-							@if (Auth::check())
-							<li>
-								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-								Logout</a>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
-							</li>
-							@endif
+                            @endif
+                            @if (Auth::check())
+                            <li id="regis-log">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
+                            </li>
+                            @endif
 						</ul>
 					</nav>
 				</div>
@@ -176,7 +190,7 @@
 
 		</div>
 	</div>
-	
+
 	<div class="about-web">
 		<div class="image-font">
 			<img src="{{ asset('image/quote-icon.svg') }}" alt="">
