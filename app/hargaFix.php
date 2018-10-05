@@ -13,13 +13,13 @@ class hargaFix extends Model
 		'nama','hargaBuah'
 	];
 
-	public function produkKG()
+	public function produkKGs()
 	{
-		return $this->belongsTo('App\produkKG');
+		return $this->hasMany('App\produkKG');
 	}
 
-	public function produkLahan()
+	public function produkLahans()
 	{
-		return $this->belongsTo('App\produkLahan');
+		return $this->hasMany('App\produkLahan');
 	}
 }

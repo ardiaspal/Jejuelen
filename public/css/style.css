@@ -431,6 +431,7 @@ nav ul ul ul{
 }
 .box-wrapper img {
 	max-width: 100%;
+	height: 195px;
 }
 .box-wrapper .success {
 	position: absolute;
@@ -1336,7 +1337,7 @@ footer{
 		width: 450px;
 	}
 }
-@media (max-width: 1158px){
+@media (max-width: 1224px){
 	.image-management {
 		display: block;
 		float: inherit;
@@ -1495,3 +1496,65 @@ footer{
 	}
 }
 /*end profil all*/
+
+/*produk kg & lahan*/
+#new-modal-header{
+	padding: 15px;
+	padding-bottom: 0;
+	border-bottom: 0px solid #e5e5e5;
+}
+#title-moda-new{
+	text-align: center;
+	/* font-weight: 900; */
+	color: #2a4a5b;
+	font-size: 27px;
+	font-family: Pacifico;
+}
+#mod-inputan{
+	border: none;
+	background-color: #e9f3f5;
+	color: #313131;
+	font-weight: 900;
+	font-size: 18px
+}
+#select-satuan{
+	border: none;
+	background-color: #e9f3f5;
+	color: #313131;
+	font-weight: 900;
+	font-size: 18px;
+	width: 100%;
+	height: 36px;
+}
+.moda-padding{
+	padding: 0 15px;
+}
+#textarea-style{
+	width: 100%;
+	border: none;
+	background-color: #e9f3f5;
+	color: #313131;
+	font-weight: 900;
+	font-size: 18px;
+}
+.grup-input-stok .col-xs-6{
+	padding: 0 15px;
+	padding-left: 0;
+}
+@media (max-width: 767px) {
+	#solve-grid{
+		padding: 0;
+	}
+	.grup-input-stok .col-xs-6:nth-child(2){
+		padding-left: 15px;
+		padding-right: 0;
+	}
+}
+
+@media (max-width: 767px){
+	.moda-padding {
+		padding: 0;
+	}
+}
+
+/*end produk kg & lahan*/

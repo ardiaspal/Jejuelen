@@ -25,7 +25,7 @@
                             @if (Auth::check())
                             <li>
                                 <a href="/home" class="hover-new">Hai, @if (Auth::user()->level == 0)
-                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+                                    Admin
                                     @elseif (Auth::user()->status_id == 3)
                                     {{App\petani::where('email',Auth::user()->email)->first()->name}}
                                     @elseif(Auth::user()->status_id == 2)
@@ -43,8 +43,9 @@
                                 <ul>
                                     <li><a href="/managemen-pasar" class="hover-guy">Menegemen Pasar</a></li>
                                     <li><a href="#!" class="hover-guy">Pesanan</a></li>
-                                    <li><a href="#!" class="hover-guy">Daftar Petani</a></li>
-                                    <li><a href="#!" class="hover-guy">Daftar Pembeli</a></li>
+                                    <li><a href="/daftar-petani" class="hover-guy">Daftar Petani</a></li>
+                                    <li><a href="/daftar-pembeli" class="hover-guy">Daftar Pembeli</a></li>
+                                    <li><a href="/daftar-mitra" class="hover-guy">Daftar Mitra</a></li>
                                 </ul>
                             </li>
                             <li><a href="#!" class="hover-all">Produk</a>

@@ -9,12 +9,12 @@ class produkKG extends Model
 	protected $table = 'produk_kg';
 	public $timestamps = true;
 	protected $fillable = [
-		'nama','stok','image','hargaFix_id','farmers_id'
+		'nama','stok','image','hargaFix_id','farmers_id','slug','deskripsi'
 	];
 
-	public function harga_fixs()
+	public function hargaFix()
 	{
-		return $this->hasMany('App\hargaFix');
+		return $this->belongsTo('App\hargaFix','hargaFix_id');
 	}
 
 	public function petani()

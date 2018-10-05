@@ -18,6 +18,8 @@ class CreateProdukLahanTable extends Migration
             $table->string('nama',225);
             $table->integer('stok');
             $table->text('image');
+            $table->string('slug',225);
+            $table->text('deskripsi');
             $table->timestamp('masatanam')->nullable();
             $table->timestamp('perkiraanPanen')->nullable();
             $table->integer('hargaFix_id')->unsigned();

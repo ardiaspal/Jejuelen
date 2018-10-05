@@ -15,13 +15,14 @@ class MitraController extends Controller
      */
     public function index()
     {
-       if (Auth::user()->status_id == 1) {
-           return view('mitra.index');
-       } else {
-           abort(404);
-       }
+     if (Auth::user()->status_id == 1) {
+       $mitra = konsumenMitra::where('email',Auth::user()->email)->first();
+       return view('mitra.index',compact('mitra'));
+   } else {
+     abort(404);
+ }
 
-   }
+}
 
     /**
      * Show the form for creating a new resource.
@@ -115,10 +116,10 @@ class MitraController extends Controller
                 'image'     => $request->image,
             ]);
         }else {
-         abort(403);
-     }
-     return redirect('/home');
- }
+           abort(403);
+       }
+       return redirect('/home');
+   }
 
     /**
      * Remove the specified resource from storage.

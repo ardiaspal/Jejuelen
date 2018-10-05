@@ -34,19 +34,16 @@ class HomeController extends Controller
          return redirect('/mimin');
      } else if (Auth::user()->status_id == 1) {
         if (Auth::user()->status == 'setuju') {
-            $mitra = konsumenMitra::where('email',Auth::user()->email)->first();
-            return view('mitra.index',compact('mitra'));
+           return redirect('/mitra');
         } else {
             Auth::logout();
             return view('mitra.mitra-validasi');
         }
 
     } else if(Auth::user()->status_id == 2){
-        $umum = konsumenUmum::where('email',Auth::user()->email)->first();
-        return view('umum.index',compact('umum'));
+       return redirect('/umum');
     } else if(Auth::user()->status_id == 3){
-     $petani = petani::where('email',Auth::user()->email)->first();
-     return view('petani.index',compact('petani'));
+        return redirect('/petani');
  } else{
     abort(404);
 }

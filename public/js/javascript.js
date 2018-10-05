@@ -6,6 +6,17 @@ function closeNav() {
 	document.getElementById("mySidenav").style.width = "0";
 }
 
+$(document).ready(function() {
+	// console.log('masuk wes');
+	$('#select-satuan').on('click',function(){
+		var harga = $(this).find(':selected').attr('data-id');
+		// console.log('msuk');
+		// console.log(harga);
+		$('.harga_kg').val(harga);
+
+	});
+});
+
 // $(window).load(function() {
 // 	$('#load-loading').hide();
 // });

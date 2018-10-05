@@ -31,7 +31,7 @@
 							@if (Auth::check())
 							<li>
 								<a href="/home">Hai, @if (Auth::user()->level == 0)
-                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+                                     Admin
                                     @elseif (Auth::user()->status_id == 3)
                                     {{App\petani::where('email',Auth::user()->email)->first()->name}}
                                     @elseif(Auth::user()->status_id == 2)
@@ -49,8 +49,9 @@
 								<ul>
 									<li><a href="/managemen-pasar">Menegemen Pasar</a></li>
 									<li><a href="#!">Pesanan</a></li>
-									<li><a href="#!">Daftar Petani</a></li>
-									<li><a href="#!">Daftar Pembeli</a></li>
+									<li><a href="/daftar-petani">Daftar Petani</a></li>
+									<li><a href="/daftar-pembeli">Daftar Pembeli</a></li>
+									<li><a href="/daftar-mitra">Daftar Mitra</a></li>
 								</ul>
 							</li>
 							<li><a href="#!">Produk</a>

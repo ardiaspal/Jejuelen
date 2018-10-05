@@ -18,6 +18,8 @@ class CreateProdukKgTable extends Migration
             $table->string('nama',225);
             $table->integer('stok');
             $table->text('image');
+            $table->string('slug',225);
+            $table->text('deskripsi');
             $table->integer('hargaFix_id')->unsigned();
             $table->integer('farmers_id')->unsigned();
             $table->timestamps();

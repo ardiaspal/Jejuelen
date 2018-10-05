@@ -15,15 +15,14 @@ class UmumController extends Controller
      */
     public function index()
     {
-     if (Auth::user()->status_id == 2) {
-        $konsumenUmum = konsumenUmum::where('email',Auth::user()->email)->first();
+       if (Auth::user()->status_id == 2) {
+           $umum = konsumenUmum::where('email',Auth::user()->email)->first();
+           return view('umum.index',compact('umum'));
+       } else {
+           abort(404);
+       }
 
-        return view('umum.index',compact('konsumenUmum'));
-    } else {
-     abort(404);
- }
-
-}
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -116,10 +115,10 @@ class UmumController extends Controller
                 'image'     => $request->image,
             ]);
         }else {
-           abort(403);
-       }
-       return redirect('/home');
-   }
+         abort(403);
+     }
+     return redirect('/home');
+ }
 
     /**
      * Remove the specified resource from storage.
