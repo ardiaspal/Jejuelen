@@ -9,7 +9,7 @@ class produkLahan extends Model
 	protected $table = 'produk_lahan';
 	public $timestamps = true;
 	protected $fillable = [
-		'nama','stok','image','hargaFix_id','farmers_id','masatanam','perkiraanPanen','slug','deskripsi'
+		'nama','stokAwal','stokAkhir','image','farmers_id','masatanam','perkiraanPanen','slug','deskripsi','harga'
 	];
 
 	// stok ada range
@@ -21,12 +21,6 @@ class produkLahan extends Model
 
 	// pembayaran sampai booking
 	// tambah no hp
-
-
-	public function hargaFix()
-	{
-		return $this->belongsTo('App\hargaFix','hargaFix_id');
-	}
 
 	public function petani()
 	{

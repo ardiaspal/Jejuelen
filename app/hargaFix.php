@@ -21,5 +21,9 @@ class hargaFix extends Model
 	public function produkLahans()
 	{
 		return $this->hasMany('App\produkLahan');
+	}	
+	public function statistik()
+	{
+		return $this->hasMany('App\statistik');
 	}
 }

@@ -9,6 +9,8 @@ use App\konsumenUmum;
 use App\konsumenMitra;
 use App\petani;
 use App\hargaFix;
+use App\statistik;
+
 class MiminController extends Controller
 {
     /**
@@ -31,17 +33,17 @@ class MiminController extends Controller
         $username = str_slug($request->username, '_');
 
         if (Auth::user()->level == 0) {
-           $this->validate($request,[
-              'username' => 'required|string|max:255|unique:users',
-              'email' => 'required|string|email|max:255|unique:users',
-              'password' => 'required|string|min:6|confirmed',
-              'ttl' => 'required|date_format:d-m-Y',
-              'status_hidup' => 'required',
-              'jenisKelamin' => 'required',
-          ]);
+         $this->validate($request,[
+          'username' => 'required|string|max:255|unique:users',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:6|confirmed',
+          'ttl' => 'required|date_format:d-m-Y',
+          'status_hidup' => 'required',
+          'jenisKelamin' => 'required',
+      ]);
 
 
-           $user = User::create([
+         $user = User::create([
             'username'  => $username,
             'email'     => $request->email,
             'password'  => bcrypt($request->password),
@@ -50,7 +52,7 @@ class MiminController extends Controller
             'status'     => 'setuju'
         ]);
 
-           petani::create([
+         petani::create([
             'name'     => $request->name,
             'nohp'     => $request->nohp,
             'email'     => $request->email,
@@ -67,15 +69,15 @@ class MiminController extends Controller
             'user_id'     => $user->id
         ]);
 
-           return redirect('/daftar-petani');
-       } else {
-           abort(404);
-       }
+         return redirect('/daftar-petani');
+     } else {
+         abort(404);
+     }
 
 
-   }
-   public function daftarPembeli()
-   {
+ }
+ public function daftarPembeli()
+ {
     $i = 1;
     $umums = konsumenUmum::with('user')->get();
     return view('mimin.daftar_pembeli', compact('umums','i'));
@@ -88,69 +90,101 @@ public function daftarMitra()
 }
 public function dasboard()
 {
-   if (Auth::user()->level == 0) {
-       return view('mimin.index');
-   } else {
-       abort(404);
-   }
+ if (Auth::user()->level == 0) {
+     return view('mimin.index');
+ } else {
+     abort(404);
+ }
 }
 public function managemenPasar()
 {
-   if (Auth::user()->level == 0) {
+ if (Auth::user()->level == 0) {
     $i = 1;
     $hargas = hargaFix::all();
     return view('mimin.managemen_pasar', compact('hargas','i'));
 } else {
-   abort(404);
+ abort(404);
 }
 }
 
 public function tambahHargaBuah(Request $request)
 {
     // dd('masuk');
-   if (Auth::user()->level == 0) {
-     $this->validate($request,[
-        'nama' => 'required',
-        'harga' => 'required|integer'
-    ]);
+ if (Auth::user()->level == 0) {
+   $this->validate($request,[
+    'nama' => 'required',
+    'harga' => 'required|integer'
+]);
 
 
-     hargaFix::create([
-        'nama'     => $request->nama,
-        'hargaBuah'     => $request->harga,
-    ]);
+   $id_harga =  hargaFix::create([
+    'nama'     => $request->nama,
+    'hargaBuah'     => $request->harga,
+]);     
+   statistik::create([
+    'nama'     => $request->nama,
+    'hargaBuah'     => $request->harga,
+    'hargafix_id'     => $id_harga->id
+]);
 
-     return redirect('/managemen-pasar');
+   return redirect('/managemen-pasar');
 
 
- } else {
-     abort(404);
- }
+} else {
+   abort(404);
+}
 
 }
 
 public function editHargaBuah(Request $request, $id)
 {
- $harga = hargaFix::findOrFail($id);
-
- if (Auth::user()->level == 0) {
-     $this->validate($request,[
+   $harga = hargaFix::findOrFail($id);
+// dd($haraa);
+   if (Auth::user()->level == 0) {
+       $this->validate($request,[
         'nama' => 'required',
         'harga' => 'required|integer'
     ]);
 
 
-     $harga->update([
+       if ($request->harga != $harga->hargaBuah && $request->nama != $harga->nama) {
+           if ($request->harga != $harga->hargaBuah) {
+              statistik::create([
+                'nama'     => $request->nama,
+                'hargaBuah'     => $request->harga,
+                'hargafix_id'     => $id
+            ]);
+          }
+          if ($request->nama != $harga->nama) {
+            $namabuaha = statistik::where('nama',$harga->nama);
+            $namabuaha->update([
+                'nama'     => $request->nama
+            ]);
+        }
+    }else if ($request->harga != $harga->hargaBuah) {
+      statistik::create([
         'nama'     => $request->nama,
         'hargaBuah'     => $request->harga,
+        'hargafix_id'     => $id
     ]);
+  }else if ($request->nama != $harga->nama) {
+    $namabuaha = statistik::where('nama',$harga->nama);
+    $namabuaha->update([
+        'nama'     => $request->nama
+    ]);
+}
 
-     return redirect('/managemen-pasar');
+$harga->update([
+    'nama'     => $request->nama,
+    'hargaBuah'     => $request->harga,
+]);
+
+return redirect('/managemen-pasar');
 
 
- } else {
-     abort(404);
- }
+} else {
+   abort(404);
+}
 
 }
 
@@ -159,11 +193,19 @@ public function hapusharga($id)
     $harga = hargaFix::findOrFail($id);
 
     if (Auth::user()->level == 0) {
-       $harga->delete();
-   }else {
-       abort(404);
-   }
-   return redirect('/managemen-pasar');
+     $harga->delete();
+ }else {
+     abort(404);
+ }
+ return redirect('/managemen-pasar');
+}
+
+public function statistikharga($id)
+{
+    $statistiks = statistik::where('hargafix_id',$id)->orderBy('created_at', 'asc')->get();
+    $statistik = statistik::where('hargafix_id',$id)->first();
+
+    return view('mimin.statistik', compact('statistiks','statistik'));
 }
     /**
      * Show the form for creating a new resource.

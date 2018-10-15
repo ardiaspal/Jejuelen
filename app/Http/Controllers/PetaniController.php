@@ -7,6 +7,8 @@ use App\petani;
 use App\User;
 use App\hargaFix;
 use App\produkKG;
+use App\produkLahan;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 
 class PetaniController extends Controller
@@ -23,15 +25,31 @@ class PetaniController extends Controller
         // dd($hargas);
         $petani = petani::where('email',Auth::user()->email)->first();
         $produks = produkKG::with('hargaFix','petani')->where('farmers_id',$petani->id)->orderBy('created_at','des')->paginate(20);
+        $produklahans = produkLahan::with('petani')->where('farmers_id',$petani->id)->orderBy('created_at','des')->paginate(20);
         // dd($produks);
 
-        return view('petani.index',compact('petani','hargas','produks'));
+        return view('petani.index',compact('petani','hargas','produks','produklahans'));
     } else {
      abort(404);
  }
 
 }
 
+public function petaniUpdateValidasi(Request $request, $id)
+{
+    // dd('masuk');
+    if (Auth::check()) {
+      abort(404);
+  }else{
+    $user = User::findOrFail($id);
+    // dd($user);
+    $user->update([
+        'status'     => $request->status_verif
+    ]);
+    return redirect('/home');
+}
+abort(404);
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -64,7 +82,7 @@ class PetaniController extends Controller
         }
 
 
-        $hargaFIx_id = hargaFix::where('nama',$request->nama) ->orWhere('hargaBuah',$request->harga)->first();
+        $hargaFIx_id = hargaFix::where('nama',$request->nama)->orWhere('hargaBuah',$request->harga)->first();
         // dd($petani->id);
         if (Auth::user()->status_id == 3) {
             // dd($request);
@@ -93,6 +111,55 @@ class PetaniController extends Controller
            abort(404);
        }
    }
+
+   public function tambahProdukLahan(Request $request)
+   {
+       $slug = str_slug($request->nama, '-');
+       $petani = petani::where('email',Auth::user()->email)->first();
+
+        // chek apa lug ada yang sama
+       if (produkLahan::where('slug',$slug)->first() != null) {
+        $slug = $slug. '-' . time();
+    }
+
+        // dd($petani->id);
+    if (Auth::user()->status_id == 3) {
+            // dd($request);
+        $this->validate($request,[
+            'nama' => 'required',
+            'stokAwal' => 'required|integer',
+            'stokAkhir' => 'required|integer',
+            'image' => 'required',
+            'harga' => 'required|integer',
+            'masatanam' => 'required|date_format:d-m-Y',
+            'perkiraanPanen' => 'required|date_format:d-m-Y',
+            'deskripsi' => 'required'
+        ]);
+
+        $image = $request->file('image');
+        $input['namefile'] = time().'-'.$image->getClientOriginalName();
+        $tempat = public_path('image/projek');
+        $image->move($tempat,$input['namefile']);
+        // dd('wes masuk');
+
+        produkLahan::create([
+            'nama'           => $request->nama,
+            'stokAwal'           => $request->stokAwal,
+            'stokAkhir'           => $request->stokAkhir,
+            'harga'          => $request->harga+2000,
+            'deskripsi'          => $request->deskripsi,
+            'masatanam'          => $request->masatanam,
+            'perkiraanPanen'          => $request->perkiraanPanen,
+            'slug'           =>  $slug,
+            'image'           =>  $input['namefile'],
+            'farmers_id'     => $petani->id
+        ]);
+
+        return redirect('/petani');
+    } else {
+       abort(404);
+   }
+}
 
     /**
      * Display the specified resource.

@@ -28,28 +28,15 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
-        // dd('kene');
-        if ($request->type == "umum" || $request->type == "petani") {
-           $this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
 
-           event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request->all())));
 
-        // $this->guard()->login($user);
-           return redirect('/login');
-       }else if ($request->type == "mitra") {
-           $this->validator($request->all())->validate();
+        $this->guard()->login($user);
 
-           event(new Registered($user = $this->create($request->all())));
-           // dd('disini');
-        // $this->guard()->login($user);
-           return redirect('/mitra-validasi');
-       }else{
-        abort(404);
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
-
-    return $this->registered($request, $user)
-    ?: redirect($this->redirectPath());
-}
 
     /**
      * Get the guard to be used during registration.
@@ -70,6 +57,6 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
-
+        //
     }
 }

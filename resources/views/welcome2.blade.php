@@ -54,12 +54,6 @@
 									<li><a href="/daftar-mitra">Daftar Mitra</a></li>
 								</ul>
 							</li>
-							<li><a href="#!">Produk</a>
-								<ul>
-									<li><a href="#!">Tambah Produk</a></li>
-									<li><a href="#!">Daftar Produk</a></li>
-								</ul>
-							</li>
 							@endif
 							@endif
 							@if (Auth::check())

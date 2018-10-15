@@ -16,17 +16,17 @@ class CreateProdukLahanTable extends Migration
         Schema::create('produk_lahan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',225);
-            $table->integer('stok');
+            $table->integer('stokAwal');
+            $table->integer('stokAkhir');
+            $table->integer('harga');
             $table->text('image');
             $table->string('slug',225);
             $table->text('deskripsi');
-            $table->timestamp('masatanam')->nullable();
-            $table->timestamp('perkiraanPanen')->nullable();
-            $table->integer('hargaFix_id')->unsigned();
+            $table->string('masatanam',225)->nullable();
+            $table->string('perkiraanPanen',225)->nullable();
             $table->integer('farmers_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('hargaFix_id')->references('id')->on('harga_fix')->onDelete('cascade');
             $table->foreign('farmers_id')->references('id')->on('farmers')->onDelete('cascade');
         });
     }

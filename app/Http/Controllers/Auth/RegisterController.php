@@ -115,7 +115,7 @@ class RegisterController extends Controller
             'password'  => bcrypt($data['password']),
             'level'     => 1,
             'status_id'     => 3,
-            'status'     => 'setuju'
+            'status'     => 'tidak'
         ]);
 
         petani::create([

@@ -323,3 +323,4 @@ if (window.innerWidth <= 654) {
 		}).fadeOut('slow');
 	});
 }
+

@@ -28,6 +28,8 @@
 					<th>Nohp</th>
 					<th>Email</th>
 					<th>Alamat</th>
+					<th>Status</th>
+					<th>Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,8 +40,9 @@
 					<td>{{$mitra->nohp}}</td>
 					<td>{{$mitra->email}}</td>
 					<td>{{$mitra->alamat}}</td>
+					<td>{{$mitra->user->status}}</td>
 					<td class="aksi-managmen">
-						<a href="#!">Update</a>
+						<a href="#!" data-toggle="modal" data-target="#myModalEdit{{$mitra->id}}">Update</a>
 						<a href="#!">Delete</a>
 					</td>
 				</tr>
@@ -49,6 +52,43 @@
 	</div>
 </div>
 
+<!-- Modal edit-->
+@foreach ($mitras as $mitra)
+<div class="modal fade" id="myModalEdit{{$mitra->id}}" role="dialog">
+	<div class="modal-dialog modal-sm">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header" id="new-modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" id="title-moda-new">Edit Status Mitra</h4>
+			</div>
+			<div class="modal-body">
+				<form action="/edit-harga-buah/{{$mitra->id}}" method="POST">
+					<div class="form-group">
+						<label class="lable-mod" for="exampleInputEmail1">Nama Cv</label>
+						<input type="judul" name="namaCv" class="form-control" value="{{ old('namaCv') ? old('namaCv') : $mitra->namaCv  }}" id="mod-inputan" placeholder="Nama Buah" required>
+					</div>
+					<div class="form-group">
+						<label class="lable-mod" for="exampleInputEmail1">Status</label>
+						<select id="select-satuan" name="nama">
+							<option style="display: none" disabled selected value></option>
+							<option class="button-select-kg" {{strcasecmp($mitra->user->status, 'setuju') == 0  ? 'selected' : ''}}>setuju</option>
+							<option class="button-select-kg" {{strcasecmp($mitra->user->status, 'tidak') == 0  ? 'selected' : ''}}>tidak</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-block btn-default">Submit</button>
+					{{ csrf_field() }}
+					<input type="hidden" name="_method"  value="PUT">
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@endforeach
 
 
 @endsection

@@ -48,7 +48,7 @@
         <clipPath id="white-clip"><circle id="white-eye" fill="#cacaca" cx="130" cy="65" r="20" /> </clipPath>
     </defs>
     <path class="alarm" fill="#e62326" d="M120.9 19.6V9.1c0-5 4.1-9.1 9.1-9.1h0c5 0 9.1 4.1 9.1 9.1v10.6" />
-    <text class="error-text" fill="#2b2b2b" y="106" font-size="120"> 403 </text>
+    <text class="error-text" fill="#2b2b2b" y="106" font-size="120"> 404 </text>
     <g id="robot">
       <g id="eye-wrap">
         <use xlink:href="#white-eye"></use>

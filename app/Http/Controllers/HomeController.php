@@ -35,16 +35,20 @@ class HomeController extends Controller
      } else if (Auth::user()->status_id == 1) {
         if (Auth::user()->status == 'setuju') {
            return redirect('/mitra');
-        } else {
-            Auth::logout();
-            return view('mitra.mitra-validasi');
-        }
+       } else {
+        Auth::logout();
+        return view('mitra.mitra-validasi');
+    }
 
-    } else if(Auth::user()->status_id == 2){
-       return redirect('/umum');
-    } else if(Auth::user()->status_id == 3){
-        return redirect('/petani');
- } else{
+} else if(Auth::user()->status_id == 2){
+   return redirect('/umum');
+} else if(Auth::user()->status_id == 3){
+   if (Auth::user()->status == 'setuju') {
+       return redirect('/petani');
+   }else{
+    return redirect('/petani-validasi');
+}
+} else{
     abort(404);
 }
 }
@@ -52,6 +56,15 @@ class HomeController extends Controller
 }
 public function mitraValidasi()
 {
+    Auth::logout();
     return view('mitra.mitra-validasi');
 }
+public function petaniValidasi()
+{
+    $id_user = Auth::user()->id;
+    Auth::logout();
+    // dd($id_user);
+    return view('petani.verifikasi_petani',compact('id_user'));
+}
+
 }

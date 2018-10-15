@@ -40,6 +40,7 @@
 					<td class="aksi-managmen">
 						<a href="#!" data-toggle="modal" data-target="#myModalEdit{{$harga->id}}">Update</a>
 						<a href="/hapus-harga-buah/{{$harga->id}}/destroy">Delete</a>
+						<a href="/statistik-harga-buah/{{$harga->id}}" target="_blank">Statistik</a>
 					</td>
 				</tr>
 				@endforeach

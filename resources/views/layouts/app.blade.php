@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker3.css') }}">
 
 </head>
 <body>
@@ -46,12 +47,6 @@
                                     <li><a href="/daftar-petani" class="hover-guy">Daftar Petani</a></li>
                                     <li><a href="/daftar-pembeli" class="hover-guy">Daftar Pembeli</a></li>
                                     <li><a href="/daftar-mitra" class="hover-guy">Daftar Mitra</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#!" class="hover-all">Produk</a>
-                                <ul>
-                                    <li><a href="#!" class="hover-guy">Tambah Produk</a></li>
-                                    <li><a href="#!" class="hover-guy">Daftar Produk</a></li>
                                 </ul>
                             </li>
                             @endif
@@ -123,6 +118,9 @@
     </footer>
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/Chart.min.js') }}" type="text/javascript"></script>
+    @yield('script')
     <script type="text/javascript" src="{{ asset('js/javascript.js') }}"></script>
 </body>
 </html>

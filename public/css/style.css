@@ -422,9 +422,23 @@ nav ul ul ul{
 	background-color: #fff;
 	overflow: hidden;
 	width: 100%;
+	position: relative;
 	padding: 0;
 	text-align: center;
 	/* border: 1px solid #2a4a5b; */
+}
+.box-wrapper p{
+	position: absolute;
+	top: 0;
+	color: #2a4a5b;
+	font-weight: 900;
+	background-color: white;
+	padding: 5px 10px;
+	margin: 0;
+}
+.box-wrapper p:hover{
+	background-color: #2a4a5b;
+	color: white;
 }
 .box-wrapper:hover{
 	box-shadow: 0px 5px 43px rgba(0, 0, 0, 0.48);
@@ -1320,6 +1334,18 @@ footer{
 	color: white;
 	background-color: #da2525;
 }
+.aksi-managmen a:nth-child(3){
+	text-decoration: none;
+	color: #51606f;
+	border: 2px solid #51606f;
+	padding: 3px 6px;
+	font-weight: 600;
+}
+.aksi-managmen a:nth-child(3):hover{
+	text-decoration: none;
+	color: white;
+	background-color: #51606f;
+}
 #color-striped>tbody>tr:nth-of-type(odd) {
 	background-color: rgba(42, 74, 91, 0.24);
 }
@@ -1558,3 +1584,124 @@ footer{
 }
 
 /*end produk kg & lahan*/
+
+/* validasi mitra */
+.head-image-validasi{
+	width: 300px;
+	display: block;
+	margin: 0 auto;
+	border: 5px solid #316ea4;
+	box-shadow: 0px 0px 15px 0px #696868;
+}
+.head-image-validasi img{
+	width: 100%;
+}
+.head-validasi-mitra{
+	width: 50%;
+	margin: 0 auto;
+}
+.head-validasi-mitra h1{
+	color: #2a4a5b;
+	font-family: Pacifico;
+}
+.syarat-mitra{
+	width: 50%;
+	margin: 0 auto;
+}
+.syarat-mitra p{
+	color: #2a4a5b;
+	font-family: Righteous;
+}
+.ttd-admin{
+	text-align: right;
+}
+.grup-ttd{
+	display: inline-block;
+	text-align: center;
+}
+.grup-ttd b:nth-child(1){
+	color: #2a4a5b;
+	font-family: Righteous;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+.grup-ttd b:nth-child(3){
+	color: #2a4a5b;
+	font-family: Pacifico;
+}
+@media (max-width: 768px){
+	.head-validasi-mitra{
+		width: 80%;
+		margin: 0 auto;
+	}
+	.syarat-mitra{
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+/* end validasi mitra */
+
+/*verif petani*/
+.grup-all-verif-petani{
+	display: block;
+	width: 60%;
+	margin: 15px auto;
+	margin-bottom: 45px;
+}
+.header-nav-verif-petani{
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 30px;
+}
+.header-nav-verif-petani h1{
+	color: #2a4a5b;
+	font-family: Pacifico;
+}
+.kontrak-petani{
+	height: 250px;
+	overflow-y: auto;
+	color: #2a4a5b;
+}
+.kontrak-petani h1{
+	text-align: center;
+	font-size: 27px;
+	font-weight: 900;
+}
+.button-verif{
+	display: inline-block;
+	width: 100%;
+	margin-top: 10px;
+}
+.button-verif .checkbox-inline{
+	font-family: Righteous;
+	color: #2a4a5b;
+}
+.button-verif button{
+	margin-top: 15px;
+	float: right;
+	background-color: white;
+	border: 2px solid #2a4a5b;
+	color: #2a4a5b;
+	font-weight: 900;
+	padding: 5px 10px;
+}
+.button-verif button:hover{
+	color: white;
+	background-color: #2a4a5b;
+}
+/*end verif petani*/
+
+/*statistik rego*/
+.statistik-rego{
+	width: 80%;
+	margin: 0 auto;
+}
+.head-rego h1{
+	font-family: Righteous;
+	color: #2a4a5b;
+	font-size: 30px;
+}
+.head-rego h1 span{
+	color: #fa7d97;
+}
+/*end satistik rego*/
