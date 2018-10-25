@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker3.css') }}">
-
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/tinymcescript.js') }}" type="text/javascript"></script>
+    @yield('style')
 </head>
 <body>
     <div class="heading-nav" style="z-index: 1;">
@@ -54,7 +56,7 @@
                             @if (Auth::check())
                             <li><a href="#!" class="hover-all">Belanja</a>
                                 <ul>
-                                    <li><a href="#!" class="hover-all">Produk</a></li>
+                                    <li><a href="/produk" class="hover-all">Produk</a></li>
                                     <li><a href="#!" class="hover-all">Transaksi</a></li>
                                     <li><a href="#!" class="hover-all">History</a></li>
                                     
@@ -62,13 +64,13 @@
                             </li>
                             @else
                             <li>
-                                <a href="#!">Belanja</a>
+                                <a href="/produk">Belanja</a>
                             </li>
                             @endif
                             @if (Auth::check())
                             @if (Auth::user()->status_id != 0 && Auth::user()->status_id != 3)
                             <li>
-                                <a href="#!"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> (0)</a>
+                                <a href="#!"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> ({{count(App\pesanan::where('user_id',Auth::user()->id)->where('status','tidak')->get())}})</a>
                             </li>
 
                             @endif

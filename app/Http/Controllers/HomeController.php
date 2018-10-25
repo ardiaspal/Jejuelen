@@ -6,6 +6,8 @@ use App\User;
 use App\petani;
 use App\konsumenUmum;
 use App\konsumenMitra;
+use App\produkKG;
+use App\produkLahan;
 
 use Illuminate\Http\Request;
 
@@ -66,5 +68,6 @@ public function petaniValidasi()
     // dd($id_user);
     return view('petani.verifikasi_petani',compact('id_user'));
 }
+
 
 }

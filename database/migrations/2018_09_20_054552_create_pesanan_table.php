@@ -19,6 +19,8 @@ class CreatePesananTable extends Migration
             $table->integer('produkLahan_id')->nullable()->unsigned();
             $table->integer('produkKg_id')->nullable()->unsigned();
             $table->integer('jumlah');
+            $table->integer('hargaTot');
+            $table->enum('status', ['terbayar', 'tidak'])->default('tidak');
             $table->timestamps();
 
 

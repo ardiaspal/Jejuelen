@@ -5,9 +5,15 @@ Route::group(['middleware' => 'auth'], function(){
 	
 	Route::resource('mitra', 'MitraController');
 
+	Route::post('/pesanan/kg', 'PesananController@pesananKg');
+	Route::post('/pesanan/Lahan', 'PesananController@pesananLahan');
 
 	Route::resource('petani', 'PetaniController');
 	Route::post('/tambah-produk-kg', 'PetaniController@tambahProdukKg');
+	Route::get('/produk-edit-kg/{id}', 'PetaniController@editprodukkg');
+	Route::put('/data-edit-kg/{id}', 'PetaniController@editdataprodukkg');
+	Route::get('/data-delete-kg/{id}/destroy', 'PetaniController@destroyKg');
+
 	Route::post('/tambah-produk-lahan', 'PetaniController@tambahProdukLahan');
 
 	Route::resource('umum', 'UmumController');
@@ -63,4 +69,7 @@ Route::put('/update-petani-validasi/{id}', 'PetaniController@petaniUpdateValidas
 
 Route::resource('/user', 'UserController', ['only' => ['index','show']]);
 
+Route::get('/produk', 'ProdukController@produk_jual');
+Route::get('/produk-KG/{slug}', 'PetaniController@showprodukKG');
+Route::get('/produk-Lahan/{slug}', 'PetaniController@showprodukLahan');
 // Route::get('/{username}', 'HomeController@profile');

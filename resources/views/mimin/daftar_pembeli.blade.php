@@ -38,10 +38,6 @@
 					<td>{{$umum->nohp}}</td>
 					<td>{{$umum->email}}</td>
 					<td>{{$umum->alamat}}</td>
-					<td class="aksi-managmen">
-						<a href="#!">Update</a>
-						<a href="#!">Delete</a>
-					</td>
 				</tr>
 				@endforeach
 			</tbody>

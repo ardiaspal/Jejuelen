@@ -34,6 +34,10 @@ class User extends Authenticatable
 	{
 		return $this->hasMany('App\konsumenUmum');
 	}
+	public function pesanans()
+	{
+		return $this->hasMany('App\pesanan');
+	}
 	public function isAdmin()
 	{
 		if ($this->level == 0) {

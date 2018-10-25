@@ -30,7 +30,7 @@
 				<h4 class="modal-title" id="title-moda-new">Tambah Produk KG</h4>
 			</div>
 			<div class="modal-body">
-				<form action="/tambah-produk-kg" method="POST">
+				<form action="/tambah-produk-kg" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-6" id="solve-grid">
 							<label class="lable-mod" for="exampleInputEmail1">Nama Produk</label>
@@ -53,11 +53,11 @@
 					<div class="moda-padding">
 						<div class="form-group">
 							<label class="lable-mod" for="exampleInputEmail1">Foto Produk</label>
-							<input type="judul" name="image" class="form-control" value="{{ old('image') }}" id="mod-inputan" placeholder="Foto">
+							<input type="file" name="image" class="form-control" value="{{ old('image') }}" id="mod-inputan" placeholder="Foto">
 						</div>
 						<div class="form-group">
 							<label class="lable-mod" for="textarea-tinymce">Deskripsi</label> 
-							<textarea name="deskripsi" rows="8" id="textarea-style" placeholder="Deskripsi Produk...">{{ old('deskripsi') }}</textarea>
+							<textarea name="deskripsi" rows="8" id="comment-tinymce" placeholder="Deskripsi Produk...">{{ old('deskripsi') }}</textarea>
 						</div>
 						<button type="submit" class="btn btn-block btn-default">Submit</button>
 					</div>
@@ -123,7 +123,7 @@
 						</div>
 						<div class="form-group">
 							<label class="lable-mod" for="textarea-tinymce">Deskripsi</label> 
-							<textarea name="deskripsi" rows="8" id="textarea-style" placeholder="Deskripsi Produk...">{{ old('deskripsi') }}</textarea>
+							<textarea name="deskripsi" rows="8" id="editcomment-tinymce" placeholder="Deskripsi Produk...">{{ old('deskripsi') }}</textarea>
 						</div>
 						<button type="submit" class="btn btn-block btn-default">Submit</button>
 					</div>
@@ -154,15 +154,15 @@
 		@foreach ($produks as $produk)
 		<div class=" col-xs-12 col-sm-6 col-md-3" id="jual-jarak">
 			<div class="box-wrapper">
-				<img src="{{$produk->image}}" alt="{{$produk->nama}}" />
+				<img src="{{ asset('image/projek/'.$produk->image) }}" alt="{{$produk->nama}}" />
 				<p>#KG</p>
 				<div class="box-content">
 					@if (Auth::check())
-					@if ($produk->farmers_id != $petani->id)
+					@if ($produk->farmers_id != $petani->id && Auth::user()->status_id != 3)
 					<a href="#!" class="buy"><span><i class="fa fa-cart-plus"></i></span></a>
 					@endif
 					@endif
-					<div class="title">{{$produk->nama}}</div>
+					<div class="title"><a href="/produk-KG/{{$produk->slug}}">{{$produk->nama}}</a></div>
 					<div class="desc">Stok : {{$produk->stok}} Kg</div>
 					<div class="desc">Lorem ipsum dolor sit amet.</div>
 					<span class="price">Rp. {{$produk->hargaFix->hargaBuah}}</span>
@@ -194,11 +194,11 @@
 				<p>#LAHAN</p>
 				<div class="box-content">
 					@if (Auth::check())
-					@if ($lahan->farmers_id != $petani->id)
+					@if ($lahan->farmers_id != $petani->id && Auth::user()->status_id != 3)
 					<a href="#!" class="buy"><span><i class="fa fa-cart-plus"></i></span></a>
 					@endif
 					@endif
-					<div class="title">{{$lahan->nama}}</div>
+					<div class="title"><a href="/produk-Lahan/{{$lahan->slug}}">{{$lahan->nama}}</a></div>
 					<div class="desc">Perkiraan : {{$lahan->stokAwal}} - {{$lahan->stokAkhir}} Kg</div>
 					<div class="desc">Masa Tanam : {{$lahan->masatanam}}</div>
 					<div class="desc">Perkiraan panen : {{$lahan->perkiraanPanen}}</div>

@@ -59,7 +59,7 @@
 							@if (Auth::check())
 							<li><a href="#!">Belanja</a>
 								<ul>
-									<li><a href="#!">Produk</a></li>
+									<li><a href="/produk">Produk</a></li>
 									<li><a href="#!">Transaksi</a></li>
 									<li><a href="#!">History</a></li>
 
@@ -67,7 +67,7 @@
 							</li>
 							@else
 							<li>
-								<a href="#!">Belanja</a>
+								<a href="/produk">Belanja</a>
 							</li>
 							@endif
 							@if (Auth::check())

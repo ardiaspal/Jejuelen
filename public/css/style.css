@@ -444,7 +444,7 @@ nav ul ul ul{
 	box-shadow: 0px 5px 43px rgba(0, 0, 0, 0.48);
 }
 .box-wrapper img {
-	max-width: 100%;
+	width: 100%;
 	height: 195px;
 }
 .box-wrapper .success {
@@ -482,11 +482,17 @@ nav ul ul ul{
 }
 
 .title {
+	height: 44px;
+	overflow: hidden;
 	font-size: 2em;
 	font-weight: 900;
 	text-transform: uppercase;
 	margin: 0;
 	font-family: 'Acme', sans-serif;
+}
+.title a,.title a:hover,.title a:focus{
+	color: #2a4a5b;
+	text-decoration: none;
 }
 
 .desc {
@@ -1705,3 +1711,336 @@ footer{
 	color: #fa7d97;
 }
 /*end satistik rego*/
+
+/*view single kg*/
+.grup-pertanian-kg{
+	display: inline-block;
+	padding: 5%;
+	width: 100%;
+	padding-bottom: 1%;
+}
+.all-grup-single-kg{
+	text-align: center;
+}
+.all-grup-single-kg h3{
+	display: inline-block;
+	color: #ffab00;
+	border-bottom: 3px solid #ffab00;
+}
+.all-grup-single-kg h3 span{
+	color: #2a4a5b;
+}
+.edit-view-produkkg{
+	text-align: center;
+}
+.image-produk-kg-single{
+	max-height: 500px;
+	overflow: hidden;
+	position: relative;
+}
+.image-produk-kg-single img{
+	width: 100%;
+}
+.tag-jenis-kg{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.tag-jenis-kg h3{
+	margin: 0;
+	color: white;
+	/* font-weight: 900; */
+	padding: 5px 10px;
+	font-family: Righteous;
+}
+.grup-buah-kg{
+	position: absolute;
+	top: 50%;
+	left: 16%;
+	max-width: 200px;
+	text-align: center;
+	transform: translate(-50%,-50%);
+	color: white;
+	padding: 15px 25px;
+	/* background-color: white; */
+	font-family: Pacifico;
+	border: 2px solid white;
+}
+.grup-buah-kg h2{
+	margin: 0;
+	font-size: 50px;
+	/*border-bottom: 4px solid #2a4a5b;*/
+}
+.bg-gradient-color-view{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #2a4a5b;
+	opacity: .8;
+	-webkit-clip-path: polygon(0 0, 25% 0, 42% 100%, 0% 100%);
+	clip-path: polygon(0 0, 25% 0, 42% 100%, 0% 100%);
+}
+.grup-lagi-view-kg{
+	font-family: Righteous;
+	padding: 13%;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.deskripsi-single-kg{
+	font-size: 17px;
+}
+.keranjang-belanaja{
+	margin: 12px 0;
+}
+.keranjang-belanaja form input,.keranjang-belanaja form input:focus{
+	border: none;
+	border-bottom: 2px solid #2a4a5b;
+	outline-width: 0;
+	font-size: 18px;
+	max-width: 150px;
+}
+.keranjang-belanaja-lahan form input,.keranjang-belanaja-lahan form input:focus{
+	border: none;
+	border-bottom: 2px solid #2a4a5b;
+	outline-width: 0;
+	font-size: 18px;
+	max-width: 150px;
+}
+.keranjang-belanaja form button{
+	color: white;
+	background-color: #2a4a5b;
+	border: none;
+	padding: 3px 6px;
+}
+.edit-view-produkkg a:nth-child(1),.edit-view-produkkg a:nth-child(1):focus,.edit-view-produkkg a:nth-child(1):hover{
+	display: inline-block;
+	color: #2a4a5b;
+	text-decoration: none;
+	font-size: 16px;
+	border: 2px solid #2a4a5b;
+	padding: 5px 10px;
+	margin-right: 5px;
+}
+.edit-view-produkkg a:nth-child(2),.edit-view-produkkg a:nth-child(2):focus{
+	display: inline-block;
+	color: #2a4a5b;
+	text-decoration: none;
+	font-size: 16px;
+	padding: 5px 10px;
+}
+.edit-view-produkkg a:nth-child(2):hover{
+	color: white;
+	background-color: #2a4a5b;
+	border: 2px solid #2a4a5b;
+}
+.info-detail-lahan{
+	display: inline-block;
+	margin: 10px 0;
+}
+.info-detail-lahan h4{
+	margin: 0;
+}
+.keranjang-belanaja-lahan button{
+	display: inline-block;
+	margin: 10px 0;
+	background-color: white;
+	border: 2px solid #2a4a5b;
+	padding: 5px 10px;
+	color: #2a4a5b;
+}
+.keranjang-belanaja-lahan button:hover{
+	background-color: #2a4a5b;;
+	color: white;
+}
+.info-detail-lahan table thead tr th{
+	font-family: Pacifico;
+	font-size: 20px;
+	color: #2a4a5b;
+	text-align: center;
+}
+.all-grup-single-kg p {
+	font-size: 18px;
+}
+.all-grup-single-kg p a,.all-grup-single-kg p a:focus,.all-grup-single-kg p a:hover{
+	text-decoration: none;
+	color: #ffab00;
+}
+.content-edit-kg-new{
+	display: inline-block;
+	padding: 5% 16%;
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 0;
+}
+.image-content-edit-kg h1{
+	margin: 0;
+	text-align: center;
+	color: #2a4a5b;
+	font-family: Pacifico;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border: 4px solid #ffab00;
+	padding: 5px 10px;
+}
+.image-content-edit-kg h1 span{
+	color: #ffab00;
+}
+.image-content-edit-kg{
+	max-height: 300px;
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+.image-content-edit-kg img{
+	opacity: .5;
+	width: 100%;
+	height: 100%;
+	
+}
+@media (max-width: 768px){
+	.info-detail-lahan{
+		width: 100%;
+	}
+	.table-responsive{
+		border: none !important;
+	}
+}
+@media (max-width: 634px){
+	.grup-lagi-view-kg {
+		padding: 0;
+	}
+	.bg-gradient-color-view {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #2a4a5b;
+		opacity: .2;
+		-webkit-clip-path: inherit;
+		clip-path: inherit;
+	}
+	.grup-buah-kg {
+		left: 50%;
+	}
+	.tag-jenis-kg h3 {
+		background-color: #2a4a5b;
+	}
+}
+@media (max-width: 425px){
+	.content-edit-kg-new {
+		padding: 5% 6%;
+	}
+	.image-content-edit-kg h1{
+		font-size: 27px;
+	}
+}
+@media (max-width: 375px){
+	.grup-buah-kg h2{
+		font-size: 30px;
+	}
+}
+/*end view single kg*/
+
+/*produk*/
+.grup-all-produk-new{
+	display: inline-block;
+	width: 100%;
+	padding: 5%;
+	padding-top: 2%;
+}
+#form-buy-kg .form-group:nth-child(1) input{
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid #2a4a5b;
+}
+#form-buy-kg .form-group:nth-child(2) input{
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid #2a4a5b;
+}
+#form-buy-kg p{
+	text-align: center;
+	color: #2a4a5b;
+}
+#form-buy-kg .form-group:nth-child(5) button{
+	color: #2a4a5b;
+	background-color: white;
+	border: 2px solid #2a4a5b;
+	padding: 3px 10px;
+}
+#form-buy-kg .form-group:nth-child(5) button:hover{
+	color: white;
+	background-color: #2a4a5b;
+}
+#form-buy-kg .form-group:nth-child(6) button{
+	color: #2a4a5b;
+	background-color: white;
+	border: 2px solid #2a4a5b;
+	padding: 3px 10px;
+}
+#form-buy-kg .form-group:nth-child(6) button:hover{
+	color: white;
+	background-color: #2a4a5b;
+}
+#side-nav-padding-produk{
+	padding: 0;
+	list-style: none;
+	font-family: Righteous;
+	text-align: center;
+}
+#side-nav-padding-produk li{
+	padding: 9px 0;
+}
+#side-nav-padding-produk li a,#side-nav-padding-produk li a:focus{
+	display: inline-block;
+	color: #2a4a5b;
+	padding: 5px 10px;
+	width: 100%;
+	text-align: center;
+	border: 2px solid #2a4a5b;
+	text-decoration: none;
+}
+#side-nav-padding-produk li a:hover{
+	color: white;
+	background-color: #2a4a5b;
+	border: 2px solid #2a4a5b;
+	text-decoration: none;
+}
+#side-nav-padding-produk li form input,#side-nav-padding-produk li form input:focus{
+	height: 35px;
+	width: 100%;
+	color: #2a4a5b;
+	padding: 5px;
+	border: none;
+	outline-style: none;
+	border-bottom: 2px solid #2a4a5b;
+}
+.booking-lahan{
+	position: absolute;
+	/* color: #2a4a5b; */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #2a4a5b;
+	z-index: 3;
+	opacity: .5;
+}
+.box-wrapper>h1{
+	position: absolute;
+	color: white;
+	z-index: 4;
+	font-family: Righteous;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	margin: 0;
+	padding: 10px;
+	border: 3px solid white;
+}
+/*end produk*/

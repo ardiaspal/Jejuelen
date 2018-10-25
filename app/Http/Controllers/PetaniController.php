@@ -94,12 +94,16 @@ abort(404);
                 'deskripsi' => 'required'
             ]);
 
+            $image = $request->file('image');
+            $input['namefile'] = time().'-'.$image->getClientOriginalName();
+            $tempat = public_path('image/projek');
+            $image->move($tempat,$input['namefile']);
             // dd('wes masuk');
 
             produkKG::create([
                 'nama'           => $request->nama,
                 'stok'           => $request->stok,
-                'image'          => $request->image,
+                'image'          =>  $input['namefile'],
                 'deskripsi'          => $request->deskripsi,
                 'slug'           =>  $slug,
                 'farmers_id'     => $petani->id,
@@ -172,6 +176,18 @@ abort(404);
 
     }
 
+    public function showprodukKG($slug)
+    {
+     $produk = produkKG::where('slug',$slug)->first();
+     return view('petani.single_produkKG', compact('produk'));
+ }
+
+ public function showprodukLahan($slug)
+ {
+     $produk = produkLahan::where('slug',$slug)->first();
+     return view('petani.single_produkLahan', compact('produk'));
+ }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -184,6 +200,88 @@ abort(404);
         
         return view('petani.profile', compact('petani'));
     }
+
+    public function editprodukkg($id)
+    {
+        $hargas = hargaFix::all();
+        $produk = produkKG::findOrFail($id);
+        return view('petani.editKg', compact('produk', 'hargas'));
+    }
+
+    public function editdataprodukkg(Request $request, $id)
+    {
+
+        $produkKg= produkKG::findOrFail($id);
+        $slug = str_slug($request->nama, '-');
+        $petani = petani::where('email',Auth::user()->email)->first();
+
+        // chek apa lug ada yang sama
+        if (produkKG::where('slug',$slug)->first() != null) {
+            $slug = $slug. '-' . time();
+        }
+
+
+        $hargaFIx_id = hargaFix::where('nama',$request->nama)->orWhere('hargaBuah',$request->harga)->first();
+        // dd($petani->id);
+        if (Auth::user()->status_id == 3) {
+            // dd($request);
+            if (empty($request->image)) {
+                $this->validate($request,[
+                    'nama' => 'required',
+                    'stok' => 'required|integer',
+                    'harga' => 'required|integer',
+                    'deskripsi' => 'required'
+                ]);
+
+                $produkKg->update([
+                    'nama'           => $request->nama,
+                    'stok'           => $request->stok,
+                    'deskripsi'          => $request->deskripsi,
+                    'slug'           =>  $slug,
+                ]);
+
+                return redirect('/petani');
+            } else {
+             $this->validate($request,[
+                'nama' => 'required',
+                'stok' => 'required|integer',
+                'image' => 'required',
+                'harga' => 'required|integer',
+                'deskripsi' => 'required'
+            ]);
+
+             $image = $request->file('image');
+             $input['namefile'] = time().'-'.$image->getClientOriginalName();
+             $tempat = public_path('image/projek');
+             $image->move($tempat,$input['namefile']);
+            // dd('wes masuk');
+             $produkKg->update([
+                'nama'           => $request->nama,
+                'stok'           => $request->stok,
+                'image'          =>  $input['namefile'],
+                'deskripsi'          => $request->deskripsi,
+                'slug'           =>  $slug,
+            ]);
+
+             return redirect('/petani');
+         }
+
+     } else {
+       abort(404);
+   }
+}
+
+public function destroyKg($id)
+{
+    $produkKg = produkKG::findOrFail($id);
+
+  if (Auth::user()->status_id == 3) {
+   $produkKg->delete();
+}else {
+   abort(404);
+}
+return redirect('/petani');
+}
 
     /**
      * Update the specified resource in storage.

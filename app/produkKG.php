@@ -19,7 +19,11 @@ class produkKG extends Model
 
 	public function petani()
 	{
-		return $this->belongsTo('App\petani');
+		return $this->belongsTo('App\petani','farmers_id');
+	}
+	public function pesanans()
+	{
+		return $this->hasMany('App\pesanan');
 	}
 
 }
