@@ -31,14 +31,14 @@
 							@if (Auth::check())
 							<li>
 								<a href="/home">Hai, @if (Auth::user()->level == 0)
-                                     Admin
-                                    @elseif (Auth::user()->status_id == 3)
-                                    {{App\petani::where('email',Auth::user()->email)->first()->name}}
-                                    @elseif(Auth::user()->status_id == 2)
-                                    {{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
-                                    @elseif(Auth::user()->status_id == 1)
-                                    {{App\konsumenMitra::where('email',Auth::user()->email)->first()->namaCv}}
-                                    @endif
+									Admin
+									@elseif (Auth::user()->status_id == 3)
+									{{App\petani::where('email',Auth::user()->email)->first()->name}}
+									@elseif(Auth::user()->status_id == 2)
+									{{App\konsumenUmum::where('email',Auth::user()->email)->first()->name}}
+									@elseif(Auth::user()->status_id == 1)
+									{{App\konsumenMitra::where('email',Auth::user()->email)->first()->namaCv}}
+									@endif
 								</a>
 							</li>
 							@endif
@@ -60,9 +60,12 @@
 							<li><a href="#!">Belanja</a>
 								<ul>
 									<li><a href="/produk">Produk</a></li>
-									<li><a href="#!">Transaksi</a></li>
+									@if (Auth::check())
+									@if (Auth::user()->status_id == 3 || Auth::user()->status_id == 1)
+									<li><a href="/pembayaran" class="hover-all">Transaksi</a></li>
+									@endif
+									@endif
 									<li><a href="#!">History</a></li>
-
 								</ul>
 							</li>
 							@else
@@ -73,21 +76,21 @@
 							@if (Auth::check())
 							@if (Auth::user()->status_id != 0 && Auth::user()->status_id != 3)
 							<li>
-								<a href="#!"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> (0)</a>
+								<a href="/pesanan"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> ({{count(App\pesanan::where('user_id',Auth::user()->id)->where('status','tidak')->get())}})</a>
 							</li>
 
 							@endif
 							@endif
 							@if (!Auth::check())
 							<li id="regis-log"><a href="{{ route('login') }}">Login</a> & <a href="{{ route('register') }}">Register</a></li>
-                            @endif
-                            @if (Auth::check())
-                            <li id="regis-log">
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
-                            </li>
-                            @endif
+							@endif
+							@if (Auth::check())
+							<li id="regis-log">
+								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+								Logout</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
+							</li>
+							@endif
 						</ul>
 					</nav>
 				</div>

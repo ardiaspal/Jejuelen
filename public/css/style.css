@@ -702,6 +702,10 @@ nav ul ul ul{
 footer{
 	text-align: center;
 	margin-top: 20px;
+	display: inline-block !important;
+	width: 100%;
+	margin: 0;
+	padding: 8px 0;
 }
 /* end footer */
 
@@ -2043,4 +2047,286 @@ footer{
 	padding: 10px;
 	border: 3px solid white;
 }
+.stok-kosong-profile{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 195px;
+	background-color: #2a4a5b;
+}
+.stok-kosong-profile h2{
+	position: absolute;
+	top: 0;
+	color: white;
+	left: 50%;
+	transform: translate(-50%);
+	top: 10%;
+}
 /*end produk*/
+
+/*pesanan lanjutan*/
+.image-pesanan-pesan img{
+	width: 80px;
+	height: 80px;
+}
+
+.grup-pesanan-lanjutan{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: 3%;
+	background-color: #f4f4f4;
+}
+.container-mod {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-mod input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 16px;
+	width: 16px;
+	background-color: white;
+	border: 1px solid #2a4a5b;
+}
+
+/* On mouse-over, add a grey background color */
+.container-mod:hover input ~ .checkmark {
+	background-color: #85a1af;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-mod input:checked ~ .checkmark {
+	background-color: #2a4a5b;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.container-mod input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-mod .checkmark:after {
+	left: 5px;
+	top: 1px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.grup-detail-pesanan-pesan a:nth-child(1){
+	text-decoration: none;
+	font-family: Righteous;
+	color: #2a4a5b;
+}
+.grup-detail-pesanan-pesan a:nth-child(3){
+	color: #6b6b6b;
+	font-size: 16px;
+}
+.grup-detail-pesanan-pesan p{
+	margin-bottom: 0;
+}
+.grup-detail-pesanan-pesan a:nth-child(1) h5{
+	font-size: 17px;
+	margin-bottom: 0;
+	text-transform: capitalize;
+}
+.grup-detail-pesanan-new{
+	display: inline-block;
+	width: 100%;
+	margin:10px 0;
+}
+.grup-one-transaksi{
+	background-color: white;
+	display: inline-block;
+	width: 100%;
+	padding: 7px 10px;
+	border-radius: 5px;
+}
+.total-detail-pesanan{
+	background-color: white;
+	padding: 7px 10px;
+	border-radius: 5px;
+}
+.total-detail-pesanan h3{
+	margin-top: 0;
+	font-weight: 900;
+}
+.total-detail-pesanan form button,.total-detail-pesanan form button:focus{
+	display: inline-block;
+	text-decoration: none;
+	width: 100%;
+	text-align: center;
+	background-color: #ff9800;
+	color: white;
+	font-weight: 900;
+	color: white;
+	font-size: 18px;
+	padding: 5px 10px;
+	border: none;
+}
+.total-detail-pesanan form button:hover{
+	text-decoration: none;
+	background-color: #ff6a00;
+	color: white;
+}
+#price{
+	color: #ff9800;
+	font-size: 14px;
+	font-weight: 700;
+	position: absolute;
+	top: 0;
+	margin-left: 5px;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+	outline-style: none;
+}
+#price2{
+	color: #ff9800;
+	font-size: 14px;
+	font-weight: 700;
+	position: absolute;
+	top: 0;
+	margin-left: 5px;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+	outline-style: none;
+}
+@media (max-width: 991px) {
+	.grup-pesanan-lanjutan {
+		height: initial;
+	}
+	#jarak-bawah-pesanan{
+		margin-bottom: 10px;
+	}
+}
+/*end pesanan lanjutan*/
+
+/*pembayaran*/
+.grup-pembayaran{
+	display: inline-block;
+	width: 100%;
+	padding: 0 5%;
+	font-family: Righteous;
+	color: #2a4a5b !important;
+}
+.grup-all-data-pembayaran{
+/*	position: absolute;
+	top: 66%;
+	left: 50%;
+	width: 100%;
+	transform: translate(-50%,-50%);*/
+	text-align: center;
+}
+.rekening-pembayaran h2{
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+.rekening-pembayaran h3{
+	margin-bottom: 0;
+	display: inline-block;
+	border-bottom: 3px solid #2a4a5b;
+}
+.rekening-pembayaran p{
+	margin-bottom: 30px;
+}
+.total-data-pembayaran p{
+	display: inline-block;
+	background-color: #d8d8d8;
+	padding: 5px 10px;
+	border-radius: 38px;
+}
+.total-data-pembayaran h1{
+	margin-top: 0;
+}
+.grup-pembayaran>h2{
+	display: inline-block;
+	background-color: #d8d8d8;
+	padding: 5px 10px;
+	border-radius: 23px;
+	font-size: 21px;
+}
+.form-upload-bukti{
+	width: 23%;
+	margin: 0 auto;
+}
+.form-upload-bukti h2{
+	font-size: 24px;
+	margin-top: 30px;
+	border-bottom: 3px solid #2a4a5b;
+}
+.form-upload-bukti form .form-group input{
+	border: 2px solid #2a4a5b;
+	text-align: center;
+}
+.form-upload-bukti form button{
+	width: 100%;
+	padding: 5px 0;
+	background-color: white;
+	border: 2px solid #2a4a5b;
+	font-weight: 900;
+}
+.form-upload-bukti form button:hover{
+	color: white;
+	background-color: #2a4a5b;
+}
+@media (max-width: 1024px){
+	.form-upload-bukti {
+		width: 40%;
+		margin: 0 auto;
+	}
+}
+@media (max-width: 740px){
+	.form-upload-bukti {
+		width: 50%;
+		margin: 0 auto;
+	}
+}
+@media (max-width: 760px){
+	.grup-pembayaran{
+		text-align: center;
+	}
+}
+@media (max-width: 425px){
+	.form-upload-bukti {
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+@media (max-width: 320px){
+	.form-upload-bukti {
+		width: 100%;
+		margin: 0 auto;
+	}
+}
+/*end pembayaran*/

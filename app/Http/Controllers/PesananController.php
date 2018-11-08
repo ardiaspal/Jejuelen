@@ -10,6 +10,7 @@ use App\konsumenMitra;
 use App\produkKG;
 use App\produkLahan;
 use App\pesanan;
+use App\transaksi;
 
 use Illuminate\Http\Request;
 
@@ -22,7 +23,11 @@ class PesananController extends Controller
      */
     public function index()
     {
-        //
+        // dd('masuk');
+        $pesananKgs = pesanan::where('produkLahan_id',null)->where('user_id',Auth::user()->id)->where('status','tidak')->get();
+        $pesananLahans = pesanan::where('produkKg_id',null)->where('user_id',Auth::user()->id)->where('status','tidak')->get();
+        
+        return view('belanja.pesanan',compact('pesananKgs','pesananLahans'));
     }
 
     /**
@@ -66,47 +71,67 @@ class PesananController extends Controller
                         'stok'     => $produkKG->stok - $request->jumlah,
                     ]);
                 }
-                $pesanan =   pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->first();
-
-                $pesanan->update([
-                    'jumlah' => $pesanan->jumlah + $request->jumlah,
-                    'hargaTot' => $pesanan->hargaTot + ($request->harga * $request->jumlah)
-                ]);
-
-
-                return redirect('/produk');
-
-
-
-            }else{
-
-             $this->validate($request,[
-                'jumlah' => 'required',
-            ]);
-
-
-             $produkKG = produkKG::findOrFail($request->produkKg_id);
-             if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
-                return redirect('/produk');
-            }else{
+                if (pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->first() == null) {
+                  $produkKG = produkKG::findOrFail($request->produkKg_id);
+                  if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
+                    return redirect('/produk');
+                }else{
                     // dd($produkKG->stok - $request->jumlah);
-                $produkKG->update([
-                    'stok'     => $produkKG->stok - $request->jumlah,
+                    $produkKG->update([
+                        'stok'     => $produkKG->stok - $request->jumlah,
+                    ]);
+                }
+                pesanan::create([
+                    'jumlah' => $request->jumlah,
+                    'user_id' => Auth::user()->id,
+                    'produkKg_id' => $request->produkKg_id,
+                    'hargaTot' => $request->harga * $request->jumlah,
                 ]);
-            }
-            pesanan::create([
-                'jumlah' => $request->jumlah,
-                'user_id' => Auth::user()->id,
-                'produkKg_id' => $request->produkKg_id,
-                'hargaTot' => $request->harga * $request->jumlah,
+
+                return redirect('/produk');
+            }else{
+              $pesanan =   pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->first();
+
+              $pesanan->update([
+                'jumlah' => $pesanan->jumlah + $request->jumlah,
+                'hargaTot' => $pesanan->hargaTot + ($request->harga * $request->jumlah)
             ]);
 
-            return redirect('/produk');
 
+              return redirect('/produk');
+          }
+
+
+
+      }else{
+
+         $this->validate($request,[
+            'jumlah' => 'required',
+        ]);
+
+
+         $produkKG = produkKG::findOrFail($request->produkKg_id);
+         if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
+            return redirect('/produk');
+        }else{
+                    // dd($produkKG->stok - $request->jumlah);
+            $produkKG->update([
+                'stok'     => $produkKG->stok - $request->jumlah,
+            ]);
         }
-    }else{
-        abort(404);
+        pesanan::create([
+            'jumlah' => $request->jumlah,
+            'user_id' => Auth::user()->id,
+            'produkKg_id' => $request->produkKg_id,
+            'hargaTot' => $request->harga * $request->jumlah,
+        ]);
+
+        return redirect('/produk');
+
     }
+}else{
+    abort(404);
+}
 }else{
     abort(404);
 }

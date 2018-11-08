@@ -21,4 +21,9 @@ class pesanan extends Model
 	public function produkLahan(){
 		return $this->belongsTo('App\produkLahan','produkLahan_id');
 	}
+
+	function transaksi()
+	{
+		return $this->hasOne('App\transaksi');
+	}
 }

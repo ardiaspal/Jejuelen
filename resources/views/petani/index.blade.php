@@ -148,12 +148,19 @@
 		<a href="#!"  data-toggle="modal" data-target="#myModal">Tambah Produk KG <i class="fa fa-plus" aria-hidden="true"></i></a>
 		<a href="#!"  data-toggle="modal" data-target="#myModalLahan">Tambah Produk Lahan <i class="fa fa-plus" aria-hidden="true"></i></a>
 	</div>
-@if (count($produks) > 0)
-		<div class="jualan-barang">
+	@if (count($produks) > 0)
+	<div class="jualan-barang">
 
 		@foreach ($produks as $produk)
 		<div class=" col-xs-12 col-sm-6 col-md-3" id="jual-jarak">
 			<div class="box-wrapper">
+				@if (Auth::check())
+				@if ($produk->stok == 0)
+				<div class="stok-kosong-profile">
+					<h2>STOK KOSONG</h2>
+				</div>
+				@endif
+				@endif
 				<img src="{{ asset('image/projek/'.$produk->image) }}" alt="{{$produk->nama}}" />
 				<p>#KG</p>
 				<div class="box-content">
@@ -182,14 +189,21 @@
 		@endforeach
 
 	</div>
-@endif
+	@endif
 
-@if (count($produklahans) > 0)
+	@if (count($produklahans) > 0)
 	<div class="jualan-barang">
 
 		@foreach ($produklahans as $lahan)
 		<div class=" col-xs-12 col-sm-6 col-md-3" id="jual-jarak">
 			<div class="box-wrapper">
+				@if (Auth::check())
+				@if (!empty(App\pesanan::where('produkLahan_id',$lahan->id)->first()))
+				<div class="booking-lahan">
+				</div>
+				<h1>Booking</h1>
+				@endif
+				@endif
 				<img src="{{ asset('image/projek/'.$lahan->image) }}" alt="{{$lahan->nama}}" />
 				<p>#LAHAN</p>
 				<div class="box-content">
@@ -226,7 +240,7 @@
 @section('script')
 <script>
 	$(document).ready(function(){
-      var date_input=$('input[name="masatanam"]');
+		var date_input=$('input[name="masatanam"]');
       var date_input_new=$('input[name="perkiraanPanen"]'); //our date input has the name "date"
       var options={
       	format: 'dd-mm-yyyy',

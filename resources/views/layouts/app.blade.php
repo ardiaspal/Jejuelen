@@ -57,7 +57,11 @@
                             <li><a href="#!" class="hover-all">Belanja</a>
                                 <ul>
                                     <li><a href="/produk" class="hover-all">Produk</a></li>
-                                    <li><a href="#!" class="hover-all">Transaksi</a></li>
+                                    @if (Auth::check())
+                                    @if (Auth::user()->status_id == 3 || Auth::user()->status_id == 1)
+                                    <li><a href="/pembayaran" class="hover-all">Transaksi</a></li>
+                                    @endif
+                                    @endif
                                     <li><a href="#!" class="hover-all">History</a></li>
                                     
                                 </ul>
@@ -70,7 +74,7 @@
                             @if (Auth::check())
                             @if (Auth::user()->status_id != 0 && Auth::user()->status_id != 3)
                             <li>
-                                <a href="#!"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> ({{count(App\pesanan::where('user_id',Auth::user()->id)->where('status','tidak')->get())}})</a>
+                                <a href="/pesanan"><i id="cart-belanja" class="fa fa-shopping-cart" aria-hidden="true"></i> ({{count(App\pesanan::where('user_id',Auth::user()->id)->where('status','tidak')->get())}})</a>
                             </li>
 
                             @endif

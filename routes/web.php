@@ -5,6 +5,7 @@ Route::group(['middleware' => 'auth'], function(){
 	
 	Route::resource('mitra', 'MitraController');
 
+	Route::resource('pesanan', 'PesananController');
 	Route::post('/pesanan/kg', 'PesananController@pesananKg');
 	Route::post('/pesanan/Lahan', 'PesananController@pesananLahan');
 
@@ -19,6 +20,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('umum', 'UmumController');
 
 	Route::resource('transaksi', 'TransaksiController', ['except' => ['index','show']]);
+	Route::get('/pembayaran', 'TransaksiController@pembayaran');
+	Route::post('/pembayaran/upload', 'TransaksiController@pembayaranUpload');
+
 	Route::resource('place', 'PlaceController', ['except' => ['index','show']]);
 	Route::resource('history', 'HistoryController', ['except' => ['index','show']]);
 
