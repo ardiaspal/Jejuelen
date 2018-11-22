@@ -48,26 +48,42 @@
 							<li><a href="#!">Mimin</a>
 								<ul>
 									<li><a href="/managemen-pasar">Menegemen Pasar</a></li>
-									<li><a href="#!">Pesanan</a></li>
-									<li><a href="/daftar-petani">Daftar Petani</a></li>
-									<li><a href="/daftar-pembeli">Daftar Pembeli</a></li>
-									<li><a href="/daftar-mitra">Daftar Mitra</a></li>
+									{{-- <li><a href="#!">Pesanan</a></li> --}}
 								</ul>
 							</li>
 							@endif
 							@endif
 							@if (Auth::check())
+							@if (Auth::user()->status_id == 3 || Auth::user()->status_id == 2 || Auth::user()->status_id == 1)
 							<li><a href="#!">Belanja</a>
 								<ul>
 									<li><a href="/produk">Produk</a></li>
-									@if (Auth::check())
-									@if (Auth::user()->status_id == 3 || Auth::user()->status_id == 1)
+									@if (Auth::user()->status_id != 3)
 									<li><a href="/pembayaran" class="hover-all">Transaksi</a></li>
+									@else
+									<li><a href="/transaksi-petani" class="hover-all">Transaksi</a></li>
 									@endif
-									@endif
-									<li><a href="#!">History</a></li>
+									<li><a href="/History">History</a></li>
 								</ul>
 							</li>
+							@endif
+							@endif
+							@if (Auth::check())
+							@if (Auth::user()->level == 0)
+							<li><a href="#!" class="hover-all">User</a>
+								<ul>
+									<li><a href="/daftar-petani">Daftar Petani</a></li>
+									<li><a href="/daftar-pembeli">Daftar Pembeli</a></li>
+									<li><a href="/daftar-mitra">Daftar Mitra</a></li>
+								</ul>
+							</li>
+							<li><a href="#!" class="hover-all">Transaksi</a>
+								<ul>
+									<li><a href="/produk">Produk</a></li>
+									<li><a href="/pembayaran-mimin">Pembayaran</a></li>
+								</ul>
+							</li>
+							@endif
 							@else
 							<li>
 								<a href="/produk">Belanja</a>

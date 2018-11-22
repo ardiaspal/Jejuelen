@@ -8,6 +8,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('pesanan', 'PesananController');
 	Route::post('/pesanan/kg', 'PesananController@pesananKg');
 	Route::post('/pesanan/Lahan', 'PesananController@pesananLahan');
+	Route::get('/pesanan/hapus/{id}/{type}/{idProduk}', 'PesananController@pesananHapus');
 
 	Route::resource('petani', 'PetaniController');
 	Route::post('/tambah-produk-kg', 'PetaniController@tambahProdukKg');
@@ -22,9 +23,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('transaksi', 'TransaksiController', ['except' => ['index','show']]);
 	Route::get('/pembayaran', 'TransaksiController@pembayaran');
 	Route::post('/pembayaran/upload', 'TransaksiController@pembayaranUpload');
-
-	Route::resource('place', 'PlaceController', ['except' => ['index','show']]);
-	Route::resource('history', 'HistoryController', ['except' => ['index','show']]);
+	Route::post('/pembayaran/verifikasi/{id}', 'TransaksiController@updatePembayaran');
+	Route::get('/History', 'TransaksiController@history');
+	Route::get('/transaksi-petani', 'TransaksiController@transaksiPetani');
 
 	// Route::post('/managemen', 'MiminController@managemen');
 	// Route::get('/pesanan/{id}/edit', 'MiminController@edit');
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'mimin'], function(){
 	Route::get('/hapus-harga-buah/{id}/destroy', 'MiminController@hapusharga');
 	Route::post('/tambah-harga-buah', 'MiminController@tambahHargaBuah');
 	Route::get('/statistik-harga-buah/{id}', 'MiminController@statistikharga');
+	Route::get('/pembayaran-mimin', 'TransaksiController@pembayaranAdmin');
 
 
 	Route::get('/daftar-petani', 'MiminController@daftarPetani');

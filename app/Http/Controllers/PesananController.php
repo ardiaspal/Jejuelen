@@ -30,6 +30,28 @@ class PesananController extends Controller
         return view('belanja.pesanan',compact('pesananKgs','pesananLahans'));
     }
 
+    public function pesananHapus($id,$type,$idProduk)
+    {
+        // dd($id);
+        $pesanan = pesanan::findOrFail($id);
+
+        if ($type == 'kg') {
+            
+            $produkKG = produkKG::findOrFail($idProduk);
+            $produkKG->update([
+                'stok'     => $produkKG->stok + $pesanan->jumlah,
+            ]);
+        } 
+
+
+        if ($pesanan->user_id == Auth::user()->id) {
+            $pesanan->delete();
+        }else {
+         abort(404);
+     }
+     return redirect('/pesanan');
+ }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +77,7 @@ class PesananController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->status_id == 1 || Auth::user()->status_id == 2) {
-             if ( !empty(pesanan::where('user_id',Auth::user()->id)->first()) && !empty(pesanan::where('produkKg_id',$request->produkKg_id)->first()) ) {
+             if ( !empty(pesanan::where('user_id',Auth::user()->id)->where('status','tidak')->where('produkKg_id',$request->produkKg_id)->first()) ) {
               // update
                 $this->validate($request,[
                     'jumlah' => 'required',
@@ -64,6 +86,7 @@ class PesananController extends Controller
 
                 $produkKG = produkKG::findOrFail($request->produkKg_id);
                 if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
+                    // dd('masukk ada v1');
                     return redirect('/produk');
                 }else{
 
@@ -71,67 +94,70 @@ class PesananController extends Controller
                         'stok'     => $produkKG->stok - $request->jumlah,
                     ]);
                 }
-                if (pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->first() == null) {
-                  $produkKG = produkKG::findOrFail($request->produkKg_id);
-                  if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
-                    return redirect('/produk');
-                }else{
+                // dd(pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->where('status','tidak')->first());
+                if (pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->where('status','tidak')->first() == null) {
+                    dd('masukk ada v2');
+                    $produkKG = produkKG::findOrFail($request->produkKg_id);
+                    if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
+                        return redirect('/produk');
+                    }else{
                     // dd($produkKG->stok - $request->jumlah);
-                    $produkKG->update([
-                        'stok'     => $produkKG->stok - $request->jumlah,
+                        $produkKG->update([
+                            'stok'     => $produkKG->stok - $request->jumlah,
+                        ]);
+                    }
+                    pesanan::create([
+                        'jumlah' => $request->jumlah,
+                        'user_id' => Auth::user()->id,
+                        'produkKg_id' => $request->produkKg_id,
+                        'hargaTot' => $request->harga * $request->jumlah,
                     ]);
-                }
-                pesanan::create([
-                    'jumlah' => $request->jumlah,
-                    'user_id' => Auth::user()->id,
-                    'produkKg_id' => $request->produkKg_id,
-                    'hargaTot' => $request->harga * $request->jumlah,
-                ]);
 
+                    return redirect('/produk');
+                }else{
+                    // dd('masukk ada v3');
+                    $pesanan =   pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->where('status','tidak')->first();
+                    // dd($pesanan);
+                    $pesanan->update([
+                        'jumlah' => $pesanan->jumlah + $request->jumlah,
+                        'hargaTot' => $pesanan->hargaTot + ($request->harga * $request->jumlah)
+                    ]);
+
+
+                    return redirect('/produk');
+                }
+
+
+
+            }else{
+
+             $this->validate($request,[
+                'jumlah' => 'required',
+            ]);
+
+
+             $produkKG = produkKG::findOrFail($request->produkKg_id);
+             if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
                 return redirect('/produk');
             }else{
-              $pesanan =   pesanan::where('user_id',Auth::user()->id)->where('produkKg_id',$request->produkKg_id)->first();
-
-              $pesanan->update([
-                'jumlah' => $pesanan->jumlah + $request->jumlah,
-                'hargaTot' => $pesanan->hargaTot + ($request->harga * $request->jumlah)
-            ]);
-
-
-              return redirect('/produk');
-          }
-
-
-
-      }else{
-
-         $this->validate($request,[
-            'jumlah' => 'required',
-        ]);
-
-
-         $produkKG = produkKG::findOrFail($request->produkKg_id);
-         if ($request->jumlah<=0 || $request->jumlah > $produkKG->stok) {
-            return redirect('/produk');
-        }else{
                     // dd($produkKG->stok - $request->jumlah);
-            $produkKG->update([
-                'stok'     => $produkKG->stok - $request->jumlah,
+                $produkKG->update([
+                    'stok'     => $produkKG->stok - $request->jumlah,
+                ]);
+            }
+            pesanan::create([
+                'jumlah' => $request->jumlah,
+                'user_id' => Auth::user()->id,
+                'produkKg_id' => $request->produkKg_id,
+                'hargaTot' => $request->harga * $request->jumlah,
             ]);
+
+            return redirect('/produk');
+
         }
-        pesanan::create([
-            'jumlah' => $request->jumlah,
-            'user_id' => Auth::user()->id,
-            'produkKg_id' => $request->produkKg_id,
-            'hargaTot' => $request->harga * $request->jumlah,
-        ]);
-
-        return redirect('/produk');
-
+    }else{
+        abort(404);
     }
-}else{
-    abort(404);
-}
 }else{
     abort(404);
 }

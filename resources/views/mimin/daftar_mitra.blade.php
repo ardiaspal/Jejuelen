@@ -67,7 +67,7 @@
 				<form action="/edit-harga-buah/{{$mitra->id}}" method="POST">
 					<div class="form-group">
 						<label class="lable-mod" for="exampleInputEmail1">Nama Cv</label>
-						<input type="judul" name="namaCv" class="form-control" value="{{ old('namaCv') ? old('namaCv') : $mitra->namaCv  }}" id="mod-inputan" placeholder="Nama Buah" required>
+						<input type="judul" name="namaCv" readonly class="form-control" value="{{ old('namaCv') ? old('namaCv') : $mitra->namaCv  }}" id="mod-inputan" placeholder="Nama Buah" required>
 					</div>
 					<div class="form-group">
 						<label class="lable-mod" for="exampleInputEmail1">Status</label>

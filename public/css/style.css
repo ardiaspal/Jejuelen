@@ -2234,6 +2234,7 @@ footer{
 
 /*pembayaran*/
 .grup-pembayaran{
+	min-height: 80%;
 	display: inline-block;
 	width: 100%;
 	padding: 0 5%;
@@ -2300,6 +2301,21 @@ footer{
 	color: white;
 	background-color: #2a4a5b;
 }
+.rekening-pembayaran p a{
+	background-color: #d8d8d8;
+	padding: 5px 10px;
+	border-radius: 23px;
+	/* font-size: 21px; */
+	display: inline-block;
+	margin-top: 15px;
+	color: #2a4a5b;
+	text-decoration: none;
+}
+.rekening-pembayaran p a:hover{
+	background-color:#2a4a5b;
+	color:  #d8d8d8;
+	text-decoration: none;
+}
 @media (max-width: 1024px){
 	.form-upload-bukti {
 		width: 40%;
@@ -2330,3 +2346,26 @@ footer{
 	}
 }
 /*end pembayaran*/
+
+/*history*/
+.grup-image-history{
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	display: inline-block;
+}
+.grup-detail-pesanan{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 15px;
+}
+.grup-detail-pesanan h1{
+	margin: 0;
+	font-size: 25px;
+	max-width: 780px;
+}
+.grup-detail-pesanan h1 a,.grup-detail-pesanan h1 a:focus,.grup-detail-pesanan h1 a:hover{
+	color: #2a4a5b;
+	text-decoration: none;
+}
+/*end history*/

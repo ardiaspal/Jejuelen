@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker3.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/lightbox.css') }}">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/tinymcescript.js') }}" type="text/javascript"></script>
     @yield('style')
@@ -45,27 +47,42 @@
                             <li><a href="#!" class="hover-new">Mimin</a>
                                 <ul>
                                     <li><a href="/managemen-pasar" class="hover-guy">Menegemen Pasar</a></li>
-                                    <li><a href="#!" class="hover-guy">Pesanan</a></li>
-                                    <li><a href="/daftar-petani" class="hover-guy">Daftar Petani</a></li>
-                                    <li><a href="/daftar-pembeli" class="hover-guy">Daftar Pembeli</a></li>
-                                    <li><a href="/daftar-mitra" class="hover-guy">Daftar Mitra</a></li>
+                                    {{-- <li><a href="#!" class="hover-guy">Pesanan</a></li> --}}
                                 </ul>
                             </li>
                             @endif
                             @endif
                             @if (Auth::check())
+                            @if (Auth::user()->status_id == 3 || Auth::user()->status_id == 2 || Auth::user()->status_id == 1)
                             <li><a href="#!" class="hover-all">Belanja</a>
                                 <ul>
                                     <li><a href="/produk" class="hover-all">Produk</a></li>
-                                    @if (Auth::check())
-                                    @if (Auth::user()->status_id == 3 || Auth::user()->status_id == 1)
+                                    @if (Auth::user()->status_id != 3)
                                     <li><a href="/pembayaran" class="hover-all">Transaksi</a></li>
+                                    <li><a href="/History" class="hover-all">History</a></li>
+                                    @else
+                                    <li><a href="/transaksi-petani" class="hover-all">Transaksi</a></li>
                                     @endif
-                                    @endif
-                                    <li><a href="#!" class="hover-all">History</a></li>
-                                    
                                 </ul>
                             </li>
+                            @endif
+                            @endif
+                            @if (Auth::check())
+                            @if (Auth::user()->level == 0)
+                            <li><a href="#!" class="hover-all">User</a>
+                                <ul>
+                                    <li><a href="/daftar-petani" class="hover-guy">Daftar Petani</a></li>
+                                    <li><a href="/daftar-pembeli" class="hover-guy">Daftar Pembeli</a></li>
+                                    <li><a href="/daftar-mitra" class="hover-guy">Daftar Mitra</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#!" class="hover-all">Transaksi</a>
+                                <ul>
+                                    <li><a href="/produk" class="hover-guy">Produk</a></li>
+                                    <li><a href="/pembayaran-mimin" class="hover-guy">Pembayaran</a></li>
+                                </ul>
+                            </li>
+                            @endif
                             @else
                             <li>
                                 <a href="/produk">Belanja</a>
@@ -125,7 +142,9 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/Chart.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('js/toastr.min.js') }}"></script>
     @yield('script')
     <script type="text/javascript" src="{{ asset('js/javascript.js') }}"></script>
 </body>

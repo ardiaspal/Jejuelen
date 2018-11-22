@@ -36,7 +36,7 @@
 								<div class="grup-detail-pesanan-pesan">
 									<a href="/produk-KG/{{$pesanan->produkKG->slug}}"><h5>{{$pesanan->produkKG->nama}}</h5></a>
 									<p>Publish by : <a href="#!">{{$pesanan->produkKG->petani->name}}</a></p>
-									<a href="#!"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+									<a href="/pesanan/hapus/{{$pesanan->id}}/kg/{{$pesanan->produkKg_id}}" onclick="return confirm('Anda yakin ingin menghapus Pesanan ?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>
@@ -68,7 +68,7 @@
 								<div class="grup-detail-pesanan-pesan">
 									<a href="/produk-Lahan/{{$pesanan->produkLahan->slug}}"><h5>{{$pesanan->produkLahan->nama}}</h5></a>
 									<p>Publish by : <a href="#!">{{$pesanan->produkLahan->petani->name}}</a></p>
-									<a href="#!"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+									<a href="/pesanan/hapus/{{$pesanan->id}}/lahan/{{$pesanan->produkLahan_id}}" onclick="return confirm('Anda yakin ingin menghapus Pesanan ?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>
@@ -118,7 +118,9 @@
 
 				<input type="hidden" readonly="readonly" id="id_pesanan" value="" name="id_pesanan">
 				{{ csrf_field() }}
-				<button type="submit">Bayar Pesanan</button>
+				@if ( (count($pesananKgs) + count($pesananLahans)) > 0 )
+					<button type="submit">Bayar Pesanan</button>
+				@endif
 
 			</form>
 		</div>

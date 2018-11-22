@@ -10,7 +10,7 @@ class pembayaran extends Model
 	protected $table = 'pembayaran';
 	public $timestamps = true;
 	protected $fillable = [
-		'image','norekening'
+		'image','norekening','status_pembayaran'
 	];
 	
 

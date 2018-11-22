@@ -8,8 +8,8 @@
 	<div class="grup-all-data-pembayaran">
 		<div class="rekening-pembayaran">
 			<h3>Pembayaran Suksess</h3>
-			<h2>Treimakasih Telah membeli produk di Jejuelen.com</h2>
-			<p><a href="/">Prodak</a></p>
+			<h2>Terimakasih Telah membeli produk di Jejuelen.com</h2>
+			<h3>Pengiriman Sedang Di verifikasi</h3>
 		</div>
 	</div>
 

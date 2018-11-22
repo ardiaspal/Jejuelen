@@ -6,6 +6,7 @@ use Auth;
 use App\transaksi;
 use App\pesanan;
 use App\pembayaran;
+use Response;
 
 use Illuminate\Http\Request;
 
@@ -70,30 +71,41 @@ class TransaksiController extends Controller
                 if (count($transaksis)>0) {
                     foreach ($transaksis as $transaksi) {
 
-                       $transaksiUpdate = transaksi::where('id_pesanan',$transaksi->id)->first();
+                     $transaksiUpdate = transaksi::where('id_pesanan',$transaksi->id)->first();
 
-                       $transaksiUpdate->update([
+                     $transaksiUpdate->update([
                         'totalPembayaran' => $request->jumlahTotal + $transaksiGan->totalPembayaran,
                     ]);
-                   }
-               }
+                 }
+             }
 
-               $udaptePesanan = pesanan::findOrFail($id_pesanan[$i]);
+             $udaptePesanan = pesanan::findOrFail($id_pesanan[$i]);
 
-               $udaptePesanan->update([
+             $udaptePesanan->update([
                 'status' => 'terbayar'
             ]);
-           }
-       }
+         }
+     }
 
 
-       return redirect('/pembayaran');
-   }
+     return redirect('/pembayaran');
+ }
 
-   public function pembayaran()
-   {
+ public function pembayaran()
+ {
     $transaksi = transaksi::with('pesanan')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->where('user_id',Auth::user()->id)->where('status','terbayar')->where('id_pembayaran', null)->first();
     return view('belanja.transaksi', compact('transaksi'));
+}
+
+public function transaksiPetani()
+{
+ // $transaksis = transaksi::join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->join('produk_kg', 'pesanan.produkKg_id', '=', 'produk_kg.id')->join('produk_lahan', 'pesanan.produkLahan_id', '=', 'produk_lahan.id')->join('farmers','produk_kg.farmers_id', '=', 'farmers.id')->join('farmers','produk_lahan.farmers_id', '=', 'farmers.id')->where('farmers.email', Auth::user()->email)->get();
+  $transaksi_lahans = transaksi::with('pesanan','pembayaran')->join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->join('produk_lahan', 'pesanan.produkLahan_id', '=', 'produk_lahan.id')->join('farmers', 'produk_lahan.farmers_id', '=', 'farmers.id')->where('farmers.email', Auth::user()->email)->get();
+  $transaksi_kgs = transaksi::with('pesanan','pembayaran')->join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->join('produk_kg', 'pesanan.produkKg_id', '=', 'produk_kg.id')->join('farmers', 'produk_kg.farmers_id', '=', 'farmers.id')->where('farmers.email', Auth::user()->email)->get();
+  $no = 1;
+  // ->join('farmers', 'produk_kg.farmers_id', '=', 'farmers.id')->join('farmers', 'produk_lahan.farmers_id', '=', 'farmers.id')
+ // dd($transaksi_kgs);
+  return view('belanja.transaksi_petani', compact('transaksi_lahans','transaksi_kgs','no'));
 }
 
 public function pembayaranUpload(Request $request)
@@ -120,16 +132,51 @@ public function pembayaranUpload(Request $request)
     if (count($transaksis)>0) {
         foreach ($transaksis as $transaksi) {
 
-           $transaksiUpdate = transaksi::where('id_pesanan',$transaksi->id)->first();
+         $transaksiUpdate = transaksi::where('id_pesanan',$transaksi->id)->first();
 
-           $transaksiUpdate->update([
+         $transaksiUpdate->update([
             'id_pembayaran' => $pembayarantTransaksi->id,
         ]);
-       }
-   }
+     }
+ }
 
-   return view('belanja.ucapan');
+ return view('belanja.ucapan');
 
+}
+
+public function history()
+{
+    $no =1;
+    
+    if (Auth::check()) {
+      if (Auth::user()->status_id == 1 || Auth::user()->status_id == 2) {
+        $historys = transaksi::join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->where('pesanan.status','terbayar')->where('pesanan.user_id', Auth::user()->id)->get();
+
+        return view('belanja.history_pembeli', compact('historys','no'));
+    }else{
+        abort(404);
+    }
+}else{
+ abort(404);
+}
+}
+
+public function pembayaranAdmin()
+{
+    $transaksis = transaksi::join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->join('users','pesanan.user_id','=','users.id')->where('pesanan.status','terbayar')->where('transaksi.id_pembayaran','!=','null')->get();
+    $no = 1;
+    // dd($transaksi);
+    return view('mimin.pembayaran', compact('transaksis','no'));
+}
+
+public function updatePembayaran(Request $request, $id)
+{
+    $pembayaran = pembayaran::findOrFail($id);
+    $data = $pembayaran->update([
+        'status_pembayaran' => $request->data
+    ]);
+    // return Response::json($data);
+    return response()->json($data);
 }
     /**
      * Display the specified resource.

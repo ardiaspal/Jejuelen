@@ -32,13 +32,14 @@
 		<ul id="side-nav-padding-produk">
 			<li>
 				<form action="">
-					<input type="text" name="cariproduk" placeholder="cari produk">
+					<input type="text"  name="search" id="search" placeholder="cari produk">
+					<input type="hidden"  name="typeProduk" id="type-search" value="kg" placeholder="cari produk">
 				</form>
 			</li>
-			<li><a href="#menu1" data-toggle="tab">Produk KG</a></li>
 			@if (Auth::check())
-			@if (Auth::user()->status_id  == 1)
-			<li><a href="#menu2" data-toggle="tab">Produk Lahan</a></li>
+			<li><a href="#menu1" id="kg-change" data-toggle="tab">Produk KG</a></li>
+			@if (Auth::user()->status_id  == 1 || Auth::user()->status_id  == 0 || Auth::user()->status_id  == 3 )
+			<li><a href="#menu2" id="lahan-change" data-toggle="tab">Produk Lahan</a></li>
 			@endif
 			@endif
 		</ul>
@@ -47,6 +48,7 @@
 		<div class="content-produk-public">
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="menu1">
+					@if ($produkKG != null)
 					@if (count($produkKG) > 0)
 					<div class="jualan-barang">
 
@@ -54,7 +56,7 @@
 						<div class=" col-xs-12 col-sm-6 col-md-4" id="jual-jarak">
 							<div class="box-wrapper">
 								@if (!empty(App\pesanan::where('produkKg_id',$produk->id)->first()) && $produk->stok == 0)
-									<div class="booking-lahan">
+								<div class="booking-lahan">
 								</div>
 								<h1>Sold Out</h1>
 								@endif
@@ -62,7 +64,7 @@
 								<p>#KG</p>
 								<div class="box-content">
 									@if (Auth::check())
-									@if (Auth::user()->id != $produk->petani->user->id && Auth::user()->status_id != 3)
+									@if (Auth::user()->id != $produk->petani->user->id && Auth::user()->status_id != 3 && Auth::user()->status_id != 0)
 									<a href="#!" class="buy" data-toggle="modal" data-target="#buy{{$produk->id}}"><span><i class="fa fa-cart-plus"></i></span></a>
 									@endif
 									@endif
@@ -86,10 +88,12 @@
 						@endforeach
 					</div>
 					@endif
+					@endif
 				</div>
 				@if (Auth::check())
-				@if (Auth::user()->status_id  == 1)
+				@if (Auth::user()->status_id  == 1 || Auth::user()->status_id  == 0 || Auth::user()->status_id  == 3)
 				<div class="tab-pane fade" id="menu2">
+					@if ($produkLahan != null)
 					@if (count($produkLahan) > 0)
 					<div class="jualan-barang">
 
@@ -97,8 +101,8 @@
 						<div class=" col-xs-12 col-sm-6 col-md-4" id="jual-jarak">
 							<div class="box-wrapper">
 								@if (Auth::check())
-									@if (!empty(App\pesanan::where('produkLahan_id',$lahan->id)->first()))
-									<div class="booking-lahan">
+								@if (!empty(App\pesanan::where('produkLahan_id',$lahan->id)->first()))
+								<div class="booking-lahan">
 								</div>
 								<h1>Booking</h1>
 								@endif
@@ -107,7 +111,7 @@
 								<p>#LAHAN</p>
 								<div class="box-content">
 									@if (Auth::check())
-									@if (Auth::user()->id != $lahan->petani->user->id && Auth::user()->status_id != 3)
+									@if (Auth::user()->id != $lahan->petani->user->id && Auth::user()->status_id != 3 && Auth::user()->status_id != 0)
 									<a href="#!" class="buy" data-toggle="modal" data-target="#buyLahan{{$lahan->id}}"><span><i class="fa fa-cart-plus"></i></span></a>
 									@endif
 									@endif
@@ -133,6 +137,7 @@
 						@endforeach
 					</div>
 					@endif
+					@endif
 				</div>
 				@endif
 				@endif
@@ -140,6 +145,7 @@
 		</div>
 	</div>
 
+	@if ($produkKG != null)
 	@if (count($produkKG) > 0)
 	@foreach ($produkKG as $produk)
 	<!-- Modal -->
@@ -171,7 +177,10 @@
 	</div>
 	@endforeach
 	@endif
-
+	@endif
+	
+	@if ($produkLahan != null)
+	
 	@if (count($produkLahan) > 0)
 	@foreach ($produkLahan as $lahan)
 	<!-- Modal -->
@@ -204,6 +213,28 @@
 	</div>
 	@endforeach
 	@endif
+	@endif
+
+	@section('script')
+	<script type="text/javascript">
+		$('#lahan-change').click(function () {
+			$('#type-search').val('lahan');
+		});
+		$('#kg-change').click(function () {
+			$('#type-search').val('kg');
+		});
+
+		@if (request()->query('typeProduk') == 'lahan')
+		$(function () {
+			setTimeout(function () {
+				$('#lahan-change').trigger('click');
+			},500);
+		})
+		@endif
+		
+		
+	</script>
+	@endsection
 
 
 	@endsection
