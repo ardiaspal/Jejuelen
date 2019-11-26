@@ -18,7 +18,7 @@
 			<div class="all-grup-single-kg">
 				<h3>Harga : Rp. {{$produk->hargaFix->hargaBuah}},- <span>/ Kg</span></h3><br>
 				<h3 style="margin: 0;font-size: 20px;margin-bottom: 5px;">Stok : {{$produk->stok}} <span>Kg</span></h3>
-				<p>Post By <a href="#!">{{$produk->petani->name}}</a></p>
+				<p>Post By <a href="/petani-profile/{{$produk->petani->user->username}}">{{$produk->petani->name}}</a></p>
 			</div>
 			@if (Auth::check())
 			@if (Auth::user()->id == $produk->petani->user->id)

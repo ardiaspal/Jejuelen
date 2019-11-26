@@ -17,11 +17,11 @@
 			<div class="detail-aksi-all">
 				<div class="transaksi-buy">
 					<h2>Transaksi</h2>
-					<p>15</p>
+					<p>{{$jumlahTransaksi}}</p>
 				</div>
 				<div class="history-buy">
 					<h2>History</h2>
-					<p>10</p>
+					<p>{{$jumlahHistory}}</p>
 				</div>
 			</div>
 			<div class="edit-profile-all">

@@ -1,93 +1,362 @@
 <?php
 
-namespace Faker\Provider\tr_TR;
+namespace Faker\Provider\uk_UA;
 
 class Address extends \Faker\Provider\Address
 {
-    protected static $buildingNumber = array('###', '##', '#');
-
-    protected static $streetSuffix = array(
-        'Sokak', 'Caddesi', 'Kavşağı', 'Durağı', 'İş Hanı', 'Mevkii'
+    protected static $cityPrefix = array('місто');
+    protected static $regionSuffix = array('область');
+    protected static $streetPrefix = array(
+        'вул.', 'пров.', 'пл.', 'просп.'
     );
-
+    protected static $buildingNumber = array('##');
     protected static $postcode = array('#####');
-
-    /**
-    * @var array Cities of Turkey, for future updates please use @link https://tr.wikipedia.org/wiki/T%C3%BCrkiye'nin_illeri
-    */
-    protected static $cityNames = array(
-        'Adana','Adıyaman','Afyonkarahisar','Ağrı','Aksaray','Amasya','Ankara','Antalya','Ardahan','Artvin','Aydın',
-        'Balıkesir','Bartın','Batman','Bayburt','Bilecik','Bingöl','Bitlis','Bolu','Burdur','Bursa',
-        'Çanakkale','Çankırı','Çorum',
-        'Denizli','Diyarbakır','Düzce',
-        'Edirne','Elazığ','Erzincan','Erzurum','Eskişehir',
-        'Gaziantep','Giresun','Gümüşhane',
-        'Hakkari','Hatay',
-        'Iğdır','Isparta','İstanbul','İzmir',
-        'Kahramanmaraş','Karabük','Karaman','Kars','Kastamonu','Kayseri','Kilis',
-        'Kırıkkale','Kırklareli','Kırşehir','Kocaeli','Konya','Kütahya',
-        'Malatya','Manisa','Mardin','Mersin','Muğla','Muş',
-        'Nevşehir','Niğde',
-        'Ordu','Osmaniye',
-        'Rize',
-        'Sakarya','Samsun','Şanlıurfa','Siirt','Sinop','Şırnak','Sivas',
-        'Tekirdağ','Tokat','Trabzon','Tunceli',
-        'Uşak',
-        'Van',
-        'Yalova','Yozgat',
-        'Zonguldak'
-    );
-
-    /**
-    * @var array Countries in Turkish
-    * @link https://tr.wikipedia.org/wiki/%C3%9Clkeler_listesi
-    */
     protected static $country = array(
-        'Almanya','Amerika Birleşik Devletleri','Arjantin','Arnavutluk','Avustralya','Avusturya','Azerbaycan',
-        'Bahreyn','Belçika','Beyaz Rusya','Birleşik Arap Emirlikleri','Bosna-hersek','Brezilya','Bulgaristan',
-        'Çek Cumhuriyeti','Cezayir','Çin Halk Cumhuriyeti',
-        'Danimarka','Dominik Cumhuriyeti',
-        'Endonezya','Ermenistan','Estonya',
-        'Fas','Filipinler','Filistin','Finlandiya','Fransa',
-        'Güney Afrika Cumhuriyeti','Güney Kore','Gürcistan',
-        'Hindistan','Hırvatistan','Hollanda',
-        'İngiltere','Irak','İran','İrlanda','İskoçya','İspanya','İsrail','İsveç','İsviçre','İtalya',
-        'Jamaika','Japonya',
-        'Kamboçya','Kanada','Karadağ','Kazakistan','Kıbrıs','Kırgızistan','Kosta Rika','Küba','Kuzey Kore',
-        'Letonya','Libya','Litvanya','Lübnan','Lüksemburg',
-        'Macaristan','Makedonya','Maldivler','Malta','Maurıtıus','Mısır',
-        'Nepal',
-        'Özbekistan',
-        'Pakistan','Polonya','Portekiz','Romanya',
-        'Rusya',
-        'Sırbistan','Slovakya','Slovenya',
-        'Sri Lanka','Sudan','Suriye','Suudi Arabistan',
-        'Tacikistan','Tayland','Tayvan','Tunus','Türkiye',
-        'Ukrayna','Umman','Ürdün',
-        'Venezuela','Vietnam',
-        'Yemen','Yeni Zelanda','Yeşil Burun','Yunanistan',
-        'Zambiya','Zimbabve'
+        'Афганістан',
+        'Албанія',
+        'Алжир',
+        'Андорра',
+        'Ангола',
+        'Аргентина',
+        'Вірменія',
+        'Австралія',
+        'Австрія',
+        'Азербайджан',
+        'Багамські острови',
+        'Бахрейн',
+        'Бангладеш',
+        'Барбадос',
+        'Білорусь',
+        'Бельгія',
+        'Беліз',
+        'Бенін',
+        'Бутан',
+        'Болівія',
+        'Боснія і Герцеговина',
+        'Ботсвана',
+        'Бразилія',
+        'Бруней',
+        'Болгарія',
+        'Бурунді',
+        'Камбоджа',
+        'Камерун',
+        'Канада',
+        'Кабо-Верде',
+        'Центрально-Африканська Республіка',
+        'Чад',
+        'Чилі',
+        'Китай',
+        'Колумбія',
+        'Коморські острови',
+        'Конго',
+        'Конго, Демократична Республіка',
+        'Коста-Ріка',
+        'Хорватія',
+        'Куба',
+        'Кіпр',
+        'Чеська республіка',
+        'Данія',
+        'Джибуті',
+        'Домініка',
+        'Домініканська Республіка',
+        'східний Тимор',
+        'Еквадор',
+        'Єгипет',
+        'Сальвадор',
+        'Екваторіальна Гвінея',
+        'Еритрея',
+        'Естонія',
+        'Ефіопія',
+        'Фіджі',
+        'Фінляндія',
+        'Франція',
+        'Габон',
+        'Гамбія',
+        'Грузія',
+        'Німеччина',
+        'Гана',
+        'Греція',
+        'Гренада',
+        'Гватемала',
+        'Гвінея',
+        'Гвінея-Бісау',
+        'Гайана',
+        'Гаїті',
+        'Гондурас',
+        'Угорщина',
+        'Ісландія',
+        'Індія',
+        'Індонезія',
+        'Іран',
+        'Ірак',
+        'Ірландія',
+        'Ізраїль',
+        'Італія',
+        'Ямайка',
+        'Японія',
+        'Йорданія',
+        'Казахстан',
+        'Кенія',
+        'Кірібаті',
+        'Північна Корея',
+        'Південна Корея',
+        'Косово',
+        'Кувейт',
+        'Киргизія',
+        'Лаос',
+        'Латвія',
+        'Ліван',
+        'Лесото',
+        'Ліберія',
+        'Лівія',
+        'Ліхтенштейн',
+        'Литва',
+        'Люксембург',
+        'Македонії',
+        'Мадагаскар',
+        'Малаві',
+        'Малайзія',
+        'Мальдіви',
+        'Малі',
+        'Мальта',
+        'Маршаллові острови',
+        'Мавританія',
+        'Маврикій',
+        'Мексика',
+        'Мікронезія',
+        'Молдова',
+        'Монако',
+        'Монголія',
+        'Чорногорія',
+        'Марокко',
+        'Мозамбік',
+        'М\'янма',
+        'Намібія',
+        'Науру',
+        'Непал',
+        'Нідерланди',
+        'Нова Зеландія',
+        'Нікарагуа',
+        'Нігер',
+        'Нігерія',
+        'Норвегія',
+        'Оман',
+        'Пакистан',
+        'Палау',
+        'Панама',
+        'Папуа-Нова Гвінея',
+        'Парагвай',
+        'Перу',
+        'Філіппіни',
+        'Польща',
+        'Португалія',
+        'Катар',
+        'Румунія',
+        'Російська Федерація',
+        'Руанда',
+        'Сент-Кітс і Невіс',
+        'Сент-Люсія',
+        'Сент-Вінсент і Гренадіни',
+        'Самоа',
+        'Саудівська Аравія',
+        'Сенегал',
+        'Сербія',
+        'Сейшельські острови',
+        'Сьєрра-Леоне',
+        'Сінгапур',
+        'Словаччина',
+        'Словенія',
+        'Соломонові острови',
+        'Сомалі',
+        'ПАР',
+        'Іспанія',
+        'Шрі Ланка',
+        'Судан',
+        'Сурінам',
+        'Свазіленд',
+        'Швеція',
+        'Швейцарія',
+        'Сирія',
+        'Тайвань',
+        'Таджикистан',
+        'Танзанія',
+        'Таїланд',
+        'Того',
+        'Тонга',
+        'Тринідад і Тобаго',
+        'Туніс',
+        'Туреччина',
+        'Туркменістан',
+        'Тувалу',
+        'Уганда',
+        'Україна',
+        'Об\'єднані Арабські Емірати',
+        'Великобританія',
+        'Сполучені Штати',
+        'Уругвай',
+        'Узбекистан',
+        'Вануату',
+        'Ватикан',
+        'Венесуела',
+        'В\'єтнам',
+        'Ємен',
+        'Замбія',
+        'Зімбабве',
     );
 
-    protected static $cityFormats = array(
-        '{{cityName}}',
+    protected static $region = array(
+        'Вінницька',
+        'Волинська',
+        'Дніпропетровська',
+        'Донецька',
+        'Житомирська',
+        'Закарпатська',
+        'Запорізька',
+        'Івано-Франківська',
+        'Київська',
+        'Кіровоградська',
+        'Луганська',
+        'Львівська',
+        'Миколаївська',
+        'Одеська',
+        'Полтавська',
+        'Рівненська',
+        'Сумська',
+        'Тернопільська',
+        'Харківська',
+        'Херсонська',
+        'Хмельницька',
+        'Черкаська',
+        'Чернівецька',
+        'Чернігівська'
     );
 
-    protected static $streetNameFormats = array(
-        '{{lastName}} {{streetSuffix}}',
-        '{{firstName}} {{streetSuffix}}',
-        '{{firstName}} {{streetSuffix}}'
+    protected static $city = array(
+        'Вінниця',
+        'Луцьк',
+        'Дніпропетровськ',
+        'Донецьк',
+        'Житомир',
+        'Ужгород',
+        'Запоріжжя',
+        'Івано-Франківськ',
+        'Київ',
+        'Кіровоград',
+        'Луганськ',
+        'Львів',
+        'Миколаїв',
+        'Одеса',
+        'Полтава',
+        'Рівне',
+        'Суми',
+        'Тернопіль',
+        'Харків',
+        'Херсон',
+        'Хмельницький',
+        'Черкаси',
+        'Чернівці',
+        'Чернігів'
+    );
+
+    /**
+     * @see list of Ukraine street (2017-08-08), source: http://ukrexport.gov.ua/ukr/useful_info/gov/
+     */
+    protected static $street = array(
+        'Тараса Шевченка',
+        'Лесі Українки',
+        'Михайла Грушевського',
+        'Урицького',
+        'П. Орлика',
+        'Хрещатик',
+        'Артема',
+        'Копиленка',
+        'Різницька',
+        'Лук’янівська',
+        'Паторжинського',
+        'Солом’янська',
+        'Арсенальна',
+        'Мельникова',
+        'Володимирська',
+        'Фізкультури',
+        'Львівська',
+        'Шота Руставелі',
+        'Прорізна',
+        'І. Франкa',
+        'Б. Грінченка',
+        'Інститутська',
+        'Пирогова',
+        'М. Коцюбинського',
+        'Володимирська'
+    );
+
+    protected static $addressFormats = array(
+        "{{postcode}}, {{cityAndRegion}}, {{streetPrefix}} {{streetName}}, {{buildingNumber}}",
     );
 
     protected static $streetAddressFormats = array(
-        '{{streetName}} {{buildingNumber}}',
-    );
-    protected static $addressFormats = array(
-        "{{streetAddress}}\n{{postcode}} {{city}}",
+        "{{streetPrefix}} {{streetName}}, {{buildingNumber}}"
     );
 
-    public function cityName()
+    public static function citySuffix()
     {
-        return static::randomElement(static::$cityNames);
+        // We don't use city suffix
+        return '';
+    }
+
+    public static function streetSuffix()
+    {
+        // We don't use street suffix
+        return '';
+    }
+
+    public function streetName()
+    {
+        return static::randomElement(static::$street);
+    }
+
+    public static function postcode()
+    {
+        return static::toUpper(static::bothify(static::randomElement(static::$postcode)));
+    }
+
+    public static function regionSuffix()
+    {
+        return static::randomElement(static::$regionSuffix);
+    }
+
+    public static function region()
+    {
+        return static::randomElement(static::$region);
+    }
+
+    public static function cityPrefix()
+    {
+        return static::randomElement(static::$cityPrefix);
+    }
+
+    public function city()
+    {
+        return static::randomElement(static::$city);
+    }
+
+    /**
+     * Get city and region together
+     * We need it because city and region must comply each other in Ukraine
+     * @example 'Закарпатська область, місто Ужгород'
+     * @return string
+     */
+    public function cityAndRegion()
+    {
+        $regionAndCityNumber = rand(0, count(static::$region) - 1);
+        $region = static::$region[$regionAndCityNumber];
+        $city = static::$city[$regionAndCityNumber];
+        $format = "$region {{regionSuffix}}, {{cityPrefix}} $city";
+
+        return $this->generator->parse($format);
+    }
+
+    public static function streetPrefix()
+    {
+        return static::randomElement(static::$streetPrefix);
     }
 }

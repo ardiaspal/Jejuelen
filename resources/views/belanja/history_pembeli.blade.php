@@ -28,7 +28,7 @@
 							</div>
 							<div class="grup-detail-pesanan">
 								<h1><a href="/produk-KG/{{$history->pesanan->produkKG->slug}}">{{$history->pesanan->produkKG->nama}}</a></h1>
-								<p>By <a href="#!">{{$history->pesanan->produkKG->petani->name}}</a></p>
+								<p>By <a href="/petani-profile/{{$history->pesanan->produkKG->petani->user->username}}">{{$history->pesanan->produkKG->petani->name}}</a></p>
 							</div>
 						</td>
 						<td>
@@ -58,7 +58,7 @@
 							</div>
 							<div class="grup-detail-pesanan">
 								<h1><a href="/produk-Lahan/{{$history->pesanan->produkLahan->slug}}">{{$history->pesanan->produkLahan->nama}}</a></h1>
-								<p>By <a href="#!">{{$history->pesanan->produkLahan->petani->name}}</a></p>
+								<p>By <a href="/petani-profile/{{$history->pesanan->produkLahan->petani->user->username}}">{{$history->pesanan->produkLahan->petani->name}}</a></p>
 							</div>
 						</td>
 						<td>

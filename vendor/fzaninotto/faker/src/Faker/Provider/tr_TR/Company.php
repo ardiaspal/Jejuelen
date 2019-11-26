@@ -1,99 +1,74 @@
 <?php
 
-namespace Faker\Provider\tr_TR;
+namespace Faker\Provider\uk_UA;
 
 class Company extends \Faker\Provider\Company
 {
     protected static $formats = array(
-        '{{lastName}} {{companySuffix}}',
-        '{{lastName}}oğlu {{companySuffix}}',
-        '{{lastName}} {{lastName}} {{companySuffix}}',
-        '{{lastName}} {{companyField}} {{companySuffix}}',
-        '{{lastName}} {{companyField}} {{companySuffix}}',
-        '{{lastName}} {{companyField}} {{companySuffix}}',
-        '{{lastName}} {{lastName}} {{companyField}} {{companySuffix}}',
+        '{{companyName}}',                                      // Вектор
+        '{{companyPrefix}} "{{companyName}}"',                  // ТОВ "Інфоком"
+        '{{companyName}}-{{companySuffix}}',                    // Сервіс-Плюс
+        '{{companyPrefix}} "{{companyName}}-{{companySuffix}}"',// ПАТ "Альфа-Стиль"
     );
 
-    protected static $companySuffix = array('A.Ş.', 'Ltd. Şti.');
+    protected static $urlFormats = array(
+        '{{companyName}}',
+        '{{companyName}}-{{companySuffix}}',
+    );
 
-    protected static $companyField = array(
-        'Akaryakıt', 'Beyaz Eşya', 'Bilgi İşlem', 'Bilgisayar', 'Bilişim Hizmetleri',
-        'Biracılık ve Malt Sanayii', 'Cam Sanayii', 'Çimento', 'Demir ve Çelik',
-        'Dış Ticaret', 'Eczacılık', 'Elektrik İletim', 'Elektrik Üretim', 'Elektronik',
-        'Emlak', 'Enerji', 'Giyim', 'Gıda', 'Holding', 'Isıtma ve Soğutma Sistemleri',
-        'İletişim Hizmetleri', 'İnşaat ve Sanayi', 'İthalat ve İhracat', 'Kimya',
-        'Kurumsal Hizmetler', 'Lojistik', 'Madencilik', 'Makina', 'Mağazalar', 'Nakliyat',
-        'Otomotiv', 'Pazarlama', 'Perakende Ticaret', 'Petrol', 'Petrolcülük', 'Sanayi',
-        'Sağlık Hizmetleri', 'Servis ve Ticaret', 'Süt Ürünleri', 'Tarım Sanayi',
-        'Tavukçuluk', 'Tekstil', 'Telekomunikasyon', 'Tersane ve Ulaşım Sanayi',
-        'Ticaret', 'Ticaret ve Sanayi', 'Ticaret ve Taahhüt', 'Turizm', 'Yatırım'
+    protected static $companyPrefix = array('ТОВ', 'ПП', 'ПАТ','ПрАТ');
+    protected static $companySuffix = array('Сервіс','Плюс', 'Груп', 'Стиль', 'Дизайн');
+
+    protected static $companyName = array(
+        'Вектор', 'Едельвейс', 'Смарт', 'Альфа', 'Система', 'Універсал',
+        'Інфоком', 'Макс', 'Планета', 'Вектор', 'Приват', 'Еко', 'Мега',
+        'Мегамакс', 'Мульти', 'Майнер'
     );
 
     /**
-    * @link https://tr.wikipedia.org/wiki/Meslekler_listesi
-    * @note Randomly took 300 from this list
-    */
-    protected static $jobTitleFormat = array(
-        'Acil tıp teknisyeni', 'Agronomist', 'Aile hekimi', 'Aktar', 'Aktör', 'Aktüer',
-        'Akustikçi', 'Albay', 'Ambarcı', 'Ambulans şoförü', 'Amiral', 'Analist',
-        'Antika satıcısı', 'Araba tamircisi', 'Arabacı', 'Araştırmacı', 'Armatör', 'Artist',
-        'Asker', 'Astrofizikçi', 'Astrolog', 'Astronom', 'Astronot', 'Atlet', 'Avukat',
-        'Ayakkabı boyacısı', 'Ayakkabı tamircisi', 'Ayakçı', 'Ağ yöneticisi', 'Aşçıbaşı',
-        'Bacacı', 'Badanacı', 'Baharatçı', 'Bahçe bitkileri uzmanı', 'Bakkal', 'Bakteriyolog',
-        'Balon pilotu', 'Bankacı', 'Banker', 'Barmeyd', 'Başdümenci', 'Başpiskopos',
-        'Başçavuş', 'Bebek Bakıcısı', 'Belediye başkanı', 'Belediye meclisi üyesi', 'Besteci',
-        'Biletçi', 'Bilgi İşlemci', 'Bilgisayar mühendisi', 'Binicilik', 'Biyografi yazarı',
-        'Bobinajcı', 'Borsacı', 'Boyacı', 'Bulaşıkçı', 'Börekç', 'Çamaşırcı', 'Çantacı',
-        'Çevik Kuvvet', 'Çevirmen', 'Çevre Mühendisi', 'Çevrebilimci', 'Çeyizci',
-        'Çiftlik işletici', 'Çiftçi', 'Çinici', 'Çoban', 'Çırak', 'Dadı', 'Daktilograf',
-        'Dalgıç', 'Dansöz', 'Dedektif', 'Derici', 'Değirmen işçisi', 'Değirmenci', 'Dilci',
-        'Diplomat', 'Doktor', 'Dokumacı', 'Dondurmacı', 'Doğramacı', 'Dövizci', 'Döşemeci',
-        'Elektrik mühendisi', 'Elektronik mühendisi', 'Elektronik ve Haberleşme mühendisi',
-        'Embriyolog', 'Emniyet amiri', 'Emniyet genel müdürü', 'Ergonomist', 'Eskici', 'Fahişe',
-        'Fizikçi', 'Fizyoterapist', 'Fotoğrafçı', 'Fıçıcı', 'Galerici', 'Garson',
-        'Gazete dağıtıcısı', 'Gazete satıcısı', 'Gazeteci', 'Gelir uzman yardımcısı', 'General',
-        'Genetik mühendisi', 'Gezici vaiz', 'Gondolcu', 'Guru', 'Gökbilimci', 'Gözlükçü',
-        'Güfteci', 'Gümrük uzmanı', 'Haham', 'Hakem', 'Halkbilimci', 'Hamal', 'Hamurkâr',
-        'Hareket memuru', 'Hava trafikçisi', 'Havacı', 'Hayvan terbiyecisi', 'Hesap uzmanı',
-        'Heykeltıraş', 'Hokkabaz', 'Irgat', 'İcra memuru', 'İllüzyonist', 'İmam',
-        'İnsan kaynakları uzmanı', 'İplikçi', 'İthalatçı', 'İş ve uğraşı terapisti', 'İşaretçi',
-        'Jimnastikçi', 'Jokey', 'Kabin görevlisi', 'Kabuk soyucusu', 'Kadın berberi', 'Kahveci',
-        'Kalaycı', 'Kaplamacı', 'Kapı satıcısı', 'Kardinal', 'Kardiyolog', 'Karikatürist',
-        'Kat görevlisi', 'Kaymakam', 'Kayıkçı', 'Kazıcı', 'Klarnetçi', 'Konserveci',
-        'Konveyör operatörü', 'Koramiral', 'Korgeneral', 'Kozmolog', 'Kuaför', 'Kumaşçı', 'Kumcu',
-        'Kuruyemişçi', 'Kurye', 'Kuyumcu', 'Kâğıtçı', 'Köpek eğiticisi', 'Köşe yazarı', 'Kürkçü',
-        'Kırtasiyeci', 'Laborant', 'Laboratuar işçisi', 'Lahmacuncu', 'Lehimci', 'Levazımcı',
-        'Lobici', 'Lokantacı', 'Lokman', 'Lostracı', 'Madenci', 'Makastar', 'Makine mühendisi',
-        'Makine zabiti', 'Makyajcı', 'Mali hizmetler uzmanı', 'Manastır baş rahibesi',
-        'Manifaturacı', 'Manikürcü', 'Masör', 'Matematikçi', 'Memur', 'Mermerci',
-        'Meteoroloji uzmanı', 'Misyoner', 'Model', 'Modelci', 'Modelist', 'Montajcı', 'Montör',
-        'Muallim', 'Muhafız', 'Mumyalayıcı', 'Müzik yönetmeni', 'Müşavir', 'Nalbant', 'Nalbur',
-        'Oduncu', 'Orgcu', 'Ornitolog', 'Oto elektrikçisi', 'Oto lastik tamircisi', 'Oyuncakçı',
-        'Oyuncu', 'Ön muhasebe yardımcı elemanı', 'Ön muhasebeci', 'Öğretim elemanı',
-        'Öğretim görevlisi', 'Öğretim üyesi', 'Papaz', 'Paramedik', 'Pastörizör', 'Pencereci',
-        'Perukçu', 'Peyzaj teknikeri', 'Peçeteci', 'Pideci', 'Pilot', 'Piyanist', 'Politikacı',
-        'Pompacı', 'Psikolog', 'Radyolog', 'Radyoloji teknisyeni/teknikeri', 'Rejisör',
-        'Reklamcı', 'Rektör', 'Rot balansçı', 'Saat tamircisi', 'Sanat yönetmeni', 'Saraç',
-        'Saz şairi', 'Sekreter', 'Ses teknisyeni', 'Sicil memuru', 'Sihirbaz', 'Sistem mühendisi',
-        'Sosyal hizmet uzmanı', 'Sosyolog', 'Soğuk demirci', 'Stenograf', 'Stilist', 'Striptizci',
-        'Sucu', 'Sunucu', 'Susuz araç yıkama', 'Sünnetçi', 'Sürveyan', 'Şapel papazı',
-        'Şarkı sözü yazarı', 'Şehir Plancısı', 'Şekerci', 'Şimşirci', 'Şoför', 'Tahsildar',
-        'Tarihçi', 'Tasarımcı', 'Taşlayıcı', 'Taşçı', 'Tekniker', 'Teknisyen', 'Teknoloji uzmani',
-        'Televizyon tamircisi', 'Terapist', 'Tesisatçı', 'Teşrifatçı', 'Tornacı', 'Tuğgeneral',
-        'Ulaşım sorumlusu', 'Ustabaşı', 'Uydu antenci', 'Üst Düzey Yönetici', 'Ütücü',
-        'Uzay bilimcisi', 'Vali', 'Veri hazırlama ve kontrol işletmeni', 'Veteriner hekim',
-        'Veteriner sağlık teknikeri', 'Veznedar', 'Vinç operatörü', 'Vitrinci', 'Yarbay',
-        'Yardımcı pilot', 'Yargıç', 'Yazar', 'Yazı işleri müdürü', 'Yazılım mühendisi',
-        'Yer gösterici', 'Yol bekçisi', 'Yorgancı', 'Yoğurtçu', 'Yıkıcı', 'Zabıta', 'Zoolog'
-    );
-
-    /**
-     * Returns a random company field.
-     *
-     * @return string
+     * @see list of Ukraine job title (2017-08-09), source: https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%96%D0%B9
      */
-    public static function companyField()
+    protected static $jobTitleFormat = array(
+        'Агроном', 'Адвокат', 'Актор', 'Акушер', 'Антрополог', 'Аптекар', 'Архітектор', 'Археолог', 'Астронавт', 'Астрофізик', 'Автослюсар', 'Агент',
+        'Бариста', 'Бармен', 'Бібліограф', 'Біолог', 'Бізнесмен', 'Ботанік', 'Будівельник', 'Будник', 'Бухгалтер', 'Бібліотекар',
+        'Вантажник', 'Ведучий', 'Ветеринар', 'Випробувач', 'Водій', 'Вчитель', 'Візажист',
+        'Гардеробник', 'Географ', 'Геолог', 'Геофізик', 'Гицель', 'Гінеколог', 'Гірник', 'Гірничий інженер', 'Головний меркшейдер', 'Графік', 'Громадський діяч',
+        'Ґрунтознавець',
+        'Дантист', 'Державний службовець', 'Детектив', 'Дизайнер', 'Дипломат', 'Диригент', 'Ді-джей', 'Доморобітниця', 'Доцент', 'Драматург',
+        'Економіст', 'Електрик', 'Електромонтер', 'Електромонтажник', 'Електрослюсар', 'Електротехнік', 'Епідеміолог', 'Етнограф', 'Еколог',
+        'Євнух', 'Єгер',
+        'Журналіст', 'Живописець',
+        'Золотар', 'Зоолог',
+        'Інженер комп’ютерної техніки', 'Інженер', 'Іконописець', 'Історик', 'Інспектор', 'Інструктор',
+        'Каскадер', 'Клавішник', 'Клоун', 'Композитор', 'Консьєрж', 'Конструктор', 'Коуч', 'Краєзнавець', 'Криміналіст', 'Кушнір', 'Кіноактор', 'Кінокритик', 'Кінорежисер', 'Кур’єр', 'Кухар', 'Кінолог', 'Круп’є',
+        'Лаборант', 'Льотчик', 'Лікар', 'Ліпник архітектурних деталей', 'Лісничий', 'Літературознавець', 'Логопед', 'Локсмайстер', 'Лор',
+        'Математик', 'Машиніст', 'Медик', 'Менеджер', 'Мистецтвознавець', 'Мірошник', 'Мікробіолог', 'Мінералог', 'Мовознавець', 'Модельєр', 'Модельник', 'Музикант', 'Музикознавець', 'Музичний редактор', 'Маркетолог', 'М’ясник', 'Мікробіолог',
+        'Намотувальник', 'Науковець', 'Няня', 'Нотаріус', 'Навідник-оператор',
+        'Озеленювач', 'Окуліст', 'Онколог', 'Оператор', 'Організатор', 'Охоронець', 'Охоронник',
+        'Паблік рилейшнз', 'Палеонтолог', 'Паралегал', 'Парфумер', 'Пасічник', 'Патологоанатом', 'Педагог', 'Пекар', 'Перекладач', 'Перукар', 'Петрограф', 'Письменник', 'Піаніст', 'Підприємець', 'Пілот', 'Правник', 'Прибиральник', 'Програміст', 'Провізор', 'Прокурор', 'Промисловець', 'Професор', 'Психолог', 'Політик', 'Публіцист', 'Продюсер',
+        'Ревізор', 'Режисер', 'Різноробочий', 'Реабілітолог', 'Редактор', 'Реставратор', 'Ріелтор',
+        'Сантехнік', 'Священик', 'Складальник', 'Скульптор', 'Соціолог', 'Співак', 'Спортсмен', 'Сценарист', 'Стрінгер', 'Стропальник', 'Стоматолог', 'Слідчий', 'Стиліст', 'Секретар', 'Стрілочник', 'Стюардеса', 'Суддя', 'Стиліст',
+        'Таксист', 'Тамада', 'Танцівник', 'Тенісист', 'Терапевт', 'Ткач', 'Токар', 'Тракторист',
+        'Фармацевт', 'Фермер', 'Фізик', 'Філолог', 'Фольклорист', 'Формувальник', 'Фотограф', 'Футболіст', 'Флорист', 'Фінансист',
+        'Хірург', 'Хімік', 'Художник', 'Хореограф', 'Хормейстер',
+        'Шериф', 'Швачка', 'Штукатур',
+        'Ювелір','Юрист'
+    );
+
+    public function companyUrl()
     {
-        return static::randomElement(static::$companyField);
+        $format = static::randomElement(static::$urlFormats);
+
+        return $this->generator->parse($format);
+    }
+
+    public static function companyPrefix()
+    {
+        return static::randomElement(static::$companyPrefix);
+    }
+
+    public static function companyName()
+    {
+        return static::randomElement(static::$companyName);
     }
 }

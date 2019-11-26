@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use App\konsumenUmum;
 use Auth;
+use App\produkKG;
+use App\produkLahan;
+use App\pesanan;
+use App\transaksi;
+
 class UmumController extends Controller
 {
     /**
@@ -17,7 +22,18 @@ class UmumController extends Controller
     {
        if (Auth::user()->status_id == 2) {
            $umum = konsumenUmum::where('email',Auth::user()->email)->first();
-           return view('umum.index',compact('umum'));
+
+
+        // pesanan/transaksi
+           $pesananKgs = pesanan::where('produkLahan_id',null)->where('user_id',Auth::user()->id)->where('status','tidak')->get();
+           $pesananLahans = pesanan::where('produkKg_id',null)->where('user_id',Auth::user()->id)->where('status','tidak')->get();
+           $jumlahTransaksi = count($pesananKgs) + count($pesananLahans);
+
+        // history
+           $historys = transaksi::join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->where('pesanan.status','terbayar')->where('pesanan.user_id', Auth::user()->id)->get();
+           $jumlahHistory = count($historys);
+
+           return view('umum.index',compact('umum','jumlahTransaksi','jumlahHistory'));
        } else {
            abort(404);
        }

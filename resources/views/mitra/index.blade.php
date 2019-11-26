@@ -17,16 +17,20 @@
 			<div class="detail-aksi-all">
 				<div class="transaksi-buy">
 					<h2>Transaksi</h2>
-					<p>15</p>
+					<p>{{$jumlahTransaksi}}</p>
 				</div>
 				<div class="history-buy">
 					<h2>History</h2>
-					<p>10</p>
+					<p>{{$jumlahHistory}}</p>
 				</div>
 			</div>
+			@if (Auth::check())
+			@if (Auth::user()->id == $mitra->user_id)
 			<div class="edit-profile-all">
 				<a href="/mitra/{{$mitra->id}}/edit">Edit Profile</a>
 			</div>
+			@endif
+			@endif
 		</div>
 	</div>
 </div>

@@ -1,157 +1,168 @@
 <?php
 
-namespace Faker\Provider\ru_RU;
+namespace Faker\Provider\sk_SK;
 
 class Person extends \Faker\Provider\Person
 {
+    protected static $lastNameFormat = array(
+        '{{lastNameMale}}',
+        '{{lastNameFemale}}',
+    );
+
     protected static $maleNameFormats = array(
-        '{{firstNameMale}} {{middleNameMale}} {{lastName}}',
-        '{{lastName}} {{firstNameMale}} {{middleNameMale}}',
+        '{{firstNameMale}} {{lastNameMale}}',
+        '{{firstNameMale}} {{lastNameMale}}',
+        '{{firstNameMale}} {{lastNameMale}}',
+        '{{firstNameMale}} {{lastNameMale}}',
+        '{{titleMale}} {{firstNameMale}} {{lastNameMale}}',
+        '{{titleMale}} {{firstNameMale}} {{lastNameMale}} {{suffix}}',
     );
 
-    /**
-     * This provider uses wikipedia's 250 top russian last names
-     * That list of MALE last names could be safely extended to FEMALE list just by adding 'a' letter at the end
-     */
     protected static $femaleNameFormats = array(
-        '{{firstNameFemale}} {{middleNameFemale}} {{lastName}}а',
-        '{{lastName}}а {{firstNameFemale}} {{middleNameFemale}}',
+        '{{firstNameFemale}} {{lastNameFemale}}',
+        '{{firstNameFemale}} {{lastNameFemale}}',
+        '{{firstNameFemale}} {{lastNameFemale}}',
+        '{{firstNameFemale}} {{lastNameFemale}}',
+        '{{titleFemale}} {{firstNameFemale}} {{lastNameFemale}}',
+        '{{titleFemale}} {{firstNameFemale}} {{lastNameFemale}} {{suffix}}'
     );
 
-    /**
-     * {@link} http://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B5_%D0%BB%D0%B8%D1%87%D0%BD%D0%BE%D0%B5_%D0%B8%D0%BC%D1%8F
-     * {@link} http://masterrussian.com/aa031701a.shtml
-     **/
     protected static $firstNameMale = array(
-        'Абрам', 'Август', 'Адам', 'Адриан', 'Аким', 'Александр', 'Алексей', 'Альберт', 'Ананий', 'Анатолий', 'Андрей', 'Антон', 'Антонин',
-        'Аполлон', 'Аркадий', 'Арсений', 'Артемий', 'Артур', 'Артём', 'Афанасий', 'Богдан', 'Болеслав', 'Борис', 'Бронислав', 'Вадим',
-        'Валентин', 'Валериан', 'Валерий', 'Василий', 'Вениамин', 'Викентий', 'Виктор', 'Виль', 'Виталий', 'Витольд', 'Влад', 'Владимир',
-        'Владислав', 'Владлен', 'Всеволод', 'Вячеслав', 'Гавриил', 'Гарри', 'Геннадий', 'Георгий', 'Герасим', 'Герман', 'Глеб', 'Гордей',
-        'Григорий', 'Давид', 'Дан', 'Даниил', 'Данила', 'Денис', 'Дмитрий', 'Добрыня', 'Донат', 'Евгений', 'Егор', 'Ефим',
-        'Захар', 'Иван', 'Игнат', 'Игнатий', 'Игорь', 'Илларион', 'Илья', 'Иммануил', 'Иннокентий', 'Иосиф', 'Ираклий', 'Кирилл',
-        'Клим', 'Константин', 'Кузьма', 'Лаврентий', 'Лев', 'Леонид', 'Макар', 'Максим', 'Марат', 'Марк', 'Матвей', 'Милан',
-        'Мирослав', 'Михаил', 'Назар', 'Нестор', 'Никита', 'Никодим', 'Николай', 'Олег', 'Павел', 'Платон', 'Прохор', 'Пётр',
-        'Радислав', 'Рафаил', 'Роберт', 'Родион', 'Роман', 'Ростислав', 'Руслан', 'Сава', 'Савва', 'Святослав', 'Семён', 'Сергей',
-        'Спартак', 'Станислав', 'Степан', 'Стефан', 'Тарас', 'Тимофей', 'Тимур', 'Тит', 'Трофим', 'Феликс', 'Филипп', 'Фёдор',
-        'Эдуард', 'Эрик', 'Юлиан', 'Юлий', 'Юрий', 'Яков', 'Ян', 'Ярослав', 'Милан',
+        'Drahoslav', 'Severín', 'Alexej', 'Ernest', 'Rastislav', 'Radovan', 'Dobroslav', 'Dalibor', 'Vincent', 'Miloš', 'Timotej', 'Gejza', 'Bohuš',
+        'Alfonz', 'Gašpar', 'Emil', 'Erik', 'Blažej', 'Zdenko', 'Dezider', 'Arpád', 'Valentín', 'Pravoslav', 'Jaromír', 'Roman', 'Matej', 'Frederik',
+        'Viktor', 'Alexander', 'Radomír', 'Albín', 'Bohumil', 'Kazimír', 'Fridrich', 'Radoslav', 'Tomáš', 'Alan', 'Branislav', 'Bruno', 'Gregor',
+        'Vlastimil', 'Boleslav', 'Eduard', 'Jozef', 'Víťazoslav', 'Blahoslav', 'Beňadik', 'Adrián', 'Gabriel', 'Marián', 'Emanuel', 'Miroslav',
+        'Benjamín', 'Hugo', 'Richard', 'Izidor', 'Zoltán', 'Albert', 'Igor', 'Július', 'Aleš', 'Fedor', 'Rudolf', 'Valér', 'Marcel', 'Ervín',
+        'Slavomír', 'Vojtech', 'Juraj', 'Marek', 'Jaroslav', 'Žigmund', 'Florián', 'Roland', 'Pankrác', 'Servác', 'Bonifác', 'Svetozár', 'Bernard',
+        'Júlia', 'Urban', 'Dušan', 'Viliam', 'Ferdinand', 'Norbert', 'Róbert', 'Medard', 'Zlatko', 'Anton', 'Vasil', 'Vít', 'Adolf', 'Vratislav',
+        'Alfréd', 'Alojz', 'Ján', 'Tadeáš', 'Ladislav', 'Peter', 'Pavol', 'Miloslav', 'Prokop', 'Cyril', 'Metod', 'Patrik', 'Oliver', 'Ivan',
+        'Kamil', 'Henrich', 'Drahomír', 'Bohuslav', 'Iľja', 'Daniel', 'Vladimír', 'Jakub', 'Krištof', 'Ignác', 'Gustáv', 'Jerguš', 'Dominik',
+        'Oskar', 'Vavrinec', 'Ľubomír', 'Mojmír', 'Leonard', 'Tichomír', 'Filip', 'Bartolomej', 'Ľudovít', 'Samuel', 'Augustín', 'Belo', 'Oleg',
+        'Bystrík', 'Ctibor', 'Ľudomil', 'Konštantín', 'Ľuboslav', 'Matúš', 'Móric', 'Ľuboš', 'Ľubor', 'Vladislav', 'Cyprián', 'Václav', 'Michal',
+        'Jarolím', 'Arnold', 'Levoslav', 'František', 'Dionýz', 'Maximilián', 'Koloman', 'Boris', 'Lukáš', 'Kristián', 'Vendelín', 'Sergej',
+        'Aurel', 'Demeter', 'Denis', 'Hubert', 'Karol', 'Imrich', 'René', 'Bohumír', 'Teodor', 'Tibor', 'Maroš', 'Martin', 'Svätopluk', 'Stanislav',
+        'Leopold', 'Eugen', 'Félix', 'Klement', 'Kornel', 'Milan', 'Vratko', 'Ondrej', 'Andrej', 'Edmund', 'Oldrich', 'Oto', 'Mikuláš', 'Ambróz',
+        'Radúz', 'Bohdan', 'Adam', 'Štefan', 'Dávid', 'Silvester'
+
     );
 
-    /**
-     * {@link} http://masterrussian.com/aa031001a.shtml
-     **/
     protected static $firstNameFemale = array(
-        'Александра', 'Алина', 'Алиса', 'Алла', 'Альбина', 'Алёна', 'Анастасия', 'Анжелика', 'Анна', 'Антонина', 'Анфиса', 'Валентина', 'Валерия',
-        'Варвара', 'Василиса', 'Вера', 'Вероника', 'Виктория', 'Владлена', 'Галина', 'Дарья', 'Диана', 'Дина', 'Доминика', 'Ева',
-        'Евгения', 'Екатерина', 'Елена', 'Елизавета', 'Жанна', 'Зинаида', 'Злата', 'Зоя', 'Изабелла', 'Изольда', 'Инга', 'Инесса',
-        'Инна', 'Ирина', 'Искра', 'Капитолина', 'Клавдия', 'Клара', 'Клементина', 'Кристина', 'Ксения', 'Лада', 'Лариса', 'Лидия',
-        'Лилия', 'Любовь', 'Людмила', 'Люся', 'Майя', 'Мальвина', 'Маргарита', 'Марина', 'Мария', 'Марта', 'Надежда', 'Наталья',
-        'Нелли', 'Ника', 'Нина', 'Нонна', 'Оксана', 'Олеся', 'Ольга', 'Полина', 'Рада', 'Раиса', 'Регина', 'Рената',
-        'Розалина', 'Светлана', 'Софья', 'София', 'Таисия', 'Тамара', 'Татьяна', 'Ульяна', 'Фаина', 'Федосья', 'Флорентина', 'Эльвира', 'Эмилия',
-        'Эмма', 'Юлия', 'Яна', 'Ярослава',
+        'Alexandra', 'Karina', 'Daniela', 'Andrea', 'Antónia', 'Bohuslava', 'Dáša', 'Malvína', 'Kristína', 'Nataša', 'Bohdana', 'Drahomíra',
+        'Sára', 'Zora', 'Tamara', 'Ema', 'Tatiana', 'Erika', 'Veronika', 'Agáta', 'Dorota', 'Vanda', 'Zoja', 'Gabriela', 'Perla', 'Ida', 'Liana',
+        'Miloslava', 'Vlasta', 'Lívia', 'Eleonóra', 'Etela', 'Romana', 'Zlatica', 'Anežka', 'Bohumila', 'Františka', 'Angela', 'Matilda',
+        'Svetlana', 'Ľubica', 'Alena', 'Soňa', 'Vieroslava', 'Zita', 'Miroslava', 'Irena', 'Milena', 'Estera', 'Justína', 'Dana', 'Danica',
+        'Jela', 'Jaroslava', 'Jarmila', 'Lea', 'Anastázia', 'Galina', 'Lesana', 'Hermína', 'Monika', 'Ingrida', 'Viktória', 'Blažena', 'Žofia',
+        'Sofia', 'Gizela', 'Viola', 'Gertrúda', 'Zina', 'Júlia', 'Juliana', 'Želmíra', 'Ela', 'Vanesa', 'Iveta', 'Vilma', 'Petronela', 'Žaneta',
+        'Xénia', 'Karolína', 'Lenka', 'Laura', 'Stanislava', 'Margaréta', 'Dobroslava', 'Blanka', 'Valéria', 'Paulína', 'Sidónia', 'Adriána',
+        'Beáta', 'Petra', 'Melánia', 'Diana', 'Berta', 'Patrícia', 'Lujza', 'Amália', 'Milota', 'Nina', 'Margita', 'Kamila', 'Dušana', 'Magdaléna',
+        'Oľga', 'Anna', 'Hana', 'Božena', 'Marta', 'Libuša', 'Božidara', 'Dominika', 'Hortenzia', 'Jozefína', 'Štefánia', 'Ľubomíra', 'Zuzana',
+        'Darina', 'Marcela', 'Milica', 'Elena', 'Helena', 'Lýdia', 'Anabela', 'Jana', 'Silvia', 'Nikola', 'Ružena', 'Nora', 'Drahoslava', 'Linda',
+        'Melinda', 'Rebeka', 'Rozália', 'Regína', 'Alica', 'Marianna', 'Miriama', 'Martina', 'Mária', 'Jolana', 'Ľudomila', 'Ľudmila', 'Olympia',
+        'Eugénia', 'Ľuboslava', 'Zdenka', 'Edita', 'Michaela', 'Stela', 'Viera', 'Natália', 'Eliška', 'Brigita', 'Valentína', 'Terézia', 'Vladimíra',
+        'Hedviga', 'Uršuľa', 'Alojza', 'Kvetoslava', 'Sabína', 'Dobromila', 'Klára', 'Simona', 'Aurélia', 'Denisa', 'Renáta', 'Irma', 'Agnesa',
+        'Klaudia', 'Alžbeta', 'Elvíra', 'Cecília', 'Emília', 'Katarína', 'Henrieta', 'Bibiána', 'Barbora', 'Marína', 'Izabela', 'Hilda', 'Otília',
+        'Lucia', 'Branislava', 'Bronislava', 'Ivica', 'Albína', 'Kornélia', 'Sláva', 'Slávka', 'Judita', 'Dagmara', 'Adela', 'Nadežda', 'Eva',
+        'Filoména', 'Ivana', 'Milada'
+
     );
 
-    protected static $middleNameMale = array(
-        'Александрович', 'Алексеевич', 'Андреевич', 'Дмитриевич', 'Евгеньевич',
-        'Сергеевич', 'Иванович', 'Фёдорович', 'Львович', 'Романович', 'Владимирович',
-        'Борисович', 'Максимович',
+    protected static $lastNameMale = array(
+        'Sloboda', 'Novotný', 'Kučera', 'Veselý', 'Horák', 'Marek', 'Pokorný', 'Král', 'Růžička', 'Zeman', 'Kolár', 'Urban', 'Bartoš', 'Vlček',
+        'Polák', 'Kopecký', 'Konečný', 'Malý', 'Holub', 'Abrahám', 'Adam', 'Adamec', 'Almáši', 'Anderle', 'Antal', 'Babka', 'Bahna', 'Bahno',
+        'Bajnok', 'Balaša', 'Balog', 'Balogh', 'Baláž', 'Baran', 'Baranka', 'Bartovič', 'Bartoš', 'Bača', 'Beck', 'Beihofner', 'Bella', 'Beran',
+        'Bernolák', 'Beňo', 'Bicek', 'Bielik', 'Biringer', 'Blaho', 'Bondra', 'Bosák', 'Boška', 'Brezina', 'Bugár', 'Buš', 'Chalupka', 'Chudík',
+        'Cyprich', 'Cíger', 'Dacej', 'Danko', 'Debnár', 'Dej', 'Dekýš', 'Doležal', 'Dostál', 'Dočolomanský', 'Drajna', 'Droppa', 'Dubovský',
+        'Dudek', 'Dula', 'Dulla', 'Dusík', 'Dvonč', 'Dzurjanin', 'Dávid', 'Fabian', 'Fabián', 'Fajnor', 'Farkašovský', 'Feldek', 'Fico', 'Filc',
+        'Filip', 'Finka', 'Ftorek', 'Galis', 'Gallo', 'Gašpar', 'Gašparovič', 'Gocník', 'Golonka', 'Greguš', 'Grznár', 'Hablák', 'Habšuda',
+        'Haluška', 'Halák', 'Hanko', 'Hanzal', 'Hanzel', 'Hanzel', 'Haščák', 'Heretik', 'Hečko', 'Hečková', 'Hlaváček', 'Hlinka', 'Hochschorner',
+        'Holub', 'Holuby', 'Horváth', 'Hossa', 'Hraško', 'Hric', 'Hrmo', 'Hrušovský', 'Huba', 'Hudáček', 'Hála', 'Ihnačák', 'Janoška', 'Jantošovič',
+        'Janík', 'Jonata', 'Jurina', 'Jurinová', 'Jurík', 'Jáni', 'Jánošík', 'Kaliský', 'Karul', 'Karvaš', 'Keníž', 'Klapka', 'Klaus', 'Kolník',
+        'Konstantinidis', 'Korec', 'Kostrec', 'Kováč', 'Kováčik', 'Koza', 'Kubík', 'Kučera', 'Labuda', 'Langoš', 'Lepšík', 'Lexa', 'Lintner',
+        'Lubina', 'Lukáč', 'Lupták', 'Líška', 'Majeský', 'Malachovský', 'Malíšek', 'Marián', 'Masaryk', 'Maslo', 'Matiaško', 'Medveď', 'Menyhért',
+        'Mečiar', 'Mečíř', 'Mikloško', 'Mikulík', 'Mikuš', 'Mikúš', 'Mišík', 'Mojžiš', 'Mokroš', 'Molnár', 'Moravčík', 'Musil', 'Mydlo', 'Nagy',
+        'Nemec', 'Neruda', 'Nezval', 'Nitra', 'Novák', 'Nábělek', 'Němec', 'Obšut', 'Otčenáš', 'Pauko', 'Pavlikovský', 'Pavúk', 'Pašek', 'Paška',
+        'Paško', 'Pelikán', 'Petrovický', 'Petruška', 'Plch', 'Podhradská', 'Podkonický', 'Poliak', 'Procházka', 'Puskás', 'Puškáš', 'Raši',
+        'Repiský', 'Riszdorfer', 'Romančík', 'Rozenberg', 'Rus', 'Ružička', 'Rúfus', 'Růžička', 'Samson', 'Sedliak', 'Senko', 'Sidor', 'Sklenka',
+        'Skutecký', 'Slašťan', 'Sloboda', 'Slobodník', 'Slota', 'Slovák', 'Smrek', 'Stodola', 'Straka', 'Szabó', 'Sámel', 'Sýkora', 'Tatar',
+        'Tatarka', 'Tatár', 'Tatárka', 'Timko', 'Tiso', 'Tomeček', 'Truben', 'Turčok', 'Tóth', 'Uram', 'Urblík', 'Vajcík', 'Valent', 'Valuška',
+        'Varga', 'Vašíček', 'Vesel', 'Vico', 'Višňovský', 'Vydarený', 'Weiss', 'Zima', 'Zimka', 'Zipser', 'Zátopek', 'Zúbrik', 'Čaplovič',
+        'Čarnogurský', 'Čierny', 'Ďaďo', 'Ďurica', 'Ďuriš', 'Šimonovič', 'Škriniar', 'Šouc', 'Šoustal', 'Štefan', 'Štefanka', 'Šulc', 'Šurka',
+        'Švehla', 'Šťastný'
+
     );
 
-    protected static $middleNameFemale = array(
-        'Александровна', 'Алексеевна', 'Андреевна', 'Дмитриевна', 'Евгеньевна',
-        'Сергеевна', 'Ивановна', 'Фёдоровна', 'Львовна', 'Романовна', 'Владимировна',
-        'Борисовна', 'Максимовна',
+    protected static $lastNameFemale = array(
+        'Slobodová', 'Novotná', 'Čierna', 'Kučerová', 'Veselá', 'Krajčíová', 'Nemcová', 'Králová', 'Růžičková', 'Fialová', 'Zemanová',
+        'Kolárová', 'Kováčová', 'Vlčková', 'Poláková', 'Kopecká', 'Šimková', 'Konečná', 'Malá', 'Holubová', 'Staneková', 'Šťastná',
+        'Vargová', 'Tóthová', 'Horváthová', 'Balážová', 'Szabová', 'Molnárová', 'Balogová', 'Lukáčová', 'Vícenová', 'Ringlóciová', 'Popovičová',
+        'Hulmanová', 'Zelenayová', 'Fingerlandová', 'Králiková', 'Kapustová', 'Hantuchová', 'Holéczyová', 'Butvínová', 'Oslejová', 'Radičová', 'Sárová',
+        'Sobotková', 'Kažimírová', 'Plšková', 'Jakubová', 'Šindlerová', 'Ondrejková', 'Slobodníková', 'Sadloňová', 'Černá', 'Nosková',
+        'Virčíková', 'Taliánová', 'Čuntalová', 'Oťapková', 'Zuzulová', 'Godolová', 'Gonová', 'Jančová', 'Kocúrová', 'Svobodová', 'Oravcová', 'Muráriková',
+        'Holubová', 'Kubáňová', 'Ondrišová', 'Šoltisová', 'Molnárová', 'Rezníčková', 'Dubníčková', 'Karolčíková', 'Máliková', 'Malíková', 'Litajová',
+        'Kolrusová', 'Košíková', 'Kušnírová', 'Kravjarová', 'Hotová', 'Hajzerová', 'Ferjenčíková', 'Senková', 'Adamcová', 'Pirošová', 'Šimonová',
+        'Finková', 'Hrdá', 'Murčová'
     );
 
-    /**
-     * {@link} http://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BE%D0%B1%D1%89%D0%B5%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D1%85_%D1%84%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D0%B9
-     **/
-    protected static $lastName = array(
-        'Смирнов', 'Иванов', 'Кузнецов', 'Соколов', 'Попов', 'Лебедев', 'Козлов',
-        'Новиков', 'Морозов', 'Петров', 'Волков', 'Соловьёв', 'Васильев', 'Зайцев',
-        'Павлов', 'Семёнов', 'Голубев', 'Виноградов', 'Богданов', 'Воробьёв',
-        'Фёдоров', 'Михайлов', 'Беляев', 'Тарасов', 'Белов', 'Комаров', 'Орлов',
-        'Киселёв', 'Макаров', 'Андреев', 'Ковалёв', 'Ильин', 'Гусев', 'Титов',
-        'Кузьмин', 'Кудрявцев', 'Баранов', 'Куликов', 'Алексеев', 'Степанов',
-        'Яковлев', 'Сорокин', 'Сергеев', 'Романов', 'Захаров', 'Борисов', 'Королёв',
-        'Герасимов', 'Пономарёв', 'Григорьев', 'Лазарев', 'Медведев', 'Ершов',
-        'Никитин', 'Соболев', 'Рябов', 'Поляков', 'Цветков', 'Данилов', 'Жуков',
-        'Фролов', 'Журавлёв', 'Николаев', 'Крылов', 'Максимов', 'Сидоров', 'Осипов',
-        'Белоусов', 'Федотов', 'Дорофеев', 'Егоров', 'Матвеев', 'Бобров', 'Дмитриев',
-        'Калинин', 'Анисимов', 'Петухов', 'Антонов', 'Тимофеев', 'Никифоров',
-        'Веселов', 'Филиппов', 'Марков', 'Большаков', 'Суханов', 'Миронов', 'Ширяев',
-        'Александров', 'Коновалов', 'Шестаков', 'Казаков', 'Ефимов', 'Денисов',
-        'Громов', 'Фомин', 'Давыдов', 'Мельников', 'Щербаков', 'Блинов', 'Колесников',
-        'Карпов', 'Афанасьев', 'Власов', 'Маслов', 'Исаков', 'Тихонов', 'Аксёнов',
-        'Гаврилов', 'Родионов', 'Котов', 'Горбунов', 'Кудряшов', 'Быков', 'Зуев',
-        'Третьяков', 'Савельев', 'Панов', 'Рыбаков', 'Суворов', 'Абрамов', 'Воронов',
-        'Мухин', 'Архипов', 'Трофимов', 'Мартынов', 'Емельянов', 'Горшков', 'Чернов',
-        'Овчинников', 'Селезнёв', 'Панфилов', 'Копылов', 'Михеев', 'Галкин', 'Назаров',
-        'Лобанов', 'Лукин', 'Беляков', 'Потапов', 'Некрасов', 'Хохлов', 'Жданов',
-        'Наумов', 'Шилов', 'Воронцов', 'Ермаков', 'Дроздов', 'Игнатьев', 'Савин',
-        'Логинов', 'Сафонов', 'Капустин', 'Кириллов', 'Моисеев', 'Елисеев', 'Кошелев',
-        'Костин', 'Горбачёв', 'Орехов', 'Ефремов', 'Исаев', 'Евдокимов', 'Калашников',
-        'Кабанов', 'Носков', 'Юдин', 'Кулагин', 'Лапин', 'Прохоров', 'Нестеров',
-        'Харитонов', 'Агафонов', 'Муравьёв', 'Ларионов', 'Федосеев', 'Зимин', 'Пахомов',
-        'Шубин', 'Игнатов', 'Филатов', 'Крюков', 'Рогов', 'Кулаков', 'Терентьев',
-        'Молчанов', 'Владимиров', 'Артемьев', 'Гурьев', 'Зиновьев', 'Гришин', 'Кононов',
-        'Дементьев', 'Ситников', 'Симонов', 'Мишин', 'Фадеев', 'Комиссаров', 'Мамонтов',
-        'Носов', 'Гуляев', 'Шаров', 'Устинов', 'Вишняков', 'Евсеев', 'Лаврентьев',
-        'Брагин', 'Константинов', 'Корнилов', 'Авдеев', 'Зыков', 'Бирюков', 'Шарапов',
-        'Никонов', 'Щукин', 'Дьячков', 'Одинцов', 'Сазонов', 'Якушев', 'Красильников',
-        'Гордеев', 'Самойлов', 'Князев', 'Беспалов', 'Уваров', 'Шашков', 'Бобылёв',
-        'Доронин', 'Белозёров', 'Рожков', 'Самсонов', 'Мясников', 'Лихачёв', 'Буров',
-        'Сысоев', 'Фомичёв', 'Русаков', 'Стрелков', 'Гущин', 'Тетерин', 'Колобов',
-        'Субботин', 'Фокин', 'Блохин', 'Селиверстов', 'Пестов', 'Кондратьев', 'Силин',
-        'Меркушев', 'Лыткин', 'Туров',
+    protected static $title = array(
+        'Bc.', 'Ing.', 'MUDr.', 'MVDr.', 'Mgr.', 'JUDr.', 'PhDr.', 'RNDr.', 'doc.', 'Dr.', 'BcA.', 'ICDr.', 'Ing.', 'Ing. arch.', 'JUDr.',
+        'Mgr. art.', 'MSDr.', 'PaedDr.', 'PharmDr.', 'PhDr.', 'PhMr.', 'RNDr.', 'RSDr.', 'ThDr.', 'ThLic.', 'prof.', 'Dr. h. c.'
     );
 
-    /**
-     * Return male middle name
-     *
-     * @example 'Иванович'
-     *
-     * @access public
-     *
-     * @return string Middle name
-     */
-    public function middleNameMale()
+    private static $suffix = array(
+        'CSc.', 'DrSc.', 'DSc.', 'Ph.D.', 'Th.D.'
+    );
+
+    public function title($gender = null)
     {
-        return static::randomElement(static::$middleNameMale);
+        return static::titleMale();
     }
 
     /**
-     * Return female middle name
-     *
-     * @example 'Ивановна'
-     *
-     * @access public
-     *
-     * @return string Middle name
+     * replaced by specific unisex slovakian title
      */
-    public function middleNameFemale()
+    public static function titleMale()
     {
-        return static::randomElement(static::$middleNameFemale);
+        return static::randomElement(static::$title);
     }
 
     /**
-     * Return middle name for the specified gender.
-     *
-     * @access public
-     * @param string|null $gender A gender the middle name should be generated
-     *     for. If the argument is skipped a random gender will be used.
-     * @return string Middle name
+     * replaced by specific unisex slovakian title
      */
-    public function middleName($gender = null)
+    public static function titleFemale()
+    {
+        return static::titleMale();
+    }
+
+    /**
+     * @param string|null $gender 'male', 'female' or null for any
+     * @example 'Novotný'
+     */
+    public function lastName($gender = null)
     {
         if ($gender === static::GENDER_MALE) {
-            return $this->middleNameMale();
+            return static::lastNameMale();
         } elseif ($gender === static::GENDER_FEMALE) {
-            return $this->middleNameFemale();
+            return static::lastNameFemale();
         }
 
-        return $this->middleName(static::randomElement(array(
-            static::GENDER_MALE,
-            static::GENDER_FEMALE,
-        )));
+        return $this->generator->parse(static::randomElement(static::$lastNameFormat));
+    }
+
+    public static function lastNameMale()
+    {
+        return static::randomElement(static::$lastNameMale);
+    }
+
+    public static function lastNameFemale()
+    {
+        return static::randomElement(static::$lastNameFemale);
+    }
+
+    /**
+     * @example 'PhD'
+     */
+    public static function suffix()
+    {
+        return static::randomElement(static::$suffix);
     }
 }

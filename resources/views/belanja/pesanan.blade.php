@@ -35,7 +35,7 @@
 							<div class="col-xs-9">
 								<div class="grup-detail-pesanan-pesan">
 									<a href="/produk-KG/{{$pesanan->produkKG->slug}}"><h5>{{$pesanan->produkKG->nama}}</h5></a>
-									<p>Publish by : <a href="#!">{{$pesanan->produkKG->petani->name}}</a></p>
+									<p>Publish by : <a href="/petani-profile/{{$pesanan->produkKG->petani->user->username}}">{{$pesanan->produkKG->petani->name}}</a></p>
 									<a href="/pesanan/hapus/{{$pesanan->id}}/kg/{{$pesanan->produkKg_id}}" onclick="return confirm('Anda yakin ingin menghapus Pesanan ?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 							<div class="col-xs-9">
 								<div class="grup-detail-pesanan-pesan">
 									<a href="/produk-Lahan/{{$pesanan->produkLahan->slug}}"><h5>{{$pesanan->produkLahan->nama}}</h5></a>
-									<p>Publish by : <a href="#!">{{$pesanan->produkLahan->petani->name}}</a></p>
+									<p>Publish by : <a href="/petani-profile/{{$pesanan->produkLahan->petani->user->username}}">{{$pesanan->produkLahan->petani->name}}</a></p>
 									<a href="/pesanan/hapus/{{$pesanan->id}}/lahan/{{$pesanan->produkLahan_id}}" onclick="return confirm('Anda yakin ingin menghapus Pesanan ?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</div>
 							</div>

@@ -104,6 +104,11 @@ html, body{
 .join-register a, .join-register a:focus,.join-register a:hover{
 	text-decoration: none;
 }
+.img-crop{
+	max-width: 256px;
+	height: 320px;
+	display: inline-block;
+}
 .join-register a:nth-child(1){
 	display: inline-block;
 	font-size: 20px;
@@ -393,11 +398,22 @@ nav ul ul ul{
 }
 .img-crop img{
 	width: 100%;
+	height: 100%;
+}
+.grup-seach{
+	vertical-align: bottom;
+	display: inline-block;
+}
+.head-jualan{
+	display: inline-block;
+	max-width: 946px;
 }
 .head-jualan h1{
-	color: #4a4a4a;
+	color: #2a4a5b;
 	font-weight: 600;
-	font-family: Righteous;
+	/* font-family: Righteous; */
+	font-family: Pacifico;
+	text-shadow: 2px 2px #cccccc;
 }
 @media (max-width: 720px){
 	.content-jualan {
@@ -654,7 +670,7 @@ nav ul ul ul{
 	display: block;
 	margin: 0 auto;
 }
-.kata-about>p{
+.kata-about .tab-content .tab-pane>p{
 	font-size: 20px;
 	line-height: 28px;
 	color: #32313a;
@@ -686,6 +702,7 @@ nav ul ul ul{
 	opacity: 1;
 }
 .image-crop a img{
+	height: 100%;
 	width: 100%;
 }
 @media (max-width: 557px){
@@ -2369,3 +2386,50 @@ footer{
 	text-decoration: none;
 }
 /*end history*/
+
+/* admin */
+.card-count-admin{
+	text-align: center;
+	border: 2px solid;
+	padding: 14px 10px;
+}
+.card-count-admin:hover{
+	box-shadow: 2px 2px 8px #9c9494;
+	background-color: #2a4a5b;
+	color: white;
+}
+.image-count-icon{
+	display: inline-block;
+	text-align: center;
+}
+.image-count-icon i{
+	font-size: 31px;
+}
+.image-count-icon p{
+	margin: 0;
+	font-family: Pacifico;
+	font-size: 19px;
+}
+.count-admin-all{
+	display: inline-block;
+	text-align: center;
+}
+.count-admin-all h3{
+	font-size: 46px;
+	margin: 0 9px;
+}
+#solve-count-padding{
+	padding: 5px;
+}
+.grup-all-admin-count{
+	display: inline-block;
+	width: 100%;
+	padding: 11%;
+	padding-top: 22px;
+	padding-bottom: 22px;
+}
+#solve-count-padding a{
+	color: #2a4a5b;
+}
+/* end admin */
+

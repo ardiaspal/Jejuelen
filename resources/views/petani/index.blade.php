@@ -15,7 +15,11 @@
 				<p>No: {{$petani->nohp}}</p>
 			</div>
 		</div>
+		@if (Auth::check())
+		@if (Auth::user()->id == $petani->user_id)
 		<a href="/petani/{{$petani->id}}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+		@endif
+		@endif
 	</div>
 </div>
 
@@ -144,10 +148,14 @@
 	<div class="head-title-petani">
 		<h1>Produk mu</h1>
 	</div>
+	@if (Auth::check())
+	@if (Auth::user()->id == $petani->user_id)
 	<div class="head-tambah-produk">
 		<a href="#!"  data-toggle="modal" data-target="#myModal">Tambah Produk KG <i class="fa fa-plus" aria-hidden="true"></i></a>
 		<a href="#!"  data-toggle="modal" data-target="#myModalLahan">Tambah Produk Lahan <i class="fa fa-plus" aria-hidden="true"></i></a>
 	</div>
+	@endif
+	@endif
 	@if (count($produks) > 0)
 	<div class="jualan-barang">
 
@@ -171,15 +179,17 @@
 					@endif
 					<div class="title"><a href="/produk-KG/{{$produk->slug}}">{{$produk->nama}}</a></div>
 					<div class="desc">Stok : {{$produk->stok}} Kg</div>
-					<div class="desc">Lorem ipsum dolor sit amet.</div>
+					<div class="desc">By <a style="color: #2a4a5b;text-decoration: none;" href="/petani-profile/{{$produk->petani->user->username}}">{{$produk->petani->name}}</a></div>
 					<span class="price">Rp. {{$produk->hargaFix->hargaBuah}}</span>
 					<div class="footer">
 						<ul>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star-o"></li>
+							<li style="color: #2a4a5b;">
+								@if ($produk->created_at == $produk->updated_at)
+									{{ $produk->created_at->diffForHumans()}}
+								@else
+									[Update] {{ $produk->updated_at->diffForHumans()}}
+								@endif
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -216,15 +226,17 @@
 					<div class="desc">Perkiraan : {{$lahan->stokAwal}} - {{$lahan->stokAkhir}} Kg</div>
 					<div class="desc">Masa Tanam : {{$lahan->masatanam}}</div>
 					<div class="desc">Perkiraan panen : {{$lahan->perkiraanPanen}}</div>
-					<div class="desc">Lorem ipsum dolor sit amet.</div>
+					<div class="desc">By <a style="color: #2a4a5b;text-decoration: none;" href="/petani-profile/{{$lahan->petani->user->username}}">{{$lahan->petani->name}}</a></div>
 					<span class="price">Rp. {{$lahan->harga}}</span>
 					<div class="footer">
 						<ul>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star"></li>
-							<li class="fa fa-star-o"></li>
+							<li style="color: #2a4a5b;">
+								@if ($lahan->created_at == $lahan->updated_at)
+									{{ $lahan->created_at->diffForHumans()}}
+								@else
+									[Update] {{ $lahan->updated_at->diffForHumans()}}
+								@endif
+							</li>
 						</ul>
 					</div>
 				</div>

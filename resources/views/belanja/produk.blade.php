@@ -2,24 +2,24 @@
 @section('title', 'Produk')
 @section('style')
 <style type="text/css">
-.modal {
-	text-align: center;
-	padding: 0!important;
-}
+	.modal {
+		text-align: center;
+		padding: 0!important;
+	}
 
-.modal:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-	margin-right: -4px;
-}
+	.modal:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+		margin-right: -4px;
+	}
 
-.modal-dialog {
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
-}
+	.modal-dialog {
+		display: inline-block;
+		text-align: left;
+		vertical-align: middle;
+	}
 </style>
 @endsection
 @section('content')
@@ -70,15 +70,17 @@
 									@endif
 									<div class="title"><a href="/produk-KG/{{$produk->slug}}">{{$produk->nama}}</a></div>
 									<div class="desc">Stok : {{$produk->stok}} Kg</div>
-									<div class="desc">Lorem ipsum dolor sit amet.</div>
+									<div class="desc">By <a style="color: #2a4a5b;text-decoration: none;" href="/petani-profile/{{$produk->petani->user->username}}">{{$produk->petani->name}}</a></div>
 									<span class="price">Rp. {{$produk->hargaFix->hargaBuah}}</span>
 									<div class="footer">
 										<ul>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star-o"></li>
+											<li style="color: #2a4a5b;">
+												@if ($produk->created_at == $produk->updated_at)
+												{{ $produk->created_at->diffForHumans()}}
+												@else
+												[Update] {{ $produk->updated_at->diffForHumans()}}
+												@endif
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -119,15 +121,17 @@
 									<div class="desc">Perkiraan : {{$lahan->stokAwal}} - {{$lahan->stokAkhir}} Kg</div>
 									<div class="desc">Masa Tanam : {{$lahan->masatanam}}</div>
 									<div class="desc">Perkiraan panen : {{$lahan->perkiraanPanen}}</div>
-									<div class="desc">Lorem ipsum dolor sit amet.</div>
+									<div class="desc">By <a style="color: #2a4a5b;text-decoration: none;" href="/petani-profile/{{$produk->petani->user->username}}">{{$produk->petani->name}}</a></div>
 									<span class="price">Rp. {{$lahan->harga}}</span>
 									<div class="footer">
 										<ul>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star"></li>
-											<li class="fa fa-star-o"></li>
+											<li style="color: #2a4a5b;">
+												@if ($lahan->created_at == $lahan->updated_at)
+												{{ $lahan->created_at->diffForHumans()}}
+												@else
+												[Update] {{ $lahan->updated_at->diffForHumans()}}
+												@endif
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -145,6 +149,7 @@
 		</div>
 	</div>
 
+@if (Auth::check())
 	@if ($produkKG != null)
 	@if (count($produkKG) > 0)
 	@foreach ($produkKG as $produk)
@@ -160,9 +165,17 @@
 				</div>
 				<div class="modal-body">
 					<form action="/pesanan/kg" method="POST" id="form-buy-kg">
+						@if (Auth::user()->status_id == 2)
+						<p>*maximal pembelian 10kg</p>
 						<div class="form-group">
-							<input type="number" name="jumlah" placeholder="jumlah pembelian">
+							<input type="number" min="1" max="10" name="jumlah" placeholder="jumlah pembelian">
 						</div>
+						@else
+						<p>*Minimal pembelian 10kg</p>
+						<div class="form-group">
+							<input type="number" min="10" max="{{$produk->stok}}" name="jumlah" placeholder="jumlah pembelian">
+						</div>
+						@endif
 						<input type="hidden" name="produkKg_id" value="{{$produk->id}}">
 						<input type="hidden" name="harga" value="{{$produk->hargaFix->hargaBuah}}">
 						{{ csrf_field() }}
@@ -178,6 +191,7 @@
 	@endforeach
 	@endif
 	@endif
+@endif
 	
 	@if ($produkLahan != null)
 	

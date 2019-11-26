@@ -17,7 +17,7 @@
 		<div class="grup-lagi-view-kg">
 			<div class="all-grup-single-kg">
 				<h3>Harga : Rp. {{$produk->harga}},- <span>/ Lahan</span></h3>
-				<p>Post By <a href="#!">{{$produk->petani->name}}</a></p>
+				<p>Post By <a href="/petani-profile/{{$produk->petani->user->username}}">{{$produk->petani->name}}</a></p>
 			</div>
 			@if (Auth::check())
 			@if (Auth::user()->id == $produk->petani->user->id)

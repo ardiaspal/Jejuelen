@@ -149,7 +149,7 @@
 		<div class="col-md-6">
 			<h1>Menghubungkan Dengan Petani</h1>
 			<p>Jejuelen adalah Ecommerce Pertanian Indonesia yang mengatasi permasalahan rantai pasokan dan distribusi hasil pertanian. Melalui teknologi, Jejuelen menghubungkan petani dengan pasar untuk memungkinkan petani menjual produk pertanian dengan harga yang adil dan kuantitas yang berkelanjutan.</p>
-			<p>Didirikan pada akhir tahun 2015 sebagai aplikasi on-demand untuk mengirimkan sayuran dari lahan pertanian ke rumah tangga, pada bulan Juli 2016, Jejuelen mulai menjadi perusahaan B2B (Business to Business) semua jenis komoditas pertanian - Buah, Sayur, Unggas, Perikanan, Peternakan.</p>
+			<p>Didirikan pada pertengahan tahun 2018 sebagai aplikasi on-demand untuk mengirimkan sayuran dari lahan pertanian ke pembeli, pada bulan Agustus 2018.</p>
 		</div>
 		<div class="col-md-6">
 			<div class="video-code">
@@ -159,48 +159,66 @@
 	</div>
 
 	<div class="content-jualan">
-		<div class="col-sm-2 hidden-xs">
+		<div class="col-sm-12">
 			<div class="img-crop">
 				<img src="{{ asset('image/icon/img2.png') }}" alt="">
 			</div>
-		</div>
-		<div class="col-sm-10">
 			<div class="grup-seach">
 				<div class="head-jualan">
 					<h1>Kami Menyediakan produk dengan Kualitas terbaik langsung dari petani.</h1>
 				</div>
-				<form id="search-new" method="post">
+				{{-- <form id="search-new" method="post">
 					<input type="text" class="textbox" placeholder="Search">
 					<input title="Search" value="" type="submit" class="button">
-				</form>
+				</form> --}}
 			</div>
 		</div>
 
 		<div class="jualan-barang">
 
-			@for ($i = 0; $i <12 ; $i++)
-			<div class=" col-xs-12 col-sm-6 col-md-3" id="jual-jarak">
-				<div class="box-wrapper">
-					<img src="http://www.freefoodphotos.com/imagelibrary/herbs/slides/chilis.jpg" alt="rhcp" />
-					<div class="box-content">
-						<a href="#!" class="buy"><span><i class="fa fa-cart-plus"></i></span></a>
-						<div class="title">Chili Papers</div>
-						<div class="desc">Lorem ipsum dolor sit amet.</div>
-						<span class="price">Rp. 12.000</span>
-						<div class="footer">
-							<ul>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star-o"></li>
-							</ul>
+			@if ($produkKG != null)
+			@if (count($produkKG) > 0)
+			<div class="jualan-barang">
+
+				@foreach ($produkKG as $produk)
+				<div class=" col-xs-12 col-sm-6 col-md-3" id="jual-jarak">
+					<div class="box-wrapper">
+						@if (!empty(App\pesanan::where('produkKg_id',$produk->id)->first()) && $produk->stok == 0)
+						<div class="booking-lahan">
 						</div>
+						<h1>Sold Out</h1>
+						@endif
+						<img src="{{ asset('image/projek/'.$produk->image) }}" alt="{{$produk->nama}}" />
+						<p>#KG</p>
+						<div class="box-content">
+							@if (Auth::check())
+							@if (Auth::user()->id != $produk->petani->user->id && Auth::user()->status_id != 3 && Auth::user()->status_id != 0)
+							<a href="#!" class="buy" data-toggle="modal" data-target="#buy{{$produk->id}}"><span><i class="fa fa-cart-plus"></i></span></a>
+							@endif
+							@endif
+							<div class="title"><a href="/produk-KG/{{$produk->slug}}">{{$produk->nama}}</a></div>
+							<div class="desc">Stok : {{$produk->stok}} Kg</div>
+							<div class="desc">By <a style="color: #2a4a5b;text-decoration: none;" href="/petani-profile/{{$produk->petani->user->username}}">{{$produk->petani->name}}</a></div>
+							<span class="price">Rp. {{$produk->hargaFix->hargaBuah}}</span>
+							<div class="footer">
+								<ul>
+									<li style="color: #2a4a5b;">
+										@if ($produk->created_at == $produk->updated_at)
+										{{ $produk->created_at->diffForHumans()}}
+										@else
+										[Update] {{ $produk->updated_at->diffForHumans()}}
+										@endif
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="success"></div>
 					</div>
-					<div class="success"></div>
 				</div>
+				@endforeach
 			</div>
-			@endfor
+			@endif
+			@endif
 
 		</div>
 	</div>
@@ -210,40 +228,111 @@
 			<img src="{{ asset('image/quote-icon.svg') }}" alt="">
 		</div>
 		<div class="kata-about">
-			<p id="kata-about-active">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit tempora, sit deserunt eaque quae deleniti expedita sunt, perferendis possimus unde earum voluptatem odio beatae nemo quibusdam ratione, magni, tempore! Deleniti.</p>
-			<div class="nama-about" id="nama-active">
-				<p>M lazuardi imani</p>
+			<div class="tab-content">
+
+				<div class="tab-pane fade in active" id="menu1">
+					<p id="kata-about-active">Orang pintar Suka buah</p>
+					<div class="nama-about" id="nama-active">
+						<p>Roni</p>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="menu2">
+					<p id="kata-about-active">Penuhi kebutuhan serat dan vitaminmu disini!</p>
+					<div class="nama-about" id="nama-active">
+						<p>Nadia</p>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="menu3">
+					<p id="kata-about-active">Tiada Hari Tanpa Shopping</p>
+					<div class="nama-about" id="nama-active">
+						<p>Adinda</p>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="menu4">
+					<p id="kata-about-active">Mangann as Alwayss</p>
+					<div class="nama-about" id="nama-active">
+						<p>Lazuardi</p>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="menu5">
+					<p id="kata-about-active">Jangan Lupa Empat Sehat 5 Sempurna dan Always Healhty</p>
+					<div class="nama-about" id="nama-active">
+						<p>Fahmi</p>
+					</div>
+				</div>
 			</div>
 			<div class="image-again">
 				<div class="image-crop" id="image-crop-active">
-					<a href="#!">
+					<a href="#menu1"  data-toggle="tab">
+						<img src="{{ asset('image/avatartahilalats.jpg') }}" alt="">
+					</a>
+				</div>
+				<div class="image-crop">
+					<a href="#menu2"  data-toggle="tab">
+						<img src="{{ asset('image/nadia.jpg') }}" alt="">
+					</a>
+				</div>
+				<div class="image-crop">
+					<a href="#menu3"  data-toggle="tab">
+						<img src="{{ asset('image/dinda.jpg') }}" alt="">
+					</a>
+				</div>
+				<div class="image-crop">
+					<a href="#menu4"  data-toggle="tab">
 						<img src="{{ asset('image/ane.jpg') }}" alt="">
 					</a>
 				</div>
 				<div class="image-crop">
-					<a href="#!">
-						<img src="{{ asset('image/ane.jpg') }}" alt="">
-					</a>
-				</div>
-				<div class="image-crop">
-					<a href="#!">
-						<img src="{{ asset('image/ane.jpg') }}" alt="">
-					</a>
-				</div>
-				<div class="image-crop">
-					<a href="#!">
-						<img src="{{ asset('image/ane.jpg') }}" alt="">
-					</a>
-				</div>
-				<div class="image-crop">
-					<a href="#!">
-						<img src="{{ asset('image/ane.jpg') }}" alt="">
+					<a href="#menu5"  data-toggle="tab">
+						<img src="{{ asset('image/fahmi.jpg') }}" alt="">
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	@if (Auth::check())
+	@if ($produkKG != null)
+	@if (count($produkKG) > 0)
+	@foreach ($produkKG as $produk)
+	<!-- Modal -->
+	<div id="buy{{$produk->id}}" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
 
+			<!-- Modal content-->
+			<div class="modal-content" style="font-family: Righteous;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Buy produk {{$produk->nama}}</h4>
+				</div>
+				<div class="modal-body">
+					<form action="/pesanan/kg" method="POST" id="form-buy-kg">
+						@if (Auth::user()->status_id == 2)
+						<p>*maximal pembelian 10kg</p>
+						<div class="form-group">
+							<input type="number" min="1" max="10" name="jumlah" placeholder="jumlah pembelian">
+						</div>
+						@else
+						<p>*Minimal pembelian 10kg</p>
+						<div class="form-group">
+							<input type="number" min="10" max="{{$produk->stok}}" name="jumlah" placeholder="jumlah pembelian">
+						</div>
+						@endif
+						<input type="hidden" name="produkKg_id" value="{{$produk->id}}">
+						<input type="hidden" name="harga" value="{{$produk->hargaFix->hargaBuah}}">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<button type="submit">Buy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	@endforeach
+	@endif
+	@endif
+	@endif
 	<footer>
 		<div class="col-xs-6">Copyright@2018</div>
 		<div class="col-xs-6">We ❤ Jejuelen</div>
@@ -251,5 +340,12 @@
 	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 	<script type="text/javascript" src="{{ asset('js/javascript.js') }}"></script>
+	<script type="text/javascript">
+		$('.image-crop').click(function () {
+			$('.image-again').find('#image-crop-active').removeAttr('id');
+			$(this).attr("id", "image-crop-active");
+
+		});
+	</script>
 </body>
 </html>

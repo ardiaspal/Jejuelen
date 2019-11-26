@@ -43,7 +43,6 @@
 					<td>{{$mitra->user->status}}</td>
 					<td class="aksi-managmen">
 						<a href="#!" data-toggle="modal" data-target="#myModalEdit{{$mitra->id}}">Update</a>
-						<a href="#!">Delete</a>
 					</td>
 				</tr>
 				@endforeach

@@ -1,112 +1,99 @@
 <?php
 
-namespace Faker\Provider\tr_TR;
-
-use Faker\Calculator\TCNo;
+namespace Faker\Provider\uk_UA;
 
 class Person extends \Faker\Provider\Person
 {
-    /**
-     * @var array Turkish person name formats.
-     */
     protected static $maleNameFormats = array(
-        '{{firstNameMale}} {{lastName}}',
-        '{{firstNameMale}} {{lastName}}',
-        '{{firstNameMale}} {{lastName}}',
-        '{{titleMale}} {{firstNameMale}} {{lastName}}',
+        '{{firstNameMale}} {{middleNameMale}} {{lastName}}',
+        '{{lastName}} {{firstNameMale}} {{middleNameMale}}',
     );
 
     protected static $femaleNameFormats = array(
-        '{{firstNameFemale}} {{lastName}}',
-        '{{firstNameFemale}} {{lastName}}',
-        '{{firstNameFemale}} {{lastName}}',
-        '{{titleFemale}} {{firstNameFemale}} {{lastName}}',
+        '{{lastName}} {{firstNameFemale}} {{middleNameFemale}}',
+        '{{firstNameFemale}} {{middleNameFemale}} {{lastName}}',
     );
 
-    /**
-     * @link http://www.guzelisimler.com/en_cok_aranan_erkek_isimleri.php
-     *
-     * @var array Turkish first names.
-     */
     protected static $firstNameMale = array(
-        'Ahmet', 'Ali', 'Alp', 'Armağan', 'Atakan', 'Aşkın', 'Baran', 'Bartu', 'Berk', 'Berkay', 'Berke', 'Bora', 'Burak', 'Canberk',
-        'Cem', 'Cihan', 'Deniz', 'Efe', 'Ege', 'Ege', 'Emir', 'Emirhan', 'Emre', 'Ferid', 'Göktürk', 'Görkem', 'Güney',
-        'Kağan', 'Kerem', 'Koray', 'Kutay', 'Mert', 'Onur', 'Ogün', 'Polat', 'Rüzgar', 'Sarp', 'Serhan', 'Toprak', 'Tuna',
-        'Türker', 'Utku', 'Yağız', 'Yiğit', 'Çınar', 'Derin', 'Meriç', 'Barlas', 'Dağhan', 'Doruk', 'Çağan'
+        'Євген', 'Адам', 'Олександр', 'Олексій', 'Анатолій', 'Андрій', 'Антон', 'Артем', 'Артур', 'Борис', 'Вадим', 'Валентин', 'Валерій',
+        'Василь', 'Віталій', 'Володимир', 'Владислав', 'Геннадій', 'Георгій', 'Григорій', 'Данил', 'Данило', 'Денис', 'Дмитро',
+        'Євген', 'Іван', 'Ігор', 'Йосип', 'Кирил', 'Костянтин', 'Лев', 'Леонід', 'Максим', 'Мирослав', 'Михайло', 'Назар',
+        'Микита', 'Микола', 'Олег', 'Павло', 'Роман', 'Руслан', 'Сергій', 'Станіслав', 'Тарас', 'Тимофій', 'Федір',
+        'Юрій', 'Ярослав', 'Богдан', 'Болеслав', 'B\'ячеслав',' Bалерій',' Bсеволод',' Bіктор', 'Ілля'
     );
 
-    /**
-     * @link http://www.guzelisimler.com/en_cok_aranan_kiz_isimleri.php
-     *
-     * @var array Turkish first names.
-     */
     protected static $firstNameFemale = array(
-        'Ada', 'Esma', 'Emel', 'Ebru', 'Şahnur', 'Ümran', 'Sinem', 'İrem', 'Rüya', 'Ece', 'Burcu'
+        'Олександра', 'Олена', 'Алла', 'Анастасія', 'Анна', 'Валентина', 'Валерія', 'Віра', 'Вікторія', 'Галина', 'Дар\'я', 'Діана', 'Євгенія',
+        'Катерина', 'Олена', 'Єлизавета', 'Інна', 'Ірина', 'Катерина', 'Кіра', 'Лариса', 'Любов', 'Людмила', 'Маргарита', 'Марина',
+        'Марія', 'Надія', 'Наташа', 'Ніна', 'Оксана', 'Ольга', 'Поліна', 'Раїса', 'Світлана', 'Софія', 'Тамара', 'Тетяна',
+        'Юлія', 'Ярослава'
     );
 
-    /**
-     * @link http://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk%C3%A7e_soyadlar%C4%B1
-     *
-     * @var array Turkish last names.
-     */
+    protected static $middleNameMale = array(
+        'Олександрович', 'Олексійович', 'Андрійович', 'Євгенович', 'Сергійович', 'Іванович',
+        'Федорович', 'Тарасович', 'Васильович', 'Романович', 'Петрович', 'Миколайович',
+        'Борисович', 'Йосипович', 'Михайлович', 'Валентинович', 'Янович', 'Анатолійович',
+        'Євгенійович', 'Володимирович'
+    );
+
+    protected static $middleNameFemale = array(
+        'Олександрівна', 'Олексіївна', 'Андріївна', 'Євгенівна', 'Сергіївна', 'Іванівна',
+        'Федорівна', 'Тарасівна', 'Василівна', 'Романівна', 'Петрівна', 'Миколаївна',
+        'Борисівна', 'Йосипівна', 'Михайлівна', 'Валентинівна', 'Янівна', 'Анатоліївна',
+        'Євгеніївна', 'Володимирівна'
+    );
+
     protected static $lastName = array(
-        'Abacı', 'Abadan', 'Aclan', 'Adal', 'Adan', 'Adıvar', 'Akal', 'Akan', 'Akar', 'Akay',
-        'Akaydın', 'Akbulut', 'Akgül', 'Akışık', 'Akman', 'Akyürek', 'Akyüz', 'Akşit', 'Alnıaçık',
-        'Alpuğan', 'Alyanak', 'Arıcan', 'Arslanoğlu', 'Atakol', 'Atan', 'Avan', 'Ayaydın', 'Aybar',
-        'Aydan', 'Aykaç', 'Ayverdi', 'Ağaoğlu', 'Aşıkoğlu', 'Babacan', 'Babaoğlu', 'Bademci',
-        'Bakırcıoğlu', 'Balaban', 'Balcı', 'Barbarosoğlu', 'Baturalp', 'Baykam', 'Başoğlu', 'Berberoğlu',
-        'Beşerler', 'Beşok', 'Biçer', 'Bolatlı', 'Dalkıran', 'Dağdaş', 'Dağlaroğlu', 'Demirbaş', 'Demirel',
-        'Denkel', 'Dizdar', 'Doğan', 'Durak', 'Durmaz', 'Duygulu', 'Düşenkalkar', 'Egeli', 'Ekici', 'Ekşioğlu',
-        'Eliçin', 'Elmastaşoğlu', 'Elçiboğa', 'Erbay', 'Erberk', 'Erbulak', 'Erdoğan', 'Erez', 'Erginsoy',
-        'Erkekli', 'Eronat', 'Ertepınar', 'Ertürk', 'Erçetin', 'Evliyaoğlu', 'Fahri', 'Gönültaş', 'Gümüşpala',
-        'Günday', 'Gürmen', 'Ilıcalı', 'Kahveci', 'Kaplangı', 'Karabulut', 'Karaböcek', 'Karadaş', 'Karaduman',
-        'Karaer', 'Kasapoğlu', 'Kavaklıoğlu', 'Kaya', 'Keseroğlu', 'Keçeci', 'Kılıççı', 'Kıraç', 'Kocabıyık',
-        'Korol', 'Koyuncu', 'Koç', 'Koçoğlu', 'Koçyiğit', 'Kuday', 'Kulaksızoğlu', 'Kumcuoğlu', 'Kunt',
-        'Kunter', 'Kurutluoğlu', 'Kutlay', 'Kuzucu', 'Körmükçü', 'Köybaşı', 'Köylüoğlu', 'Küçükler', 'Limoncuoğlu',
-        'Mayhoş', 'Menemencioğlu', 'Mertoğlu', 'Nalbantoğlu', 'Nebioğlu', 'Numanoğlu', 'Okumuş', 'Okur', 'Oraloğlu',
-        'Orbay', 'Ozansoy', 'Paksüt', 'Pekkan', 'Pektemek', 'Polat', 'Poyrazoğlu', 'Poçan', 'Sadıklar', 'Samancı',
-        'Sandalcı', 'Sarıoğlu', 'Saygıner', 'Sepetçi', 'Sezek', 'Sinanoğlu', 'Solmaz', 'Sözeri', 'Süleymanoğlu',
-        'Tahincioğlu', 'Tanrıkulu', 'Tazegül', 'Taşlı', 'Taşçı', 'Tekand', 'Tekelioğlu', 'Tokatlıoğlu', 'Tokgöz',
-        'Topaloğlu', 'Topçuoğlu', 'Toraman', 'Tunaboylu', 'Tunçeri', 'Tuğlu', 'Tuğluk', 'Türkdoğan', 'Türkyılmaz',
-        'Tütüncü', 'Tüzün', 'Uca', 'Uluhan', 'Velioğlu', 'Yalçın', 'Yazıcı', 'Yetkiner', 'Yeşilkaya', 'Yıldırım',
-        'Yıldızoğlu', 'Yılmazer', 'Yorulmaz', 'Çamdalı', 'Çapanoğlu', 'Çatalbaş', 'Çağıran', 'Çetin', 'Çetiner',
-        'Çevik', 'Çörekçi', 'Önür', 'Örge', 'Öymen', 'Özberk', 'Özbey', 'Özbir', 'Özdenak', 'Özdoğan', 'Özgörkey',
-        'Özkara', 'Özkök', 'Öztonga', 'Öztuna'
+        'Антоненко', 'Василенко', 'Васильчук', 'Васильєв', 'Гнатюк', 'Дмитренко',
+        'Захарчук', 'Іванченко', 'Микитюк', 'Павлюк', 'Панасюк', 'Петренко', 'Романченко',
+        'Сергієнко', 'Середа', 'Таращук', 'Боднаренко', 'Броваренко', 'Броварчук', 'Кравченко',
+        'Кравчук', 'Крамаренко', 'Крамарчук', 'Мельниченко', 'Мірошниченко', 'Шевченко', 'Шевчук',
+        'Шинкаренко', 'Пономаренко', 'Пономарчук', 'Лисенко'
     );
 
-    protected static $title = array('Doç. Dr.', 'Dr.', 'Prof. Dr.');
-
-    public function title($gender = null)
+    /**
+     * Return male middle name
+     *
+     * @example 'Іванович'
+     * @access public
+     * @return string Middle name
+     */
+    public function middleNameMale()
     {
-        return static::titleMale();
+        return static::randomElement(static::$middleNameMale);
     }
 
     /**
-     * replaced by specific unisex Turkish title
+     * Return female middle name
+     *
+     * @example 'Івановна'
+     * @access public
+     * @return string Middle name
      */
-    public static function titleMale()
+    public function middleNameFemale()
     {
-        return static::randomElement(static::$title);
+        return static::randomElement(static::$middleNameFemale);
     }
 
     /**
-     * replaced by specific unisex Turkish title
+     * Return middle name for the specified gender.
+     *
+     * @access public
+     * @param string|null $gender A gender the middle name should be generated
+     *     for. If the argument is skipped a random gender will be used.
+     * @return string Middle name
      */
-    public static function titleFemale()
+    public function middleName($gender = null)
     {
-        return static::titleMale();
-    }
+        if ($gender === static::GENDER_MALE) {
+            return $this->middleNameMale();
+        } elseif ($gender === static::GENDER_FEMALE) {
+            return $this->middleNameFemale();
+        }
 
-    /**
-     * National Personal Identity number (tc kimlik no)
-     * @link https://en.wikipedia.org/wiki/Turkish_Identification_Number
-     * @return string on format XXXXXXXXXXX
-     */
-    public function tcNo()
-    {
-        $randomDigits = static::numerify('#########');
-        $checksum = TCNo::checksum($randomDigits);
-
-        return $randomDigits . $checksum;
+        return $this->middleName(static::randomElement(array(
+            static::GENDER_MALE,
+            static::GENDER_FEMALE,
+        )));
     }
 }

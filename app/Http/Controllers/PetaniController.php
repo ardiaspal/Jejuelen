@@ -18,6 +18,14 @@ class PetaniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function awalHome()
+    {
+        $produkKG = produkKG::with('hargaFix','petani')->orderBy('created_at','asc')->paginate(12);
+        return view('welcome2',compact('produkKG'));
+    }
+
+    
     public function index()
     {
      if (Auth::user()->status_id == 3) {
@@ -33,6 +41,30 @@ class PetaniController extends Controller
      abort(404);
  }
 
+}
+
+public function profilePetani($username=null)
+{
+    // dd('masuk');
+   try {
+     if ($username == null) {
+      abort(403);
+  }else {
+      $user  = User::where('username',$username)->first();
+      if ($user == null) {
+        abort(403);
+    }else{
+       $hargas = hargaFix::all();
+        // dd($hargas);
+       $petani = petani::where('email',$user->email)->first();
+       $produks = produkKG::with('hargaFix','petani')->where('farmers_id',$petani->id)->orderBy('created_at','des')->paginate(20);
+       $produklahans = produkLahan::with('petani')->where('farmers_id',$petani->id)->orderBy('created_at','des')->paginate(20);
+   }
+}
+} catch (Exception $e) {
+   abort(403);
+}
+return view('petani.single_profile',compact('petani','hargas','produks','produklahans'));
 }
 
 public function petaniUpdateValidasi(Request $request, $id)
@@ -275,12 +307,12 @@ public function destroyKg($id)
 {
     $produkKg = produkKG::findOrFail($id);
 
-  if (Auth::user()->status_id == 3) {
-   $produkKg->delete();
-}else {
-   abort(404);
-}
-return redirect('/petani');
+    if (Auth::user()->status_id == 3) {
+       $produkKg->delete();
+   }else {
+       abort(404);
+   }
+   return redirect('/petani');
 }
 
     /**

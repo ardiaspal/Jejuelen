@@ -1,14 +1,15 @@
 <?php
 
-namespace Faker\Provider\ru_RU;
+namespace Faker\Provider\sk_SK;
 
 class PhoneNumber extends \Faker\Provider\PhoneNumber
 {
     protected static $formats = array(
-        '(812) ###-##-##',
-        '(495) ###-####',
-        '+7 (922) ###-####',
-        '(35222) ##-####',
-        '8-800-###-####',
+        '+421 ### ### ###',
+        '00421 ### ### ###',
+        '#### ### ###',
+        '00421#########',
+        '+421#########',
+        '########',
     );
 }

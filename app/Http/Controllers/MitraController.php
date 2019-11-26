@@ -6,6 +6,11 @@ use App\konsumenMitra;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use App\produkKG;
+use App\produkLahan;
+use App\pesanan;
+use App\transaksi;
+
 class MitraController extends Controller
 {
     /**
@@ -15,12 +20,22 @@ class MitraController extends Controller
      */
     public function index()
     {
-     if (Auth::user()->status_id == 1) {
-       $mitra = konsumenMitra::where('email',Auth::user()->email)->first();
-       return view('mitra.index',compact('mitra'));
-   } else {
-     abort(404);
- }
+       if (Auth::user()->status_id == 1) {
+         $mitra = konsumenMitra::where('email',Auth::user()->email)->first();
+
+        // pesanan/transaksi
+         $pesananKgs = pesanan::where('produkLahan_id',null)->where('user_id',Auth::user()->id)->where('status','tidak')->get();
+         $pesananLahans = pesanan::where('produkKg_id',null)->where('user_id',Auth::user()->id)->where('status','tidak')->get();
+         $jumlahTransaksi = count($pesananKgs) + count($pesananLahans);
+
+        // history
+         $historys = transaksi::join('pembayaran', 'transaksi.id_pembayaran', '=', 'pembayaran.id')->join('pesanan', 'transaksi.id_pesanan', '=', 'pesanan.id')->where('pesanan.status','terbayar')->where('pesanan.user_id', Auth::user()->id)->get();
+         $jumlahHistory = count($historys);
+
+         return view('mitra.index',compact('mitra','jumlahTransaksi','jumlahHistory'));
+     } else {
+       abort(404);
+   }
 
 }
 
@@ -116,10 +131,10 @@ class MitraController extends Controller
                 'image'     => $request->image,
             ]);
         }else {
-           abort(403);
-       }
-       return redirect('/home');
-   }
+         abort(403);
+     }
+     return redirect('/home');
+ }
 
     /**
      * Remove the specified resource from storage.

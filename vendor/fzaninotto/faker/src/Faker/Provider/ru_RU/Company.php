@@ -1,94 +1,64 @@
 <?php
 
-namespace Faker\Provider\ru_RU;
+namespace Faker\Provider\sk_SK;
 
 class Company extends \Faker\Provider\Company
 {
-    protected static $companyNameFormats = array(
-        '{{companyPrefix}} {{companyNameElement}}',
-        '{{companyPrefix}} {{companyNameElement}}{{companyNameElement}}',
-        '{{companyPrefix}} {{companyNameElement}}{{companyNameElement}}{{companyNameElement}}',
-        '{{companyPrefix}} {{companyNameElement}}{{companyNameElement}}{{companyNameElement}}{{companyNameSuffix}}',
+    protected static $formats = array(
+        '{{lastName}} {{companySuffix}}',
+        '{{lastName}}-{{lastName}}',
+        '{{lastName}}, {{lastName}} and {{lastName}}'
     );
 
-    protected static $companyPrefixes = array(
-      'ООО', 'ЗАО', 'ООО Компания', 'ОАО', 'ОАО', 'ПАО', 'МКК', 'МФО'
+    protected static $catchPhraseWords = array(
+        array(
+            'Adaptívne', 'Automatické', 'Vyvážené', 'Obchodný-sústredený', 'centralizované', 'Cloned', 'kompatibilné', 'nastaviteľný', 'Cross-group', 'Cross-platform', 'zákazníka zamerané', 'Prispôsobiteľné', 'Decentralizované', 'De-inžinierstva', 'prenesenú', 'Digitálne', 'distribuované', 'Rôzne', 'Down veľkosti', 'Rozšírený', 'Celopodnikové ', ' Ergonomická', 'Expanded', 'Rozšírené', 'Plne konfigurovateľné', 'Funkcia na báze', 'Základný', 'Perspektívne', 'inovatívne', 'integrované', 'Intuitívne', 'Inverzný', 'Povinne monitorovaná', 'Multi-prešitia', 'multi-laterálne', 'Viacvrstvová', 'Viacvrstvová', 'Sieťová', 'Objektovo založená', 'Open-architektúru', 'Open-source', 'Operatívny', 'Optimalizované', 'Voliteľný', 'Organické', 'Organizovaná', 'Trvalé', 'Polarizované', 'Preventívne', 'Aktívne', 'Na zisk zameraná', 'Hlboká', 'programovateľný', 'progresívne', 'verejného kľúča', 'kvalita zamerané', 'reaktívne', 'Rekonštruované', 'Znížená', 'Právo veľké', 'robustné', 'Bezpečné', 'Jednoduchšie', 'Prepínanie', 'Synchronizované', 'synergický', 'spojil', 'tím-orientovaná', 'Univerzálne', 'Užívateľsky prívetivý', 'Univerzálne', 'Virtuálne', 'Vizionárske',
+        ),
+        array(
+            'kontrola', 'analýzu', 'asymetrický', 'asynchrónne', 'prístup orientovaný', 'pozadí', 'na šírku pásma, monitorovať', 'obojsmerná', 'rozštiepené', 'jasne myslenie', 'klient-driven', 'klient-server', 'koherentné', 'súdržnosti', 'kompozitné', 'kontextový', 'kontextovo založená', 'obsah na báze', 'oddaný', 'dopytom', 'učebný', 'riadiace', 'diskrétne', 'dynamická', 'posilnenie', 'zahŕňajúci', 'manažér', 'explicitné', 'vyžaruje', 'odolné proti chybám', 'popredia', 'čerstvé myslenia', 'Globálne', 'heuristický', 'homogénna', 'ľudských zdrojov', 'hybridný', 'pôsobivých', 'čiastkové', 'nehmotnej', 'interaktívny', 'stredné', 'miestna', 'logistické', 'maximálny', 'metodickú', 'kritické', 'mobil', 'modulárny', 'motivuje', 'multimediálny', 'multi-štát', 'multi-tasking', 'národný', 'založená na skutočných potrebách', 'neutrálny', 'objektovo orientovaný', 'optimálnu', 'optimalizácia', 'radikálne', 'v reálnom čase', 'vzájomná', 'regionálne', 'citlivý', 'škálovateľné', 'stredné', 'zameriavalo na hľadanie riešenia', 'stabilný', 'statické', 'systematické', 'systémové', 'systém-hodný', 'hmotná', 'terciárny', 'prechodné', 'jednotný', 'pridaná hodnota', 'dobre modulovaný'
+        ),
+        array(
+            'schopnosť', 'prístup', 'algoritmus', 'aliancie', 'analyzátor', 'aplikácie', 'prístup', 'architektúra', 'archív', 'pole', 'postoj', 'referenčné', 'schopnosť', 'kapacita', 'výzva', 'okruh', 'spolupráca', 'zložitosť', 'koncept', 'konglomerát', 'pohotovostný', 'jadro', 'databáza', 'sklad dát', 'definície', 'emulácia', 'kódovanie', 'šifrovanie', 'extranet', 'firmware', 'flexibilita', 'počasia', 'rám', 'rámec', 'funkcie', 'funkcie', 'hardware', 'help-desk', 'hierarchie', 'húb', 'vykonávanie', 'infraštruktúra', 'iniciatíva', 'inštalácia', 'rozhranie', 'encyklopédia', 'pákový efekt', 'metodika', 'migrácia', 'model', 'moderátor', 'kontrola', 'moratórium', 'neurónové-siete', 'paradigma', 'paralelné', 'politika', 'portál', 'produkt', 'produktivita', 'projekt', 'projekcie', 'protokol', 'služba', 'softvér', 'riešenie', 'normalizácie', 'stratégia', 'štruktúra', 'úspech', 'nadstavba', 'pomoc', 'synergia', 'priepustnosť', 'časovom horizonte', 'sadu nástrojov', 'využitie', 'web', 'pracovná sila'
+        )
     );
 
-    protected static $companyNameSuffixes = array(
-      'Маш', 'Наладка', 'Экспедиция', 'Пром', 'Комплекс', 'Машина', 'Снос', '-М', 'Лизинг', 'Траст', 'Снаб',
-      '-H', 'Трест', 'Банк', 'Опт', 'Проф', 'Сбыт', 'Центр'
-    );
-    /**
-     * @note Words and parts of words that usually used in company names
-     */
-    protected static $companyElements = array(
-        'ЖелДор', 'Гараж', 'Цемент', 'Асбоцемент', 'Строй', 'Лифт', 'Креп', 'Авто', 'Теле', 'Транс', 'Алмаз', 'Метиз',
-        'Мотор', 'Рос', 'Тяж', 'Тех', 'Сантех', 'Урал', 'Башкир', 'Тверь', 'Казань', 'Обл', 'Бух', 'Хоз', 'Электро',
-        'Текстиль', 'Восток', 'Орион', 'Юпитер', 'Финанс', 'Микро', 'Радио', 'Мобайл', 'Дизайн', 'Метал', 'Нефть',
-        'Телеком', 'Инфо', 'Сервис', 'Софт', 'IT', 'Рыб', 'Глав', 'Вектор', 'Рем', 'Гор', 'Газ', 'Монтаж', 'Мор',
-        'Реч', 'Флот', 'Cиб', 'Каз', 'Инж', 'Вод', 'Пив', 'Хмель', 'Мяс', 'Томск', 'Омск', 'Север', 'Лен'
+    protected static $bsWords = array(
+        array(
+            'implement', 'utilize', 'integrate', 'streamline', 'optimize', 'evolve', 'transform', 'embrace', 'enable', 'orchestrate', 'leverage', 'reinvent', 'aggregate', 'architect', 'enhance', 'incentivize', 'morph', 'empower', 'envisioneer', 'monetize', 'harness', 'facilitate', 'seize', 'disintermediate', 'synergize', 'strategize', 'deploy', 'brand', 'grow', 'target', 'syndicate', 'synthesize', 'deliver', 'mesh', 'incubate', 'engage', 'maximize', 'benchmark', 'expedite', 'reintermediate', 'whiteboard', 'visualize', 'repurpose', 'innovate', 'scale', 'unleash', 'drive', 'extend', 'engineer', 'revolutionize', 'generate', 'exploit', 'transition', 'e-enable', 'iterate', 'cultivate', 'matrix', 'productize', 'redefine', 'recontextualize'
+        ),
+        array(
+            'clicks-and-mortar', 'value-added', 'vertical', 'proactive', 'robust', 'revolutionary', 'scalable', 'leading-edge', 'innovative', 'intuitive', 'strategic', 'e-business', 'mission-critical', 'sticky', 'one-to-one', '24/7', 'end-to-end', 'global', 'B2B', 'B2C', 'granular', 'frictionless', 'virtual', 'viral', 'dynamic', '24/365', 'best-of-breed', 'killer', 'magnetic', 'bleeding-edge', 'web-enabled', 'interactive', 'dot-com', 'sexy', 'back-end', 'real-time', 'efficient', 'front-end', 'distributed', 'seamless', 'extensible', 'turn-key', 'world-class', 'open-source', 'cross-platform', 'cross-media', 'synergistic', 'bricks-and-clicks', 'out-of-the-box', 'enterprise', 'integrated', 'impactful', 'wireless', 'transparent', 'next-generation', 'cutting-edge', 'user-centric', 'visionary', 'customized', 'ubiquitous', 'plug-and-play', 'collaborative', 'compelling', 'holistic', 'rich'
+        ),
+        array(
+            'synergies', 'web-readiness', 'paradigms', 'markets', 'partnerships', 'infrastructures', 'platforms', 'initiatives', 'channels', 'eyeballs', 'communities', 'ROI', 'solutions', 'e-tailers', 'e-services', 'action-items', 'portals', 'niches', 'technologies', 'content', 'vortals', 'supply-chains', 'convergence', 'relationships', 'architectures', 'interfaces', 'e-markets', 'e-commerce', 'systems', 'bandwidth', 'infomediaries', 'models', 'mindshare', 'deliverables', 'users', 'schemas', 'networks', 'applications', 'metrics', 'e-business', 'functionalities', 'experiences', 'webservices', 'methodologies'
+        )
     );
 
-    /**
-     * @link https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9F%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%B8
-     * @note Randomly took from this list - some jobs titles for each letter
-     */
-    protected static $jobTitleFormat = array(
-      'Абразивоструйщик', 'Автоинструктор', 'Администратор', 'Арт-директор', 'Архивист', 'Бариста', 'Бармен',
-      'Бестиарий (гладиатор)', 'Бизнес-аналитик', 'Бухгалтер', 'Ветеринар', 'Водитель', 'Водолаз', 'Геймдизайнер',
-      'Герольд', 'Гитарный мастер', 'Горный проводник', 'Детектив', 'Диджей', 'Диктор', 'Дипломат', 'Егерь', 'Жокей',
-      'Зубной техник', 'Интеллектуал', 'Информационный работник', 'Кассир', 'Ковбой', 'Креативный директор', 'Критик',
-      'Крупье', 'Лесоруб', 'Лингвист', 'Машинист', 'Менеджер', 'Музыкант', 'Научный сотрудник', 'Офис-менеджер',
-      'Печник', 'Пианист', 'Писатель', 'Продюсер', 'Промоутер', 'Психолог', 'Радист', 'Редактор', 'Садовник',
-      'Системный аналитик', 'Стилист', 'Столяр', 'Сторож', 'Телефонистка', 'Телохранитель', 'Технический писатель',
-      'Учёный', 'Физик', 'Финансовый советник', 'Фотограф', 'Фрезеровщик', 'Художник', 'Чабан', 'Штурман',
-      'Экономист', 'Электромонтёр'
-    );
+    protected static $companySuffix = array('s.r.o.', 'a.s.', 'v.o.s.');
 
     /**
-     * @example 'ООО АсбестЦементМонтаж'
+     * @example 'Robust full-range hub'
      */
-    public function company()
+    public function catchPhrase()
     {
-        $format = static::randomElement(static::$companyNameFormats);
-
-        return $this->generator->parse($format);
-    }
-
-    public static function companyPrefix()
-    {
-        return static::randomElement(static::$companyPrefixes);
-    }
-
-    public static function companyNameElement()
-    {
-        return static::randomElement(static::$companyElements);
-    }
-
-    public static function companyNameSuffix()
-    {
-        return static::randomElement(static::$companyNameSuffixes);
-    }
-
-    public static function inn($area_code = "")
-    {
-        if ($area_code === "" || intval($area_code) == 0) {
-            //Simple generation code for areas in Russian without check for valid
-            $area_code = static::numberBetween(1, 91);
-        } else {
-            $area_code = intval($area_code);
+        $result = array();
+        foreach (static::$catchPhraseWords as &$word) {
+            $result[] = static::randomElement($word);
         }
-        $area_code = str_pad($area_code, 2, '0', STR_PAD_LEFT);
-        $inn_base =  $area_code . static::numerify('#######');
-        return $inn_base . \Faker\Calculator\Inn::checksum($inn_base);
+
+        return join($result, ' ');
     }
 
-    public static function kpp($inn = "")
+    /**
+     * @example 'integrate extensible convergence'
+     */
+    public function bs()
     {
-        if ($inn == "" || strlen($inn) < 4) {
-            $inn = static::inn();
+        $result = array();
+        foreach (static::$bsWords as &$word) {
+            $result[] = static::randomElement($word);
         }
-        return substr($inn, 0, 4) . "01001";
+
+        return join($result, ' ');
     }
 }

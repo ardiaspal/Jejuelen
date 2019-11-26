@@ -1,6 +1,6 @@
 <?php
 
-namespace Faker\Provider\zh_CN;
+namespace Faker\Provider\zh_TW;
 
 class DateTime extends \Faker\Provider\DateTime
 {

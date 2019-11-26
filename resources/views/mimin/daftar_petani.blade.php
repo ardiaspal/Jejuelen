@@ -53,7 +53,7 @@
 					<td>{{$petani->kewarganegaraan}}</td>
 					<td class="aksi-managmen">
 						<a href="#!"  data-toggle="modal" data-target="#editModal{{$petani->id}}">Update</a>
-						<a href="#!">Delete</a>
+						<a href="/hapus-data-petani/{{$petani->user_id}}/destroy" onclick="return confirm('Anda yakin?')">Delete</a>
 					</td>
 				</tr>
 				@endforeach
@@ -221,11 +221,13 @@
 				<h4 class="modal-title" id="title-moda-new">Registrasi Petani</h4>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="/register-petani">
+				<form method="POST" action="/edit-data-petani/{{$petani->id}}">
 					{{ csrf_field() }}
+					<input type="hidden" name="_method"  value="PUT">
 					<div class="form-group">
 						<label for="title">Nama</label>
 						<input type="text" name="name" class="form-control" placeholder="nama" value="{{ old('name') ? old('name') :$petani->name }}" required>
+						<input type="hidden" name="user_id" class="form-control" value="{{$petani->user_id}}">
 						@if ($errors->has('name'))
 						<span class="help-block">
 							<strong>{{ $errors->first('name') }}</strong>
@@ -234,10 +236,19 @@
 					</div>
 					<div class="form-group">
 						<label for="title">username</label>
-						<input type="text" name="username" class="form-control" placeholder="username" value="{{ old('username') ? old('username') :$petani->username }}" required>
+						<input type="text" name="username" class="form-control" placeholder="username" value="{{ old('username') ? old('username') : $petani->user->username }}" required>
 						@if ($errors->has('username'))
 						<span class="help-block">
 							<strong>{{ $errors->first('username') }}</strong>
+						</span>
+						@endif
+					</div>
+					<div class="form-group">
+						<label for="title">image</label>
+						<input type="text" name="image" class="form-control" placeholder="image" value="{{ old('image') ? old('image') : $petani->image }}" required>
+						@if ($errors->has('image'))
+						<span class="help-block">
+							<strong>{{ $errors->first('image') }}</strong>
 						</span>
 						@endif
 					</div>
@@ -289,10 +300,10 @@
 					<div class="form-group">
 						<label for="title" class="text-create-event" style="display: block;">Status Hidup</label>
 						<label class="radio-inline">
-							<input type="radio" name="status_hidup" value="menikah">menikah
+							<input type="radio" {{strcasecmp($petani->status, 'menikah') == 0  ? 'checked' : ''}} name="status_hidup" value="menikah">menikah
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="status_hidup" value="single">single
+							<input type="radio" {{strcasecmp($petani->status, 'single') == 0  ? 'checked' : ''}} name="status_hidup" value="single">single
 						</label>
 					</div>
 					<div class="form-group">
@@ -316,10 +327,10 @@
 					<div class="form-group">
 						<label for="title" class="text-create-event" style="display: block;">Jenis Kelamin</label>
 						<label class="radio-inline">
-							<input type="radio" name="jenisKelamin" value="laki-laki">Laki-laki
+							<input type="radio" name="jenisKelamin" {{strcasecmp($petani->jenisKelamin, 'laki-laki') == 0  ? 'checked' : ''}} value="laki-laki">Laki-laki
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="jenisKelamin" value="perempuan">Perempuan
+							<input type="radio" name="jenisKelamin" {{strcasecmp($petani->jenisKelamin, 'perempuan') == 0  ? 'checked' : ''}} value="perempuan">Perempuan
 						</label>
 					</div>
 					<div class="form-group">
@@ -333,7 +344,7 @@
 					</div>
 					<div class="form-group">
 						<label for="title" class="text-create-event">Password</label>
-						<input type="password" name="password" class="form-control" placeholder="password" required>
+						<input type="password" name="password" class="form-control" placeholder="password">
 						@if ($errors->has('password'))
 						<span class="help-block">
 							<strong>{{ $errors->first('password') }}</strong>
@@ -342,7 +353,10 @@
 					</div>
 					<div class="form-group">
 						<label for="title" class="text-create-event">Confirm Password</label>
-						<input type="password" class="form-control" name="password_confirmation" required>
+						<input type="password" class="form-control" name="password_confirmation">
+						<span class="help-block">
+							<strong>{{ Session::get('massage') }}</strong>
+						</span>
 					</div>
 					<input type="hidden" name="type" class="form-control" value="petani" placeholder="alamat">
 					<button type="submit" class="btn btn-block btn-default">Submit</button>
@@ -356,5 +370,20 @@
 	</div>
 </div>
 @endforeach
+
+@section('script')
+<script>
+	$(document).ready(function(){
+      var date_input_new=$('input[name="ttl"]'); //our date input has the name "date"
+      var options={
+      	format: 'dd-mm-yyyy',
+      	todayHighlight: true,
+      	autoclose: true,
+      };
+      date_input_new.datepicker(options);
+  })
+</script>
+@endsection
+
 
 @endsection

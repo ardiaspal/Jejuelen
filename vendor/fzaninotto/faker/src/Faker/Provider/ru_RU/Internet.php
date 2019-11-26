@@ -1,9 +1,9 @@
 <?php
 
-namespace Faker\Provider\ru_RU;
+namespace Faker\Provider\sk_SK;
 
 class Internet extends \Faker\Provider\Internet
 {
-    protected static $freeEmailDomain = array('yandex.ru', 'ya.ru', 'narod.ru', 'gmail.com', 'mail.ru', 'list.ru', 'bk.ru', 'inbox.ru', 'rambler.ru', 'hotmail.com');
-    protected static $tld = array('com', 'com', 'net', 'org', 'ru', 'ru', 'ru', 'ru');
+    protected static $freeEmailDomain = array('gmail.com', 'yahoo.com', 'zoznam.sk', 'atlas.sk', 'centrum.sk', 'azet.sk', 'post.sk');
+    protected static $tld = array('sk', 'sk', 'sk', 'sk', 'sk', 'sk', 'eu', 'com', 'info', 'net', 'org');
 }

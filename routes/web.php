@@ -38,9 +38,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 });
 
-Route::get('/', function () {
-	return view('welcome2');
-});
+Route::get('/', 'PetaniController@awalHome');
 
 Route::group(['middleware' => 'mimin'], function(){
 	Route::get('/mimin', 'MiminController@dasboard');
@@ -55,6 +53,8 @@ Route::group(['middleware' => 'mimin'], function(){
 
 	Route::get('/daftar-petani', 'MiminController@daftarPetani');
 	Route::post('/register-petani', 'MiminController@registerPetani');
+	Route::put('/edit-data-petani/{id}', 'MiminController@editPetani');
+	Route::get('/hapus-data-petani/{id}/destroy', 'MiminController@hapusPetani');
 
 
 	Route::get('/daftar-pembeli', 'MiminController@daftarPembeli');
@@ -78,4 +78,5 @@ Route::resource('/user', 'UserController', ['only' => ['index','show']]);
 Route::get('/produk', 'ProdukController@produk_jual');
 Route::get('/produk-KG/{slug}', 'PetaniController@showprodukKG');
 Route::get('/produk-Lahan/{slug}', 'PetaniController@showprodukLahan');
-// Route::get('/{username}', 'HomeController@profile');
+
+Route::get('/petani-profile/{username}', 'PetaniController@profilePetani');
